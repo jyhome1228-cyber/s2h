@@ -263,16 +263,35 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .legal-page section p,.legal-page section li{font-size:14px;line-height:1.9;color:#52616a;word-break:keep-all}
 .legal-page section ul{padding-left:20px}
 @media(max-width:650px){.site-footer{padding-top:42px}.foot-contact>a:not(.btn){font-size:17px}.foot-legal-info{font-size:11px}.legal-page{padding:52px 0 75px}}
+
+/* Partnership editorial cleanup: no micro labels or decorative slash numbering */
+.partnership-first .eyebrow,.partnership-benefits .eyebrow,.partner-section--soft>.wrap>.eyebrow,.partnership-last>.wrap>.eyebrow{display:none}
+.partner-hero.partnership-first{padding-top:88px;padding-bottom:84px}
+.partnership-first h1{margin-top:0;font-size:clamp(34px,3.5vw,48px);line-height:1.37;font-weight:600}
+.partner-section{padding-top:78px;padding-bottom:78px}
+.partner-head{font-size:clamp(27px,2.4vw,34px);margin-top:0;margin-bottom:33px;line-height:1.38}
+.partner-feature{padding:37px 30px;min-height:216px;display:flex;flex-direction:column;justify-content:center}
+.partner-feature>span{display:none}
+.partner-feature h3{font-size:21px;margin:0 0 15px;font-weight:600;line-height:1.5}
+.partner-feature p{font-size:16px;line-height:1.85}
+.partner-steps{gap:20px}
+.partner-step{padding-top:22px}
+.partner-step strong{font-size:17px;letter-spacing:0;font-weight:600;margin-bottom:18px}
+.partner-step h3{font-size:18px}
+.partner-step p{font-size:15px;line-height:1.75}
+.partnership-last .partner-apply{padding-top:34px}
+.partnership-last .partner-apply p{font-size:16px}
+@media(max-width:650px){.partner-hero.partnership-first{padding-top:68px;padding-bottom:68px}.partnership-first h1{font-size:clamp(31px,7vw,39px)}.partner-section{padding:57px 0}.partner-feature{padding:28px 24px;min-height:auto}.partner-feature h3{font-size:19px}.partner-feature p{font-size:15px}.partner-step strong{font-size:16px}}
 </style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
-<section class="partner-hero partnership-first"><div class="wrap"><span class="eyebrow">FOR BRANDS & MANUFACTURERS</span><h1>우리 브랜드의 다음 판매 채널,<br>S2H에서 찾아보세요.</h1><p>좋은 제품을 만들었다면, 이제 제품에 맞는 셀러와 고객을 만날 차례입니다.</p><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></section>
-<section class="partner-section partnership-benefits"><div class="wrap"><span class="eyebrow">WHY S2H</span><h2 class="partner-head">제품만 제안하는 것으로 시작하세요.</h2><div class="partner-features"><article class="partner-feature"><span>01 / BENEFIT</span><h3>제품에 맞는 셀러를 함께 찾습니다</h3><p>상품 특성과 타깃에 맞는 공동구매 채널과 협업 가능성을 검토합니다.</p></article><article class="partner-feature"><span>02 / BENEFIT</span><h3>판매 기회를 넓혀갑니다</h3><p>기존 유통 채널 밖에서도 제품의 매력을 전달할 새로운 판매 접점을 모색합니다.</p></article><article class="partner-feature"><span>03 / BENEFIT</span><h3>운영 과정도 함께 설계합니다</h3><p>공급 조건, 판매 일정, 콘텐츠, 물류 및 정산 등 공동구매 진행 사항을 협의합니다.</p></article></div></div></section>
-<section class="partner-section partner-section--soft"><div class="wrap"><span class="eyebrow">HOW IT WORKS</span><h2 class="partner-head">상품 제안부터 공동구매까지.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>입점 제안</h3><p>브랜드 및 제품 정보를 전달해 주세요.</p></article><article class="partner-step"><strong>02</strong><h3>상품 검토</h3><p>상품 특성·판매 조건 등을 확인합니다.</p></article><article class="partner-step"><strong>03</strong><h3>조건 협의</h3><p>공급가와 공동구매 진행 조건을 논의합니다.</p></article><article class="partner-step"><strong>04</strong><h3>셀러 제안</h3><p>적합한 협업 채널을 검토하고 제안합니다.</p></article><article class="partner-step"><strong>05</strong><h3>공동구매 운영</h3><p>일정 확정 후 진행 및 정산을 협의합니다.</p></article></div></div></section>
-<section class="partner-section partnership-last"><div class="wrap"><span class="eyebrow">PARTNER WITH S2H</span><div class="partner-apply"><div><h2>좋은 제품, 더 많은 고객에게 소개해 보세요.</h2><p>브랜드명, 제품 정보와 판매 링크를 보내주시면 제안을 검토하겠습니다.</p></div><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></div></section></main>
+<section class="partner-hero partnership-first"><div class="wrap"><h1>우리 브랜드의 다음 판매 채널,<br>S2H에서 찾아보세요.</h1><p>좋은 제품을 만들었다면, 이제 제품에 맞는 셀러와 고객을 만날 차례입니다.</p><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></section>
+<section class="partner-section partnership-benefits"><div class="wrap"><h2 class="partner-head">제품만 제안하는 것으로 시작하세요.</h2><div class="partner-features"><article class="partner-feature"><h3>제품에 맞는 셀러를 함께 찾습니다</h3><p>상품 특성과 타깃에 맞는 공동구매 채널과 협업 가능성을 검토합니다.</p></article><article class="partner-feature"><h3>판매 기회를 넓혀갑니다</h3><p>기존 유통 채널 밖에서도 제품의 매력을 전달할 새로운 판매 접점을 모색합니다.</p></article><article class="partner-feature"><h3>운영 과정도 함께 설계합니다</h3><p>공급 조건, 판매 일정, 콘텐츠, 물류 및 정산 등 공동구매 진행 사항을 협의합니다.</p></article></div></div></section>
+<section class="partner-section partner-section--soft"><div class="wrap"><h2 class="partner-head">상품 제안부터 공동구매까지.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>입점 제안</h3><p>브랜드 및 제품 정보를 전달해 주세요.</p></article><article class="partner-step"><strong>02</strong><h3>상품 검토</h3><p>상품 특성·판매 조건 등을 확인합니다.</p></article><article class="partner-step"><strong>03</strong><h3>조건 협의</h3><p>공급가와 공동구매 진행 조건을 논의합니다.</p></article><article class="partner-step"><strong>04</strong><h3>셀러 제안</h3><p>적합한 협업 채널을 검토하고 제안합니다.</p></article><article class="partner-step"><strong>05</strong><h3>공동구매 운영</h3><p>일정 확정 후 진행 및 정산을 협의합니다.</p></article></div></div></section>
+<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>좋은 제품, 더 많은 고객에게 소개해 보세요.</h2><p>브랜드명, 제품 정보와 판매 링크를 보내주시면 제안을 검토하겠습니다.</p></div><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></div></section></main>
 <footer class="site-footer" id="footer">
 <div class="foot-wrap">
   <div class="foot-primary">
