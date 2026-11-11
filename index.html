@@ -248,7 +248,31 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .legal-page section p,.legal-page section li{font-size:14px;line-height:1.9;color:#52616a;word-break:keep-all}
 .legal-page section ul{padding-left:20px}
 @media(max-width:650px){.site-footer{padding-top:42px}.foot-contact>a:not(.btn){font-size:17px}.foot-legal-info{font-size:11px}.legal-page{padding:52px 0 75px}}
-/* Minimal home partnership transition */.home-partnership{background:#f4f7f8;border-top:1px solid #e7edef}.home-partnership-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:9%;padding-top:82px;padding-bottom:82px}.home-partnership-copy h2{font-size:clamp(26px,2.5vw,36px);line-height:1.35;font-weight:600;letter-spacing:-.05em;margin:0 0 15px}.home-partnership-copy p{font-size:15px;line-height:1.85;color:#677780;margin:0}.home-partnership-links{display:flex;flex-direction:column;border-top:1px solid #b9cbd3}.home-partnership-links a{display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:23px 4px;border-bottom:1px solid #b9cbd3;transition:padding .2s,color .2s}.home-partnership-links a:hover{padding-left:12px;color:#0089b3}.home-partnership-links a>span:first-child{grid-column:1;color:#657a83;font-size:13px}.home-partnership-links strong{font-size:19px;font-weight:600;letter-spacing:-.035em}.home-partnership-links a>span:last-child{grid-column:2;grid-row:1/3;align-self:center;font-size:22px;color:#0089b3}@media(max-width:800px){.home-partnership-inner{grid-template-columns:1fr;gap:35px;padding-top:65px;padding-bottom:65px}}</style>
+/* Minimal home partnership transition */.home-partnership{background:#f4f7f8;border-top:1px solid #e7edef}.home-partnership-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:9%;padding-top:82px;padding-bottom:82px}.home-partnership-copy h2{font-size:clamp(26px,2.5vw,36px);line-height:1.35;font-weight:600;letter-spacing:-.05em;margin:0 0 15px}.home-partnership-copy p{font-size:15px;line-height:1.85;color:#677780;margin:0}.home-partnership-links{display:flex;flex-direction:column;border-top:1px solid #b9cbd3}.home-partnership-links a{display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:23px 4px;border-bottom:1px solid #b9cbd3;transition:padding .2s,color .2s}.home-partnership-links a:hover{padding-left:12px;color:#0089b3}.home-partnership-links a>span:first-child{grid-column:1;color:#657a83;font-size:13px}.home-partnership-links strong{font-size:19px;font-weight:600;letter-spacing:-.035em}.home-partnership-links a>span:last-child{grid-column:2;grid-row:1/3;align-self:center;font-size:22px;color:#0089b3}@media(max-width:800px){.home-partnership-inner{grid-template-columns:1fr;gap:35px;padding-top:65px;padding-bottom:65px}}
+/* Product carousel on the main page */
+.home-products{padding:96px 0 94px;background:#fff}
+.home-products-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:36px}
+.home-products-heading h2{font-size:clamp(26px,2.6vw,36px);font-weight:600;letter-spacing:-.045em;line-height:1.35;margin:0 0 12px}
+.home-products-heading p{font-size:15px;color:#687981;line-height:1.8;margin:0}
+.home-products-actions{display:flex;gap:9px}
+.home-products-actions button{width:42px;height:42px;border:1px solid #d6e0e4;border-radius:50%;background:white;color:#25363d;font-size:21px;transition:background .2s,border-color .2s}
+.home-products-actions button:hover{background:#0089b3;border-color:#0089b3;color:#fff}
+.home-products-window{overflow:hidden;outline-offset:5px;touch-action:pan-y}
+.home-products-track{display:flex;gap:18px;transition:transform .55s cubic-bezier(.22,.7,.2,1);will-change:transform}
+.home-product-card{min-width:0;flex:0 0 calc((100% - 54px)/4);display:block;text-decoration:none;color:inherit}
+.home-product-image{aspect-ratio:1/1;overflow:hidden;background:#f3f5f6}
+.home-product-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.home-product-card:hover img{transform:scale(1.045)}
+.home-product-category{display:block;color:#0089b3;font-size:12px;font-weight:500;margin-top:18px}
+.home-product-name{display:block;font-size:16px;font-weight:600;line-height:1.55;letter-spacing:-.03em;margin-top:8px;word-break:keep-all}
+.home-products-bottom{border-top:1px solid #e0e7ea;margin-top:30px;padding-top:20px;display:flex;align-items:center;justify-content:space-between}
+.home-products-bottom>span{font-size:12px;color:#7c8b92}
+.home-products-bottom>a{color:#1b3038;font-size:14px;font-weight:600}
+.home-products-bottom>a:hover{color:#0089b3}
+@media(max-width:900px){.home-product-card{flex-basis:calc((100% - 18px)/2)}}
+@media(max-width:600px){.home-products{padding:66px 0}.home-products-heading{align-items:end}.home-products-heading h2{font-size:27px}.home-products-heading p{font-size:14px}.home-product-card{flex-basis:82%}.home-products-track{gap:12px}.home-products-actions button{width:36px;height:36px}.home-product-name{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.home-products-track{transition:none}.home-product-image img{transition:none}}
+</style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
@@ -258,7 +282,12 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 <section class="hero"><div class="hero-inner fade-in"><div class="hero-kicker">S2H CORPORATION</div><h1 id="heroTitle">INFLUENCER COMMERCE<span>MARKETING COMPANY</span></h1></div><div class="hero-arrows"><button type="button" id="heroPrev" aria-label="이전 슬라이드">←</button><button type="button" id="heroNext" aria-label="다음 슬라이드">→</button></div><div class="hero-dots"><button type="button" class="active" aria-label="첫번째 슬라이드"></button><button type="button" aria-label="두번째 슬라이드"></button></div><div class="hero-bottom">SCROLL DOWN</div></section>
 <section class="panel"><div class="wrap intro-layout"><div><div class="eyebrow">ABOUT S2H</div><h2 class="section-title">Beyond<br>Commerce.</h2><div class="statement">브랜드와 사람을 연결하고,<br><em>새로운 커머스의 가능성</em>을 만듭니다.</div></div><div><p class="desc">S2H CORPORATION은 인플루언서 커머스를 중심으로 브랜드와 소비자가 만나는 접점을 만들어 갑니다. 상품의 가치를 발견하고, 콘텐츠와 마케팅을 통해 더 많은 고객에게 전달합니다.</p><a class="btn" href="company.html">ABOUT COMPANY <span>↗</span></a></div></div></section>
 <section class="panel business"><div class="wrap"><div class="business-head"><div><div class="eyebrow">OUR BUSINESS</div><h2 class="section-title">What We Do.</h2></div><p class="desc">커머스의 시작부터 고객과 만나는 순간까지.</p></div><div class="business-grid"><article class="business-card"><span class="num">01 / COMMERCE</span><div><h3>Influencer Commerce</h3><p>인플루언서와 브랜드를 연결해 상품의 가치를 효과적으로 전달합니다.</p></div></article><article class="business-card"><span class="num">02 / PRODUCT</span><div><h3>Product Curation</h3><p>식품, 뷰티, 생활용품 등 다양한 카테고리의 상품을 소개합니다.</p></div></article><article class="business-card"><span class="num">03 / MARKETING</span><div><h3>Brand Marketing</h3><p>콘텐츠 기획부터 프로모션 디자인까지 브랜드에 맞는 커뮤니케이션을 추구합니다.</p></div></article></div></div></section>
-<section class="product-highlight"><div class="product-visual" role="img" aria-label="뷰티 및 라이프스타일 제품 이미지"></div><div class="product-copy"><span class="eyebrow">OUR PRODUCT</span><h2 class="section-title">Discover<br>Our Products.</h2><p class="desc">일상 속 더 나은 선택을 위한 다양한 상품을 소개합니다. 브랜드와 제품의 이야기를 살펴보세요.</p><a class="btn" href="product.html">EXPLORE PRODUCT <span>↗</span></a></div></section>
+<section class="home-products" aria-labelledby="homeProductsTitle"><div class="wrap">
+<div class="home-products-heading"><div><h2 id="homeProductsTitle">S2H의 다양한 제품을 만나보세요.</h2><p>식품부터 뷰티, 라이프스타일까지. 새로운 공동구매 기회를 발견해 보세요.</p></div>
+<div class="home-products-actions"><button type="button" id="homeProductsPrev" aria-label="이전 상품 보기">←</button><button type="button" id="homeProductsNext" aria-label="다음 상품 보기">→</button></div></div>
+<div class="home-products-window" id="homeProductsWindow" tabindex="0" aria-label="제품 목록 가로 슬라이더"><div class="home-products-track" id="homeProductsTrack"></div></div>
+<div class="home-products-bottom"><span id="homeProductsCount" aria-live="polite">01 — 16</span><a href="product.html">전체 제품 보기 <span aria-hidden="true">↗</span></a></div>
+</div></section>
 <section class="home-partnership" aria-labelledby="homePartnerTitle"><div class="wrap home-partnership-inner">
 <div class="home-partnership-copy"><h2 id="homePartnerTitle">함께 만드는 더 좋은 커머스.</h2><p>판매할 상품을 찾는 셀러와 새로운 판로를 찾는 브랜드.<br>서로에게 필요한 기회를 S2H가 연결합니다.</p></div>
 <div class="home-partnership-links"><a href="seller.html"><span>셀러 파트너십</span><strong>공동구매 상품 제안받기</strong><span aria-hidden="true">↗</span></a><a href="brand.html"><span>브랜드 파트너십</span><strong>우리 제품 입점 제안하기</strong><span aria-hidden="true">↗</span></a></div></div></section>
@@ -294,5 +323,46 @@ function showSlide(n){slide=(n+titles.length)%titles.length;document.getElementB
 document.getElementById("heroPrev").addEventListener("click",()=>showSlide(slide-1));
 document.getElementById("heroNext").addEventListener("click",()=>showSlide(slide+1));
 dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
+
+const featuredProducts=[{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"}];
+const productTrack=document.getElementById("homeProductsTrack");
+const productWindow=document.getElementById("homeProductsWindow");
+const countLabel=document.getElementById("homeProductsCount");
+let productSlide=0,productTimer=null;
+for(const item of featuredProducts){
+ const card=document.createElement("a");card.className="home-product-card";card.href="product.html";card.setAttribute("aria-label",item.name+" 제품 목록에서 보기");
+ const photo=document.createElement("div");photo.className="home-product-image";
+ const img=document.createElement("img");img.src=item.image;img.alt=item.name;img.loading="lazy";img.decoding="async";img.addEventListener("error",()=>{photo.textContent="S2H";photo.style.display="grid";photo.style.placeItems="center";photo.style.color="#0089b3"},{once:true});
+ photo.append(img);
+ const category=document.createElement("span");category.className="home-product-category";category.textContent=item.category;
+ const name=document.createElement("strong");name.className="home-product-name";name.textContent=item.name;
+ card.append(photo,category,name);productTrack.append(card);
+}
+function visibleProductCards(){return innerWidth<=600?1:innerWidth<=900?2:4}
+function showProducts(index){
+ const visible=visibleProductCards(),max=Math.max(0,featuredProducts.length-visible);
+ productSlide=((index>max)?0:(index<0?max:index));
+ const first=productTrack.querySelector(".home-product-card");
+ if(!first)return;
+ const gap=parseFloat(getComputedStyle(productTrack).gap)||0;
+ const step=first.getBoundingClientRect().width+gap;
+ productTrack.style.transform="translateX(-"+(productSlide*step)+"px)";
+ countLabel.textContent=String(productSlide+1).padStart(2,"0")+" — "+String(featuredProducts.length).padStart(2,"0");
+}
+function pauseProductRolling(){if(productTimer!==null){clearInterval(productTimer);productTimer=null}}
+function startProductRolling(){pauseProductRolling();if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;productTimer=setInterval(()=>{if(!document.hidden)showProducts(productSlide+1)},4300)}
+document.getElementById("homeProductsPrev").addEventListener("click",()=>{showProducts(productSlide-1);startProductRolling()});
+document.getElementById("homeProductsNext").addEventListener("click",()=>{showProducts(productSlide+1);startProductRolling()});
+productWindow.addEventListener("mouseenter",pauseProductRolling);
+productWindow.addEventListener("mouseleave",startProductRolling);
+productWindow.addEventListener("focusin",pauseProductRolling);
+productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget))startProductRolling()});
+productWindow.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();showProducts(productSlide+(e.key==="ArrowRight"?1:-1))}});
+let touchStart=null;
+productWindow.addEventListener("touchstart",e=>{touchStart=e.touches[0].clientX;pauseProductRolling()},{passive:true});
+productWindow.addEventListener("touchend",e=>{if(touchStart!==null){const dx=e.changedTouches[0].clientX-touchStart;if(Math.abs(dx)>35)showProducts(productSlide+(dx<0?1:-1))}touchStart=null;startProductRolling()},{passive:true});
+window.addEventListener("resize",()=>showProducts(productSlide));
+showProducts(0);startProductRolling();
+
 </script>
 </body></html>
