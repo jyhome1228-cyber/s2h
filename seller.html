@@ -263,16 +263,35 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .legal-page section p,.legal-page section li{font-size:14px;line-height:1.9;color:#52616a;word-break:keep-all}
 .legal-page section ul{padding-left:20px}
 @media(max-width:650px){.site-footer{padding-top:42px}.foot-contact>a:not(.btn){font-size:17px}.foot-legal-info{font-size:11px}.legal-page{padding:52px 0 75px}}
+
+/* Partnership editorial cleanup: no micro labels or decorative slash numbering */
+.partnership-first .eyebrow,.partnership-benefits .eyebrow,.partner-section--soft>.wrap>.eyebrow,.partnership-last>.wrap>.eyebrow{display:none}
+.partner-hero.partnership-first{padding-top:88px;padding-bottom:84px}
+.partnership-first h1{margin-top:0;font-size:clamp(34px,3.5vw,48px);line-height:1.37;font-weight:600}
+.partner-section{padding-top:78px;padding-bottom:78px}
+.partner-head{font-size:clamp(27px,2.4vw,34px);margin-top:0;margin-bottom:33px;line-height:1.38}
+.partner-feature{padding:37px 30px;min-height:216px;display:flex;flex-direction:column;justify-content:center}
+.partner-feature>span{display:none}
+.partner-feature h3{font-size:21px;margin:0 0 15px;font-weight:600;line-height:1.5}
+.partner-feature p{font-size:16px;line-height:1.85}
+.partner-steps{gap:20px}
+.partner-step{padding-top:22px}
+.partner-step strong{font-size:17px;letter-spacing:0;font-weight:600;margin-bottom:18px}
+.partner-step h3{font-size:18px}
+.partner-step p{font-size:15px;line-height:1.75}
+.partnership-last .partner-apply{padding-top:34px}
+.partnership-last .partner-apply p{font-size:16px}
+@media(max-width:650px){.partner-hero.partnership-first{padding-top:68px;padding-bottom:68px}.partnership-first h1{font-size:clamp(31px,7vw,39px)}.partner-section{padding:57px 0}.partner-feature{padding:28px 24px;min-height:auto}.partner-feature h3{font-size:19px}.partner-feature p{font-size:15px}.partner-step strong{font-size:16px}}
 </style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
-<section class="partner-hero partnership-first"><div class="wrap"><span class="eyebrow">FOR SELLERS</span><h1>공구할 상품을 찾고 있다면,<br>이제 S2H에서 시작하세요.</h1><p>상품 소싱에 들이는 시간은 줄이고, 내 채널에 맞는 공동구매 기회를 넓혀보세요.</p><a class="btn partner-primary-cta" href="contact.html?type=seller">셀러 파트너 신청<span aria-hidden="true">↗</span></a></div></section>
-<section class="partner-section partnership-benefits"><div class="wrap"><span class="eyebrow">WHY S2H</span><h2 class="partner-head">상품 찾기부터 공동구매 운영까지.</h2><div class="partner-features"><article class="partner-feature"><span>01 / BENEFIT</span><h3>상품 소싱 부담을 덜어보세요</h3><p>식품·뷰티·리빙 등 다양한 상품군을 바탕으로 채널에 맞는 판매 기회를 함께 검토합니다.</p></article><article class="partner-feature"><span>02 / BENEFIT</span><h3>판매에 더 집중할 수 있도록</h3><p>판매 피드 진행 전·중·후 모니터링과 공동구매 운영 과정을 지원합니다.</p></article><article class="partner-feature"><span>03 / BENEFIT</span><h3>물류와 정산도 체계적으로</h3><p>자체 물류 및 정산 시스템을 바탕으로 파트너와 안정적인 협업을 추구합니다.</p></article></div></div></section>
-<section class="partner-section partner-section--soft"><div class="wrap"><span class="eyebrow">HOW IT WORKS</span><h2 class="partner-head">복잡하지 않게, 함께 시작합니다.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>협업 문의</h3><p>활동 채널과 관심 상품군을 알려주세요.</p></article><article class="partner-step"><strong>02</strong><h3>채널·상품 검토</h3><p>판매 채널과 상품의 적합성을 살펴봅니다.</p></article><article class="partner-step"><strong>03</strong><h3>공구 상품 제안</h3><p>조건을 협의할 수 있는 제품을 제안합니다.</p></article><article class="partner-step"><strong>04</strong><h3>공동구매 진행</h3><p>일정과 콘텐츠를 협의하고 판매를 진행합니다.</p></article><article class="partner-step"><strong>05</strong><h3>정산 및 다음 협업</h3><p>진행 결과를 확인하고 후속 협업을 논의합니다.</p></article></div></div></section>
-<section class="partner-section partnership-last"><div class="wrap"><span class="eyebrow">SELL WITH S2H</span><div class="partner-apply"><div><h2>다음 공동구매, 어떤 상품으로 시작할까요?</h2><p>활동 채널 링크와 관심 상품군을 알려주시면 협업 가능성을 검토하겠습니다.</p></div><a class="btn partner-primary-cta" href="contact.html?type=seller">셀러 파트너 신청<span aria-hidden="true">↗</span></a></div></div></section></main>
+<section class="partner-hero partnership-first"><div class="wrap"><h1>공구할 상품을 찾고 있다면,<br>이제 S2H에서 시작하세요.</h1><p>상품 소싱에 들이는 시간은 줄이고, 내 채널에 맞는 공동구매 기회를 넓혀보세요.</p><a class="btn partner-primary-cta" href="contact.html?type=seller">셀러 파트너 신청<span aria-hidden="true">↗</span></a></div></section>
+<section class="partner-section partnership-benefits"><div class="wrap"><h2 class="partner-head">상품 찾기부터 공동구매 운영까지.</h2><div class="partner-features"><article class="partner-feature"><h3>상품 소싱 부담을 덜어보세요</h3><p>식품·뷰티·리빙 등 다양한 상품군을 바탕으로 채널에 맞는 판매 기회를 함께 검토합니다.</p></article><article class="partner-feature"><h3>판매에 더 집중할 수 있도록</h3><p>판매 피드 진행 전·중·후 모니터링과 공동구매 운영 과정을 지원합니다.</p></article><article class="partner-feature"><h3>물류와 정산도 체계적으로</h3><p>자체 물류 및 정산 시스템을 바탕으로 파트너와 안정적인 협업을 추구합니다.</p></article></div></div></section>
+<section class="partner-section partner-section--soft"><div class="wrap"><h2 class="partner-head">복잡하지 않게, 함께 시작합니다.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>협업 문의</h3><p>활동 채널과 관심 상품군을 알려주세요.</p></article><article class="partner-step"><strong>02</strong><h3>채널·상품 검토</h3><p>판매 채널과 상품의 적합성을 살펴봅니다.</p></article><article class="partner-step"><strong>03</strong><h3>공구 상품 제안</h3><p>조건을 협의할 수 있는 제품을 제안합니다.</p></article><article class="partner-step"><strong>04</strong><h3>공동구매 진행</h3><p>일정과 콘텐츠를 협의하고 판매를 진행합니다.</p></article><article class="partner-step"><strong>05</strong><h3>정산 및 다음 협업</h3><p>진행 결과를 확인하고 후속 협업을 논의합니다.</p></article></div></div></section>
+<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>다음 공동구매, 어떤 상품으로 시작할까요?</h2><p>활동 채널 링크와 관심 상품군을 알려주시면 협업 가능성을 검토하겠습니다.</p></div><a class="btn partner-primary-cta" href="contact.html?type=seller">셀러 파트너 신청<span aria-hidden="true">↗</span></a></div></div></section></main>
 <footer class="site-footer" id="footer">
 <div class="foot-wrap">
   <div class="foot-primary">
