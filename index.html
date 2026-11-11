@@ -280,7 +280,10 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .home-products-heading,.home-products-window{opacity:0;translate:0 22px;transition:opacity .8s ease,translate .8s cubic-bezier(.2,.75,.2,1)}
 .home-products.is-visible .home-products-heading,.home-products.is-visible .home-products-window{opacity:1;translate:0 0}
 .home-products.is-visible .home-products-window{transition-delay:.14s}
-}</style>
+}.home-products-track{transition:none!important;will-change:transform}
+.home-products-bottom{justify-content:flex-end}
+@media(prefers-reduced-motion:reduce){.home-products-track{transition:none!important}}
+</style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
@@ -294,7 +297,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 <div class="home-products-heading"><div><h2 id="homeProductsTitle">S2H의 다양한 제품을 만나보세요.</h2><p>식품부터 뷰티, 라이프스타일까지. 새로운 공동구매 기회를 발견해 보세요.</p></div>
 <div class="home-products-actions"><button type="button" id="homeProductsPrev" aria-label="이전 상품 보기">←</button><button type="button" id="homeProductsNext" aria-label="다음 상품 보기">→</button></div></div>
 <div class="home-products-window" id="homeProductsWindow" tabindex="0" aria-label="제품 목록 가로 슬라이더"><div class="home-products-track" id="homeProductsTrack"></div></div>
-<div class="home-products-bottom"><span id="homeProductsCount" aria-live="polite">01 — 16</span><a href="product.html">전체 제품 보기 <span aria-hidden="true">↗</span></a></div>
+<div class="home-products-bottom"><a href="product.html">전체 제품 보기 <span aria-hidden="true">↗</span></a></div>
 </div></section>
 <section class="home-partnership" aria-labelledby="homePartnerTitle"><div class="wrap home-partnership-inner">
 <div class="home-partnership-copy"><h2 id="homePartnerTitle">함께 만드는 더 좋은 커머스.</h2><p>판매할 상품을 찾는 셀러와 새로운 판로를 찾는 브랜드.<br>서로에게 필요한 기회를 S2H가 연결합니다.</p></div>
@@ -335,8 +338,8 @@ dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
 const featuredProducts=[{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"}];
 const productTrack=document.getElementById("homeProductsTrack");
 const productWindow=document.getElementById("homeProductsWindow");
-const countLabel=document.getElementById("homeProductsCount");
-let productSlide=0,productTimer=null;
+let carouselOffset=0,lastCarouselFrame=0,carouselPaused=false,carouselImpulse=0;
+const reducedCarouselMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
 for(const item of featuredProducts){
  const card=document.createElement("a");card.className="home-product-card";card.href="product.html";card.setAttribute("aria-label",item.name+" 제품 목록에서 보기");
  const photo=document.createElement("div");photo.className="home-product-image";
@@ -348,56 +351,49 @@ for(const item of featuredProducts){
 }
 
 /* Seamless product slider: one card every 4 seconds, continuously to the left */
-const originalCount=featuredProducts.length;
-const clonesToAdd=Math.min(4,originalCount);
+/* Continuous, seamless horizontal product marquee */
 const originalCards=[...productTrack.querySelectorAll(".home-product-card")];
-for(let i=0;i<clonesToAdd;i++){
-  const clone=originalCards[i].cloneNode(true);
-  clone.setAttribute("aria-hidden","true");
-  clone.querySelectorAll("a").forEach(link=>link.tabIndex=-1);
-  clone.tabIndex=-1;
-  productTrack.append(clone);
+for(const original of originalCards){
+ const duplicate=original.cloneNode(true);
+ duplicate.setAttribute("aria-hidden","true");
+ duplicate.tabIndex=-1;
+ productTrack.appendChild(duplicate);
 }
-function productStep(){
- const first=productTrack.querySelector(".home-product-card");
- if(!first)return 0;
- return first.getBoundingClientRect().width+(parseFloat(getComputedStyle(productTrack).gap)||0);
+productTrack.style.transition="none";
+const carouselGap=()=>parseFloat(getComputedStyle(productTrack).gap)||0;
+const carouselStep=()=>originalCards[0]?originalCards[0].getBoundingClientRect().width+carouselGap():0;
+const carouselCycle=()=>carouselStep()*originalCards.length;
+function renderCarouselPosition(){
+ const cycle=carouselCycle();
+ if(!cycle)return;
+ carouselOffset=((carouselOffset%cycle)+cycle)%cycle;
+ productTrack.style.transform="translate3d("+(-carouselOffset)+"px,0,0)";
 }
-function positionProductSlider(animate=true){
- productTrack.style.transition=animate?"transform .7s cubic-bezier(.25,.75,.25,1)":"none";
- productTrack.style.transform="translate3d(-"+(productSlide*productStep())+"px,0,0)";
- countLabel.textContent=String((productSlide%originalCount)+1).padStart(2,"0")+" — "+String(originalCount).padStart(2,"0");
+function carouselFrame(now){
+ if(!lastCarouselFrame)lastCarouselFrame=now;
+ const elapsed=Math.min((now-lastCarouselFrame)/1000,.05);
+ lastCarouselFrame=now;
+ if(!carouselPaused&&!document.hidden&&!reducedCarouselMotion.matches)carouselOffset+=34*elapsed;
+ if(Math.abs(carouselImpulse)>.1){
+  const chunk=carouselImpulse*Math.min(1,elapsed*8);
+  carouselOffset+=chunk;carouselImpulse-=chunk;
+ }else carouselImpulse=0;
+ renderCarouselPosition();
+ requestAnimationFrame(carouselFrame);
 }
-function moveProductSlider(direction){
- if(direction===1){productSlide++;positionProductSlider(true)}
- else{
-   if(productSlide===0){productSlide=originalCount;positionProductSlider(false);void productTrack.offsetWidth}
-   productSlide--;positionProductSlider(true)
- }
-}
-productTrack.addEventListener("transitionend",event=>{
- if(event.target!==productTrack||event.propertyName!=="transform")return;
- if(productSlide>=originalCount){productSlide=0;positionProductSlider(false)}
-});
-function pauseProductRolling(){if(productTimer!==null){clearInterval(productTimer);productTimer=null}}
-function startProductRolling(){
- pauseProductRolling();
- if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
- productTimer=setInterval(()=>{if(!document.hidden)moveProductSlider(1)},4000);
-}
-document.getElementById("homeProductsPrev").addEventListener("click",()=>{moveProductSlider(-1);startProductRolling()});
-document.getElementById("homeProductsNext").addEventListener("click",()=>{moveProductSlider(1);startProductRolling()});
-productWindow.addEventListener("mouseenter",pauseProductRolling);
-productWindow.addEventListener("mouseleave",startProductRolling);
-productWindow.addEventListener("focusin",pauseProductRolling);
-productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget))startProductRolling()});
-productWindow.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();moveProductSlider(e.key==="ArrowRight"?1:-1)}});
-let touchStart=null;
-productWindow.addEventListener("touchstart",e=>{touchStart=e.touches[0].clientX;pauseProductRolling()},{passive:true});
-productWindow.addEventListener("touchend",e=>{if(touchStart!==null){const dx=e.changedTouches[0].clientX-touchStart;if(Math.abs(dx)>35)moveProductSlider(dx<0?1:-1)}touchStart=null;startProductRolling()},{passive:true});
-window.addEventListener("resize",()=>{if(productSlide>=originalCount)productSlide=0;positionProductSlider(false)});
-document.addEventListener("visibilitychange",()=>{if(document.hidden)pauseProductRolling();else startProductRolling()});
-positionProductSlider(false);startProductRolling();
+function nudgeCarousel(direction){carouselImpulse+=direction*carouselStep()}
+document.getElementById("homeProductsPrev").addEventListener("click",()=>nudgeCarousel(-1));
+document.getElementById("homeProductsNext").addEventListener("click",()=>nudgeCarousel(1));
+productWindow.addEventListener("mouseenter",()=>carouselPaused=true);
+productWindow.addEventListener("mouseleave",()=>carouselPaused=false);
+productWindow.addEventListener("focusin",()=>carouselPaused=true);
+productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget))carouselPaused=false});
+productWindow.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();nudgeCarousel(e.key==="ArrowRight"?1:-1)}});
+let swipeStart=null;
+productWindow.addEventListener("touchstart",e=>{swipeStart=e.touches[0].clientX;carouselPaused=true},{passive:true});
+productWindow.addEventListener("touchend",e=>{if(swipeStart!==null){const delta=e.changedTouches[0].clientX-swipeStart;if(Math.abs(delta)>30)nudgeCarousel(delta<0?1:-1)}swipeStart=null;carouselPaused=false},{passive:true});
+window.addEventListener("resize",renderCarouselPosition);
+requestAnimationFrame(carouselFrame);
 const homeProductSection=document.querySelector(".home-products");
 if(!("IntersectionObserver" in window)){homeProductSection.classList.add("is-visible")}
 else{const homeProductObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add("is-visible");homeProductObserver.disconnect()}}},{threshold:.12});homeProductObserver.observe(homeProductSection)}
