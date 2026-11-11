@@ -56,10 +56,79 @@
 
 /* Product catalog */
 .product-heading-line{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:55px}.product-page-title{font-size:clamp(32px,4.2vw,62px);letter-spacing:-.055em;line-height:1.3;margin:14px 0}.product-heading-line .desc{max-width:760px}.product-total{min-width:100px;text-align:right;display:flex;flex-direction:column}.product-total b{font-size:clamp(37px,5vw,65px);letter-spacing:-.07em;color:var(--blue)}.product-total span{font-size:11px;letter-spacing:.17em;color:#7b888e}.product-toolbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}.product-filters{display:flex;flex-wrap:wrap;gap:7px}.product-filters button{background:transparent;border:1px solid #d9e1e4;padding:10px 19px;border-radius:40px;color:#66747b;font-size:13px;transition:.2s}.product-filters button.active,.product-filters button:hover{background:var(--blue);border-color:var(--blue);color:#fff}.product-search-wrap{border-bottom:1px solid #8d9aa0;display:flex;align-items:center;min-width:210px;max-width:280px;flex:1}.product-search-wrap input{width:100%;padding:10px 2px;border:0;background:transparent;outline:none;font-size:13px}.product-search-wrap span:last-child{font-size:25px;color:var(--blue)}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.product-results{margin:29px 0 22px;font-size:13px;color:#75838b}.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:29px 16px}.catalog-card{min-width:0}.catalog-photo{position:relative;aspect-ratio:1/1;background:linear-gradient(145deg,#f5f7f8 0%,#e9edef 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}.catalog-photo:before{content:"";position:absolute;width:58%;height:58%;border:1px solid rgba(0,137,179,.13);border-radius:50%}.catalog-placeholder{color:#a7b5bb;font-size:clamp(21px,3vw,44px);font-weight:700;letter-spacing:-.065em}.catalog-photo:after{content:"S2H";position:absolute;bottom:18px;left:20px;font-size:10px;letter-spacing:.18em;color:#a1b0b6}.catalog-info{padding:19px 3px 8px}.catalog-tag{font-size:11px;letter-spacing:.02em;color:var(--blue);font-weight:600}.catalog-info h3{font-size:17px;line-height:1.6;letter-spacing:-.025em;font-weight:600;word-break:keep-all;margin:9px 0 0}.catalog-id{color:#a3adb2;font-size:11px;margin-top:8px}.product-no-results{text-align:center;padding:90px 15px;background:#f8fafb;color:#71828a}.product-cta{border-top:1px solid var(--line);margin-top:85px;padding-top:38px;display:flex;justify-content:space-between;align-items:center;gap:20px}.product-cta h3{font-size:clamp(20px,2.3vw,30px);letter-spacing:-.035em}@media(max-width:1050px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:850px){.product-toolbar{align-items:stretch;flex-direction:column}.product-search-wrap{max-width:none}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.product-heading-line{margin-bottom:32px}.catalog-info h3{font-size:14px}.catalog-info{padding:12px 0 6px}.catalog-photo:after{left:10px;bottom:10px}.product-cta{flex-direction:column;align-items:flex-start;margin-top:45px}}.route{display:block!important}
+
+/* S2H visual refinement — restrained editorial typography */
+:root{--type-display:clamp(44px,5vw,70px);--type-section:clamp(32px,3.15vw,46px);--type-body:16px;--blue:#0089b3}
+body{letter-spacing:-.015em}
+.wrap{width:min(1360px,calc(100% - 112px))}
+.top{height:78px;--header:78px}
+:root{--header:78px}
+.top-inner{width:min(1440px,calc(100% - 88px))}
+.top .logo{width:142px}
+.desktop-nav a{font-size:13px;font-weight:600;letter-spacing:.02em}
+.menu-links a{font-size:clamp(35px,4vw,56px);letter-spacing:-.055em}
+.subhero{min-height:290px;background:#f6f8f9}
+.subhero .wrap{padding:56px 0}
+.subhero h1{font-size:var(--type-display);line-height:1.08;letter-spacing:-.055em;margin:13px 0 17px;font-weight:700}
+.subhero p{font-size:15px;line-height:1.6;color:#74818a}
+.eyebrow{font-size:12px;letter-spacing:.14em;line-height:1.5}
+.section-title{font-size:clamp(37px,4.2vw,60px);line-height:1.19;letter-spacing:-.055em}
+.content-section{padding:88px 0}
+.content-section h2{font-size:var(--type-section);line-height:1.28;letter-spacing:-.04em}
+section.panel{padding:105px 0}
+.desc{font-size:clamp(15px,1.2vw,17px);line-height:1.9;letter-spacing:-.015em}
+.intro-layout .statement{font-size:clamp(24px,2.4vw,36px);line-height:1.55}
+.hero h1{font-size:clamp(39px,5vw,72px);line-height:1.17;letter-spacing:-.045em}
+.hero h1 span{margin-top:10px}
+.hero-kicker{font-size:14px;letter-spacing:.17em;margin-bottom:25px}
+.business-card h3{font-size:clamp(21px,1.8vw,27px)}
+.business-grid{margin-top:45px}
+.product-copy{padding:8% 10%}
+.contact-layout h2{font-size:var(--type-section);line-height:1.18;margin:10px 0 20px;letter-spacing:-.055em}
+.contact-layout .desc{font-size:16px;line-height:1.8}
+.contact-list{margin-top:32px}
+.contact-list p{font-size:13px;margin:16px 0 6px}
+.contact-list a{font-size:clamp(18px,1.8vw,23px)}
+.field label{font-size:14px}
+.field input,.field select,.field textarea{font-size:16px;min-height:52px}
+.service-heading{font-size:var(--type-section);line-height:1.3}
+.service-card h3{font-size:clamp(20px,1.8vw,26px)}
+.company-lead{font-size:clamp(20px,2.15vw,28px)}
+.company-copy p{font-size:16px;line-height:1.95}
+.company-center-heading h2{font-size:clamp(30px,2.8vw,40px)}
+.product-page-title{font-size:var(--type-section);line-height:1.26}
+.product-total b{font-size:clamp(34px,3.6vw,50px)}
+.catalog-info h3{font-size:16px}
+.foot-tagline{font-size:14px}
+.foot-nav a{font-size:14px}
+.foot-contact a{font-size:clamp(18px,1.7vw,23px)}
+.site-footer{padding-top:68px}
+.foot-primary{padding-bottom:52px}
+.entry-screen{background:#fff}
+.has-js .entry-screen{transition:opacity .45s ease,visibility .45s ease}
+.entry-inner{width:min(340px,74vw)}
+.entry-logo{width:min(300px,68vw);animation:s2hLogoIn .55s ease .06s forwards}
+@keyframes s2hLogoIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:850px){
+:root{--header:68px;--type-display:clamp(40px,9vw,54px);--type-section:clamp(30px,7vw,40px)}
+.wrap,.top-inner,.foot-wrap{width:calc(100% - 40px)}
+.top{height:68px}.top .logo{width:117px}
+.subhero{min-height:220px}.subhero .wrap{padding:48px 0}
+.content-section{padding:65px 0}section.panel{padding:75px 0}
+.hero h1{font-size:clamp(37px,7.7vw,56px)}
+.hero-kicker{font-size:12px}
+.contact-layout h2{font-size:var(--type-section)}
+.company-center-heading h2{font-size:34px}
+.product-total{min-width:65px}.product-total b{font-size:36px}
+.menu-links a{font-size:36px}
+.site-footer{padding-top:48px}
+}
+@media(prefers-reduced-motion:reduce){.entry-logo{animation:none;opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
-<div class="entry-screen" id="entryScreen" role="status" aria-live="polite" aria-label="S2H 홈페이지 로딩 중"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"><span class="entry-sub">INFLUENCER COMMERCE</span><div class="entry-track" aria-hidden="true"><div class="entry-progress"></div></div><span class="entry-loading">LOADING</span></div></div>
+<div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H home"><img src="assets/logo.svg" alt="S2H Corporation" width="129" height="46"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="contact.html">CONTACT</a></nav><button type="button" class="menu-toggle" aria-label="전체 메뉴 열기" aria-expanded="false"><span></span><span></span></button></div></header>
 <div class="menu-panel" id="menuPanel"><div class="menu-links"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="contact.html">CONTACT</a></div><div class="menu-contact"><div class="accent"></div><h3>S2H CORPORATION<br><b>Influencer Commerce</b></h3><p><a href="tel:18005112">1800-5112</a></p><p><a href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a></p></div></div>
 <main>
@@ -83,7 +152,7 @@ const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1950);
+if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
 const panel=document.getElementById("menuPanel"),toggle=document.querySelector(".menu-toggle");
 toggle.addEventListener("click",()=>{const open=panel.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open));document.body.style.overflow=open?"hidden":""});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){panel.classList.remove("open");toggle.setAttribute("aria-expanded","false");document.body.style.overflow=""}});
