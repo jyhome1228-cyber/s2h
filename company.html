@@ -169,12 +169,63 @@ section.panel{padding:80px 0}
 .business-card{min-height:0;padding:28px}
 }
 
+
+/* Unified 1440px layout and five-item navigation */
+:root{--site-max:1440px;--header:78px}
+.wrap,.top-inner,.foot-wrap{width:min(var(--site-max),calc(100% - 80px));max-width:var(--site-max);margin-left:auto;margin-right:auto}
+.top-inner{display:flex;justify-content:space-between;align-items:center;gap:54px}
+.top .logo{width:142px;flex:0 0 142px}
+.desktop-nav{display:flex!important;align-items:center;justify-content:flex-end;gap:clamp(22px,3.4vw,62px);flex:1}
+.desktop-nav a{font-size:15px;font-weight:600;letter-spacing:0;white-space:nowrap;line-height:1.6}
+.desktop-nav a:hover,.desktop-nav a[aria-current="page"]{color:#0089b3}
+.menu-toggle,.menu-panel{display:none!important}
+.foot-primary{grid-template-columns:1.2fr .75fr 1fr;column-gap:60px}
+.foot-nav{display:flex;flex-direction:column;gap:15px}
+.subhero .wrap,.content-section>.wrap,section.panel>.wrap,.contact-band>.wrap{max-width:var(--site-max)}
+.partner-hero{background:#f7f9fa;padding:95px 0 92px}
+.partner-hero h1{font-size:clamp(38px,4vw,54px);line-height:1.22;letter-spacing:-.05em;font-weight:600;margin:18px 0 24px}
+.partner-hero p{font-size:17px;color:#65747c;line-height:1.8;max-width:650px}
+.partner-section{padding:90px 0}
+.partner-section--soft{background:#f7f9fa}
+.partner-head{font-size:clamp(29px,2.6vw,38px);font-weight:600;letter-spacing:-.04em;margin:18px 0 35px}
+.partner-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.partner-feature{padding:32px 28px;min-height:215px;border:1px solid #e4e9ec;background:#fff}
+.partner-feature span{display:block;color:var(--blue);font-size:12px;margin-bottom:27px;font-weight:700}
+.partner-feature h3{font-size:21px;letter-spacing:-.035em;line-height:1.5;margin:0 0 10px}
+.partner-feature p{font-size:15px;color:#68777f;line-height:1.85;margin:0}
+.partner-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.partner-step{border-top:2px solid #0089b3;padding:18px 6px 22px}
+.partner-step strong{display:block;color:#0089b3;font-size:13px;margin-bottom:15px}
+.partner-step h3{font-size:17px;line-height:1.5;font-weight:600;margin:0}
+.partner-step p{font-size:13px;line-height:1.7;color:#6e7d85}
+.partner-apply{border-top:1px solid #dbe3e6;padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:30px}
+.partner-apply h2{font-size:clamp(27px,2.5vw,36px);font-weight:600;margin:0 0 10px;letter-spacing:-.045em}
+.partner-apply p{font-size:15px;color:#65747c;line-height:1.8}
+@media(max-width:950px){
+.top-inner{gap:22px}.top .logo{width:115px;flex-basis:115px}
+.desktop-nav{gap:clamp(9px,2.2vw,24px)}.desktop-nav a{font-size:13px}
+.partner-features{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+:root{--header:100px}
+.top{height:100px}.top-inner{width:calc(100% - 32px);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:9px 0 7px}
+.top .logo{width:104px;flex:none}
+.desktop-nav{width:100%;display:flex!important;justify-content:space-between;gap:5px;flex:none}
+.desktop-nav a{font-size:11px;letter-spacing:-.02em;padding:5px 0}
+.wrap,.foot-wrap{width:calc(100% - 36px)}
+.partner-hero{padding:65px 0}.partner-hero h1{font-size:clamp(33px,8vw,43px)}
+.partner-section{padding:60px 0}
+.partner-features,.partner-steps{grid-template-columns:1fr}
+.partner-feature{min-height:0;padding:27px}
+.partner-steps{gap:0}.partner-step{padding:17px 0}
+.partner-apply{flex-direction:column;align-items:flex-start}
+.foot-primary{grid-template-columns:1fr 1fr;gap:30px}
+}
 </style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
-<header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H home"><img src="assets/logo.svg" alt="S2H Corporation" width="129" height="46"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="contact.html">CONTACT</a></nav><button type="button" class="menu-toggle" aria-label="전체 메뉴 열기" aria-expanded="false"><span></span><span></span></button></div></header>
-<div class="menu-panel" id="menuPanel"><div class="menu-links"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="contact.html">CONTACT</a></div><div class="menu-contact"><div class="accent"></div><h3>S2H CORPORATION<br><b>Influencer Commerce</b></h3><p><a href="tel:18005112">1800-5112</a></p><p><a href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a></p></div></div>
+<header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
 <div class="route active" data-route="company">
 <section class="subhero"><div class="wrap"><div class="eyebrow">ABOUT S2H</div><h1>COMPANY</h1><p>S2H Corporation · Influencer Commerce Partner</p></div></section>
@@ -198,7 +249,7 @@ section.panel{padding:80px 0}
 <div class="foot-wrap">
   <div class="foot-primary">
     <div><a href="index.html" aria-label="S2H 홈페이지"><img class="foot-brand-logo" src="assets/logo.svg" alt="S2H Corporation"></a><p class="foot-tagline">Connecting Products &amp; Sellers.<br>Influencer Commerce Marketing Company.</p></div>
-    <div><div class="foot-label">EXPLORE</div><nav class="foot-nav" aria-label="푸터 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="contact.html">CONTACT</a></nav></div>
+    <div><div class="foot-label">EXPLORE</div><nav class="foot-nav" aria-label="푸터 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div>
     <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn" href="contact.html" style="font-size:12px;margin-top:25px;border-color:#6d818a;color:#fff">CONTACT US <span>↗</span></a></div>
   </div>
   <div class="foot-rule"></div>
@@ -212,9 +263,6 @@ let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
 if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
-const panel=document.getElementById("menuPanel"),toggle=document.querySelector(".menu-toggle");
-toggle.addEventListener("click",()=>{const open=panel.classList.toggle("open");toggle.setAttribute("aria-expanded",String(open));document.body.style.overflow=open?"hidden":""});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){panel.classList.remove("open");toggle.setAttribute("aria-expanded","false");document.body.style.overflow=""}});
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
