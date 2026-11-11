@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
-:root{--ink:#161b1e;--muted:#77858c;--line:#e5eaec;--blue:#0089b3;--panel:#fff;--surface:#f5f7f8;--aside:#11171a}
+:root{--ink:#161b1e;--muted:#77858c;--line:#e5eaec;--blue:#0089b3;--blue-dark:#006e90;--blue-pale:#e8f5f9;--panel:#fff;--surface:#f6f9fa;--aside:#121b1f}
 *{box-sizing:border-box}
 body{margin:0;font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;background:var(--surface);color:var(--ink);-webkit-font-smoothing:antialiased}
 button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
@@ -20,6 +20,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .brand{display:flex;align-items:center;gap:12px;padding:0 14px 9px}
 .brand-icon{width:40px;height:40px;background:#fff;border-radius:9px;display:grid;place-items:center;overflow:hidden;padding:5px}
 .brand-icon img{width:100%;height:auto;display:block}
+.brand-logo{display:flex;align-items:center;justify-content:center;width:130px;height:54px;flex:0 0 130px;background:#ffffff;padding:6px 10px;border-radius:7px}
+.brand-logo img{width:100%;height:100%;object-fit:contain}
+.brand{gap:13px;padding:0 8px 9px}
 .brand-text strong{font-size:17px;letter-spacing:.04em;font-weight:680}
 .brand-text small{display:block;color:#8698a0;font-size:10px;letter-spacing:.2em;margin-top:5px}
 .nav-label{font-size:10px;color:#71848e;letter-spacing:.17em;font-weight:600;margin:15px 14px 9px}
@@ -83,12 +86,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 @media(max-width:1150px){.shell{grid-template-columns:220px minmax(0,1fr)}.topbar{padding:0 26px}.main{padding:34px 27px 70px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr}}
 @media(max-width:800px){.shell{display:block}.sidebar{height:auto;position:static;padding:15px 16px 13px;gap:10px}.brand{padding:0 4px}.nav-label,.sidebar-bottom{display:none}.nav{flex-direction:row;overflow-x:auto;white-space:nowrap;padding-bottom:3px}.nav button{flex:none;padding:11px;font-size:12px}.nav button .small-count{display:none}.topbar{height:65px;padding:0 18px}.main{padding:28px 18px 65px}.page-heading{align-items:flex-start;flex-direction:column}.alert{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{min-height:135px;padding:18px}.metric-value{font-size:29px}}
 @media(max-width:520px){.metrics{gap:9px}.metric{padding:15px}.metric-label{font-size:12px}.topbar-right{gap:7px}.connection{font-size:11px}.panel-header,.panel-body{padding:18px}.search{min-width:0}.toolbar-left{width:100%}.toolbar-left>*{flex:1}.detail-card{padding:22px}.detail-grid{grid-template-columns:1fr}.detail-grid img{max-width:220px}.date-tag{display:none}}
+
+/* Official S2H branding in admin */
+.nav button[aria-current="page"]{background:#063c50;color:#fff;border-left:3px solid var(--blue);padding-left:11px}
+.nav button[aria-current="page"] .nav-icon{color:#66d4f0}
+.account{background:var(--blue)}
+.metric:first-child{border-top:3px solid var(--blue);padding-top:20px}
+.metric:first-child .metric-value{color:#006d91}
+.alert{background:#edf8fc;border-color:#b8dfea;border-left-color:var(--blue)}
+.panel-header{border-top:2px solid transparent}
+.brand-text small{letter-spacing:.1em}
+@media(max-width:800px){.brand-logo{height:42px;width:106px;flex-basis:106px}}
 </style>
 </head>
 <body>
 <div class="shell">
 <aside class="sidebar">
- <a class="brand" href="#dashboard"><span class="brand-icon"><img src="../favicon.svg" alt=""></span><span class="brand-text"><strong>S2H ADMIN</strong><small>OPERATIONS</small></span></a>
+ <a class="brand" href="#dashboard"><span class="brand-logo"><img src="../assets/logo.svg" alt="S2H Corporation"></span><span class="brand-text"><strong>ADMIN</strong><small>OPERATIONS</small></span></a>
  <div><div class="nav-label">WORKSPACE</div><nav class="nav" id="adminNav" aria-label="관리자 메뉴"></nav></div>
  <div class="sidebar-bottom"><a href="../index.html">← 홈페이지로 이동</a><p>정적 화면 미리보기<br>인증과 데이터 저장은 연결 전입니다.</p></div>
 </aside>
