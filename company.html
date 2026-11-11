@@ -286,6 +286,33 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(max-width:950px){.performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.performance-feature{grid-column:span 2;grid-row:auto;min-height:285px}.performance-item{min-height:160px}.performance-feature strong{font-size:68px}}
 @media(max-width:650px){.company-stats{padding:65px 0}.performance-header{flex-direction:column;align-items:flex-start;gap:12px}.performance-header>p{font-size:14px}.performance-grid{gap:10px}.performance-feature{min-height:250px;padding:27px}.performance-item{min-height:158px;padding:19px 15px}.performance-item>span{font-size:12px}.performance-item strong{font-size:38px}.performance-item strong span{font-size:13px}.performance-item p{font-size:12px}.service-section{padding:65px 0}.service-card{min-height:0}.company-intro{padding:65px 0}}
 @media(prefers-reduced-motion:reduce){.company-reveal{opacity:1;transform:none;transition:none}}
+
+/* COMPANY performance 2026 redesign — interactive horizontal metric panels */
+.company-stats{background:#fff;padding:104px 0 94px}
+.performance-header{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
+.company-stats .performance-header h2{font-size:clamp(29px,2.65vw,38px);letter-spacing:-.045em;font-weight:600;line-height:1.35;margin:0 0 13px}
+.performance-heading-desc{font-size:16px;color:#60717a;line-height:1.7;margin:0}
+.performance-helper{font-size:13px;color:#7b8a91;white-space:nowrap;margin:0 0 4px}
+.performance-interactive{display:flex;width:100%;gap:10px;height:380px;min-width:0}
+.performance-panel{position:relative;min-width:0;flex:1 1 0;display:flex;flex-direction:column;justify-content:space-between;background:#f3f7f8;border:1px solid #e4ecef;padding:28px 23px 24px;overflow:hidden;cursor:pointer;outline-offset:4px;transition:flex .65s cubic-bezier(.2,.75,.2,1),background .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease}
+.performance-panel.is-active,.performance-panel:hover,.performance-panel:focus-visible{flex:2.4 1 0;background:#0089b3;border-color:#0089b3;color:#fff;box-shadow:0 15px 42px rgba(0,105,140,.13)}
+.performance-panel-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;font-size:14px;font-weight:600;line-height:1.45;word-break:keep-all;min-height:52px}
+.performance-panel-arrow{color:#0089b3;font-size:18px;line-height:1;opacity:.65;transition:transform .3s,opacity .3s}
+.performance-panel.is-active .performance-panel-arrow,.performance-panel:hover .performance-panel-arrow{color:#fff;opacity:1;transform:translate(3px,-3px)}
+.performance-panel-body{margin-top:auto}
+.performance-value{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;font-size:clamp(32px,3vw,54px);letter-spacing:-.06em;font-weight:650;line-height:1.15;color:#143c49;white-space:nowrap;transition:color .3s}
+.performance-panel.is-active .performance-value,.performance-panel:hover .performance-value,.performance-panel:focus-visible .performance-value{color:#fff}
+.performance-value small{font-size:clamp(13px,1.05vw,17px);letter-spacing:-.02em;font-weight:500}
+.performance-panel-body>p{font-size:13px;line-height:1.6;color:#70838c;margin:12px 0 0;word-break:keep-all}
+.performance-panel.is-active .performance-panel-body>p,.performance-panel:hover .performance-panel-body>p{color:#d7f1f8}
+.performance-panel-detail{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .45s cubic-bezier(.2,.75,.2,1),opacity .3s}
+.performance-panel-detail p{min-height:0;overflow:hidden;font-size:14px;line-height:1.75;word-break:keep-all;margin:0;color:#e4f5f9}
+.performance-panel.is-active .performance-panel-detail{grid-template-rows:1fr;opacity:1;margin-top:28px}
+.performance-note{font-size:12px;color:#85939a;line-height:1.8;margin-top:20px}
+@media(max-width:1150px){.performance-interactive{height:365px}.performance-panel{padding:24px 16px 22px}.performance-panel-top{font-size:13px}.performance-value{font-size:clamp(29px,3vw,43px)}.performance-panel.is-active{flex:2.5 1 0}}
+@media(max-width:850px){.company-stats{padding:68px 0}.performance-header{align-items:start;flex-direction:column;gap:10px}.performance-helper{white-space:normal}.performance-interactive{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));height:auto;gap:10px}.performance-panel{min-height:180px;padding:22px 20px}.performance-panel.is-active{grid-column:span 2;min-height:260px}.performance-value{font-size:43px}.performance-panel-top{min-height:0}.performance-panel-detail{transition:none}.performance-panel.is-active .performance-panel-detail{margin-top:18px}}
+@media(max-width:520px){.performance-interactive{grid-template-columns:1fr}.performance-panel{min-height:160px}.performance-panel.is-active{grid-column:auto;min-height:240px}.performance-helper{font-size:12px}.performance-value{font-size:40px}.performance-panel-detail p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.performance-panel,.performance-panel-detail,.performance-value,.performance-panel-arrow{transition:none}}
 </style>
 </head>
 <body>
@@ -297,16 +324,32 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 <section class="content-section company-intro"><div class="wrap company-intro-grid"><div><h2 class="section-title">Connecting<br>Products &amp; Sellers.</h2><p class="company-lead">상품의 가치가 더 많은 사람에게 닿도록,<br><strong>S2H가 브랜드와 셀러를 연결합니다.</strong></p></div><div class="company-copy"><p>저희 S2H Corporation은 식품, 리빙, 뷰티 등 제조사들의 상품을 판매자(셀러)에게 공동구매로 제안하고 운영하는 <strong>온라인 벤더 사업 법인 회사</strong>입니다.</p><p>판매자의 이익을 극대화할 수 있도록 <strong>100여 개 이상의 상품군</strong>을 보유하고 있으며, 끊임없이 다양한 상품들을 발굴하고 새로운 분야에 도전하고 있습니다.</p></div></div></section>
 <section class="company-stats content-section" aria-labelledby="performanceTitle">
 <div class="wrap">
-  <div class="performance-header company-reveal"><div><p class="performance-kicker">S2H의 연결과 성장</p><h2 id="performanceTitle">숫자로 살펴보는 S2H</h2></div><p>브랜드의 상품을 셀러와 연결하며<br>함께 만들어 온 성과를 소개합니다.</p></div>
-  <div class="performance-grid">
-    <article class="performance-feature company-reveal">
-      <div class="performance-feature-top"><span>인플루언서 네트워크</span><svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="32" cy="16" r="7"/><circle cx="14" cy="43" r="6"/><circle cx="50" cy="43" r="6"/><path d="M28 23 18 37M36 23l10 14M20 43h24"/></svg></div>
-      <strong>2,000<span>명</span></strong><p>진행 인플루언서 수</p>
+  <div class="performance-header company-reveal">
+    <div><h2 id="performanceTitle">S2H가 만들어 온 연결의 규모</h2><p class="performance-heading-desc">실제 협업 현장에서 쌓아온 성과를 숫자로 소개합니다.</p></div>
+    <p class="performance-helper">각 지표를 선택하면 자세한 설명을 볼 수 있습니다.</p>
+  </div>
+  <div class="performance-interactive" id="performanceCards" aria-label="S2H 성과 지표">
+    <article class="performance-panel is-active" tabindex="0" aria-expanded="true" aria-label="인플루언서 네트워크 2,000명, 자세한 설명 보기">
+      <div class="performance-panel-top"><span>인플루언서 네트워크</span><span class="performance-panel-arrow" aria-hidden="true">↗</span></div>
+      <div class="performance-panel-body"><strong class="performance-value"><span data-count="2000">2,000</span><small>명</small></strong><p>진행 인플루언서 수</p></div>
+      <div class="performance-panel-detail"><p>S2H 소개자료에 기재된 진행 인플루언서 수입니다. 다양한 셀러 채널과의 공동구매 협업을 소개하는 지표입니다.</p></div>
+    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="인플루언서 평균 팔로워 8만 명, 자세한 설명 보기">
+      <div class="performance-panel-top"><span>인플루언서 평균 팔로워</span><span class="performance-panel-arrow" aria-hidden="true">↗</span></div>
+      <div class="performance-panel-body"><strong class="performance-value"><span data-count="8">8</span><small>만 명</small></strong><p>1인당 평균 팔로워 수</p></div>
+      <div class="performance-panel-detail"><p>소개자료에 기재된 인플루언서 1인당 평균 팔로워 규모입니다. 채널과 고객의 특성에 맞는 상품 제안을 지향합니다.</p></div>
+    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="거래처 판매 성과 5억 원, 자세한 설명 보기">
+      <div class="performance-panel-top"><span>거래처 판매 성과</span><span class="performance-panel-arrow" aria-hidden="true">↗</span></div>
+      <div class="performance-panel-body"><strong class="performance-value"><span data-count="5">5</span><small>억 원</small></strong><p>거래처 월 평균 매출액</p></div>
+      <div class="performance-panel-detail"><p>기존 소개자료 기준 거래처 월 평균 매출액입니다. 개별 거래처의 실적이나 향후 매출을 보장하는 수치는 아닙니다.</p></div>
+    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="제품 판매 성과 33억 원, 자세한 설명 보기">
+      <div class="performance-panel-top"><span>제품 판매 성과</span><span class="performance-panel-arrow" aria-hidden="true">↗</span></div>
+      <div class="performance-panel-body"><strong class="performance-value"><span data-count="33">33</span><small>억 원</small></strong><p>상위 제품 매출 (1 SKU 기준)</p></div>
+      <div class="performance-panel-detail"><p>기존 소개자료에 기재된 단일 상품 기준 상위 제품 매출 규모입니다. 집계 기준 시점은 확인 후 업데이트됩니다.</p></div>
+    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="연간 사업 성과 150억 원, 자세한 설명 보기">
+      <div class="performance-panel-top"><span>연간 사업 성과</span><span class="performance-panel-arrow" aria-hidden="true">↗</span></div>
+      <div class="performance-panel-body"><strong class="performance-value"><span data-count="150">150</span><small>억 원</small></strong><p>연간 매출액</p></div>
+      <div class="performance-panel-detail"><p>기존 S2H 소개자료의 연간 매출액 표기입니다. 집계 대상 기간은 공식 자료 확인 후 기재할 예정입니다.</p></div>
     </article>
-    <article class="performance-item company-reveal"><span>인플루언서 평균 팔로워</span><strong>8만<span>명</span></strong><p>1인당 평균 팔로워 수</p></article>
-    <article class="performance-item company-reveal"><span>거래처 판매 성과</span><strong>5<span>억 원</span></strong><p>거래처 월 평균 매출액</p></article>
-    <article class="performance-item company-reveal"><span>제품 판매 성과</span><strong>33<span>억 원</span></strong><p>상위 제품 매출 (단일 SKU 기준)</p></article>
-    <article class="performance-item company-reveal"><span>연간 사업 성과</span><strong>150<span>억 원</span></strong><p>연간 매출액</p></article>
   </div>
   <p class="performance-note">기존 S2H 회사소개 자료에 기재된 성과입니다. 수치별 집계 시점과 기준은 확인 후 업데이트할 예정입니다.</p>
 </div></section>
@@ -345,5 +388,30 @@ window.addEventListener("scroll",()=>document.querySelector(".top").classList.to
 const revealItems=document.querySelectorAll(".company-reveal");
 if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches){revealItems.forEach(el=>el.classList.add("is-visible"))}
 else{const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:"0px 0px -25px 0px"});revealItems.forEach(el=>observer.observe(el))}
+
+const performanceCards=[...document.querySelectorAll(".performance-panel")];
+function activatePerformanceCard(card){
+ performanceCards.forEach(el=>{const active=el===card;el.classList.toggle("is-active",active);el.setAttribute("aria-expanded",String(active))});
+}
+performanceCards.forEach(card=>{
+ card.addEventListener("mouseenter",()=>activatePerformanceCard(card));
+ card.addEventListener("focus",()=>activatePerformanceCard(card));
+ card.addEventListener("click",()=>activatePerformanceCard(card));
+ card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activatePerformanceCard(card)}});
+});
+const countNodes=[...document.querySelectorAll(".performance-value [data-count]")];
+let countsStarted=false;
+function animateMetricCounts(){
+ if(countsStarted)return;countsStarted=true;
+ const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(reducedMotion){countNodes.forEach(n=>n.textContent=Number(n.dataset.count).toLocaleString("ko-KR"));return}
+ const begin=performance.now(),duration=1350;
+ function frame(now){const t=Math.min(1,(now-begin)/duration),ease=1-Math.pow(1-t,3);countNodes.forEach(n=>{const target=Number(n.dataset.count);n.textContent=Math.round(target*ease).toLocaleString("ko-KR")});if(t<1)requestAnimationFrame(frame)}
+ requestAnimationFrame(frame);
+}
+const perfSection=document.getElementById("performanceCards");
+if(!("IntersectionObserver" in window))animateMetricCounts();
+else{const countObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();countObserver.disconnect()}},{threshold:.22});countObserver.observe(perfSection)}
+
 </script>
 </body></html>
