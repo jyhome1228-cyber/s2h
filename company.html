@@ -313,6 +313,24 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(max-width:850px){.company-stats{padding:68px 0}.performance-header{align-items:start;flex-direction:column;gap:10px}.performance-helper{white-space:normal}.performance-interactive{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));height:auto;gap:10px}.performance-panel{min-height:180px;padding:22px 20px}.performance-panel.is-active{grid-column:span 2;min-height:260px}.performance-value{font-size:43px}.performance-panel-top{min-height:0}.performance-panel-detail{transition:none}.performance-panel.is-active .performance-panel-detail{margin-top:18px}}
 @media(max-width:520px){.performance-interactive{grid-template-columns:1fr}.performance-panel{min-height:160px}.performance-panel.is-active{grid-column:auto;min-height:240px}.performance-helper{font-size:12px}.performance-value{font-size:40px}.performance-panel-detail p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.performance-panel,.performance-panel-detail,.performance-value,.performance-panel-arrow{transition:none}}
+
+/* Service card interaction */
+.service-section .service-card{position:relative;isolation:isolate;overflow:hidden;background:#f6f9fa;border-top:2px solid #0089b3;min-height:286px;transition:transform .38s cubic-bezier(.2,.7,.2,1),background .35s,border-color .35s,box-shadow .35s}
+.service-section .service-card::before{content:"";position:absolute;inset:auto 0 0 0;height:0;background:#0089b3;z-index:-1;transition:height .45s cubic-bezier(.2,.75,.2,1)}
+.service-section .service-card:hover{transform:translateY(-9px);box-shadow:0 18px 45px rgba(10,67,83,.12);border-color:#0089b3;color:#fff}
+.service-section .service-card:hover::before{height:100%}
+.service-section .service-card h3{font-size:21px;font-weight:600;line-height:1.5;transition:color .3s}
+.service-section .service-card p{font-size:15px;color:#687b84;line-height:1.85;transition:color .3s}
+.service-section .service-card:hover p{color:#e0f1f6}
+.service-section .service-card .service-icon{color:#0089b3;transition:transform .35s,color .3s}
+.service-section .service-card:hover .service-icon{color:#fff;transform:translateY(-4px) scale(1.1)}
+@media(prefers-reduced-motion:no-preference){
+.service-section .service-card{opacity:0;translate:0 28px}
+.service-section .service-card.service-visible{opacity:1;translate:0 0;transition:opacity .7s ease,translate .7s cubic-bezier(.2,.75,.2,1),transform .38s cubic-bezier(.2,.7,.2,1),background .35s,border-color .35s,box-shadow .35s}
+.service-section .service-card:nth-child(2){transition-delay:.10s}
+.service-section .service-card:nth-child(3){transition-delay:.20s}
+}
+@media(prefers-reduced-motion:reduce){.service-section .service-card,.service-section .service-card::before,.service-section .service-card .service-icon{transition:none}}
 </style>
 </head>
 <body>
@@ -413,5 +431,9 @@ const perfSection=document.getElementById("performanceCards");
 if(!("IntersectionObserver" in window))animateMetricCounts();
 else{const countObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();countObserver.disconnect()}},{threshold:.22});countObserver.observe(perfSection)}
 
+
+const serviceCards=[...document.querySelectorAll(".service-section .service-card")];
+if(!("IntersectionObserver" in window)){serviceCards.forEach(el=>el.classList.add("service-visible"))}
+else{const serviceObserver=new IntersectionObserver(entries=>{for(const item of entries){if(item.isIntersecting){item.target.classList.add("service-visible");serviceObserver.unobserve(item.target)}}},{threshold:.13});serviceCards.forEach(el=>serviceObserver.observe(el))}
 </script>
 </body></html>
