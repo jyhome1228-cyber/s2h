@@ -15,6 +15,16 @@ window.S2H_API_CONFIG=Object.freeze({
 });
 window.S2HInquiryAPI={
   isConfigured(){const c=window.S2H_API_CONFIG;return Boolean(c&&c.enabled&&/^https:\/\//.test(c.baseUrl))},
+  async adminList(kind){
+    if(!this.isConfigured())return {configured:false};
+    // The server MUST enforce an authenticated admin session and role checks.
+    const url=window.S2H_API_CONFIG.baseUrl.replace(/\/$/,"")+"/admin/inquiries?kind="+encodeURIComponent(kind);
+    const response=await fetch(url,{method:"GET",mode:"cors",credentials:"include",headers:{"Accept":"application/json"}});
+    if(!response.ok)throw new Error("Admin authorization or API error: "+response.status);
+    const data=await response.json();
+    if(!data||!Array.isArray(data.items))throw new Error("Invalid admin response");
+    return {configured:true,items:data.items};
+  },
   async submit(kind,fields){
     if(!this.isConfigured())return {configured:false};
     const url=window.S2H_API_CONFIG.baseUrl.replace(/\/$/,"")+"/inquiries";
