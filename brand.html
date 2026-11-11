@@ -282,16 +282,48 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .partnership-last .partner-apply{padding-top:34px}
 .partnership-last .partner-apply p{font-size:16px}
 @media(max-width:650px){.partner-hero.partnership-first{padding-top:68px;padding-bottom:68px}.partnership-first h1{font-size:clamp(31px,7vw,39px)}.partner-section{padding:57px 0}.partner-feature{padding:28px 24px;min-height:auto}.partner-feature h3{font-size:19px}.partner-feature p{font-size:15px}.partner-step strong{font-size:16px}}
+
+/* Dedicated partner inquiry dialogs */
+.partner-apply-trigger{cursor:pointer}
+.partner-modal[hidden]{display:none!important}
+.partner-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:20px}
+.partner-modal-backdrop{position:absolute;inset:0;background:rgba(13,27,33,.66)}
+.partner-modal-dialog{position:relative;background:#fff;width:min(660px,100%);max-height:92dvh;overflow:auto;padding:40px 42px 34px;box-shadow:0 25px 85px rgba(0,0,0,.15);outline:none}
+.partner-modal-close{position:absolute;top:13px;right:18px;background:none;border:0;font-size:32px;line-height:1;color:#37474f;padding:6px 10px}
+.partner-modal-dialog h2{font-size:29px;letter-spacing:-.04em;line-height:1.35;font-weight:600;margin:0 35px 10px 0}
+.partner-modal-lead{font-size:14px;line-height:1.75;color:#687981;margin:0 0 28px}
+.partner-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.partner-form-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.partner-form-field.wide{grid-column:1/-1}
+.partner-form-field label{font-size:14px;font-weight:600}
+.partner-form-field label b{font-weight:500;color:#0089b3}
+.partner-form-field input,.partner-form-field textarea,.partner-form-field select{border:1px solid #d9e2e5;border-radius:0;background:#fff;font-size:15px;width:100%;padding:13px 14px;color:#1e2528;outline:none}
+.partner-form-field textarea{min-height:110px;resize:vertical}
+.partner-form-field input:focus,.partner-form-field textarea:focus,.partner-form-field select:focus{border-color:#0089b3}
+.partner-form-consent{display:flex;align-items:flex-start;gap:10px;margin:23px 0 20px;font-size:12px;color:#667881;line-height:1.8}
+.partner-form-consent input{margin-top:5px;accent-color:#0089b3}
+.partner-form-consent a{color:#0089b3;text-decoration:underline;text-underline-offset:3px}
+.partner-form-submit{display:flex;width:100%;align-items:center;justify-content:space-between;background:#0089b3;border:1px solid #0089b3;color:white;padding:16px 18px;font-size:14px;font-weight:600}
+.partner-form-submit:hover{background:#006e91}
+.partner-form-note{font-size:11px;line-height:1.75;color:#72828a;margin:14px 0 0}
+@media(max-width:650px){.partner-modal{padding:10px}.partner-modal-dialog{padding:34px 22px 27px;max-height:95dvh}.partner-modal-dialog h2{font-size:24px}.partner-form-grid{grid-template-columns:1fr;gap:15px}.partner-form-field.wide{grid-column:auto}}
 </style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
-<section class="partner-hero partnership-first"><div class="wrap"><h1>우리 브랜드의 다음 판매 채널,<br>S2H에서 찾아보세요.</h1><p>좋은 제품을 만들었다면, 이제 제품에 맞는 셀러와 고객을 만날 차례입니다.</p><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></section>
+<section class="partner-hero partnership-first"><div class="wrap"><h1>우리 브랜드의 다음 판매 채널,<br>S2H에서 찾아보세요.</h1><p>좋은 제품을 만들었다면, 이제 제품에 맞는 셀러와 고객을 만날 차례입니다.</p><button class="btn partner-primary-cta partner-apply-trigger" type="button">브랜드 입점 제안<span aria-hidden="true">↗</span></button></div></section>
 <section class="partner-section partnership-benefits"><div class="wrap"><h2 class="partner-head">제품만 제안하는 것으로 시작하세요.</h2><div class="partner-features"><article class="partner-feature"><h3>제품에 맞는 셀러를 함께 찾습니다</h3><p>상품 특성과 타깃에 맞는 공동구매 채널과 협업 가능성을 검토합니다.</p></article><article class="partner-feature"><h3>판매 기회를 넓혀갑니다</h3><p>기존 유통 채널 밖에서도 제품의 매력을 전달할 새로운 판매 접점을 모색합니다.</p></article><article class="partner-feature"><h3>운영 과정도 함께 설계합니다</h3><p>공급 조건, 판매 일정, 콘텐츠, 물류 및 정산 등 공동구매 진행 사항을 협의합니다.</p></article></div></div></section>
 <section class="partner-section partner-section--soft"><div class="wrap"><h2 class="partner-head">상품 제안부터 공동구매까지.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>입점 제안</h3><p>브랜드 및 제품 정보를 전달해 주세요.</p></article><article class="partner-step"><strong>02</strong><h3>상품 검토</h3><p>상품 특성·판매 조건 등을 확인합니다.</p></article><article class="partner-step"><strong>03</strong><h3>조건 협의</h3><p>공급가와 공동구매 진행 조건을 논의합니다.</p></article><article class="partner-step"><strong>04</strong><h3>셀러 제안</h3><p>적합한 협업 채널을 검토하고 제안합니다.</p></article><article class="partner-step"><strong>05</strong><h3>공동구매 운영</h3><p>일정 확정 후 진행 및 정산을 협의합니다.</p></article></div></div></section>
-<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>좋은 제품, 더 많은 고객에게 소개해 보세요.</h2><p>브랜드명, 제품 정보와 판매 링크를 보내주시면 제안을 검토하겠습니다.</p></div><a class="btn partner-primary-cta" href="contact.html?type=brand">브랜드 입점 제안<span aria-hidden="true">↗</span></a></div></div></section></main>
+<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>좋은 제품, 더 많은 고객에게 소개해 보세요.</h2><p>브랜드명, 제품 정보와 판매 링크를 보내주시면 제안을 검토하겠습니다.</p></div><button class="btn partner-primary-cta partner-apply-trigger" type="button">브랜드 입점 제안<span aria-hidden="true">↗</span></button></div></div></section><div id="partnerModal" class="partner-modal" hidden><div class="partner-modal-backdrop" data-close-partner></div><section class="partner-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="partnerModalTitle" tabindex="-1">
+<button type="button" class="partner-modal-close" id="partnerModalClose" aria-label="신청 창 닫기">×</button>
+<h2 id="partnerModalTitle">브랜드 입점 제안</h2><p class="partner-modal-lead">브랜드와 제품 정보를 남겨주세요. 담당자 검토를 위한 제안 메일을 작성합니다.</p>
+<form id="partnerRequestForm"><div class="partner-form-grid"><div class="partner-form-field "><label for="partner-brandName">브랜드 또는 회사명 <b>*</b></label><input type="text" id="partner-brandName" name="brandName" placeholder="회사명 또는 브랜드명" maxlength="200" required></div><div class="partner-form-field "><label for="partner-manager">담당자명 <b>*</b></label><input type="text" id="partner-manager" name="manager" placeholder="담당자 성함" maxlength="200" required></div><div class="partner-form-field "><label for="partner-phone">연락처 <b>*</b></label><input type="tel" id="partner-phone" name="phone" placeholder="연락 가능한 번호" maxlength="200" required></div><div class="partner-form-field "><label for="partner-email">이메일 <b>*</b></label><input type="email" id="partner-email" name="email" placeholder="답변받을 이메일" maxlength="200" required></div><div class="partner-form-field "><label for="partner-productName">제안 제품명 <b>*</b></label><input type="text" id="partner-productName" name="productName" placeholder="공급을 제안할 제품명" maxlength="200" required></div><div class="partner-form-field wide"><label for="partner-productUrl">제품 소개 링크</label><input type="url" id="partner-productUrl" name="productUrl" placeholder="https://" maxlength="200" ></div><div class="partner-form-field wide"><label for="partner-message">제안 및 공급 조건 <b>*</b></label><textarea id="partner-message" name="message" placeholder="상품 특징·공급 가능 수량·협의 사항 등" maxlength="2000" rows="4" required></textarea></div></div>
+<label class="partner-form-consent"><input type="checkbox" required><span>제휴 문의를 위한 개인정보 이용 안내를 확인했습니다. <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침 검토본</a></span></label>
+<button class="partner-form-submit" type="submit">브랜드 입점 제안 이메일 작성 <span aria-hidden="true">↗</span></button>
+<p class="partner-form-note">메일 프로그램이 열리면 실제 발송을 완료해야 제안이 전달됩니다. 홈페이지 서버에 별도로 저장되지는 않습니다.</p>
+</form></section></div></main>
 <footer class="site-footer" id="footer">
 <div class="foot-wrap">
   <div class="foot-primary">
@@ -315,5 +347,25 @@ document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=
 document.getElementById("year").textContent=new Date().getFullYear();
 window.addEventListener("scroll",()=>document.querySelector(".top").classList.toggle("scrolled",window.scrollY>12),{passive:true});
 
+
+const partnerModal=document.getElementById("partnerModal"),partnerForm=document.getElementById("partnerRequestForm"),partnerDialog=partnerModal.querySelector(".partner-modal-dialog");
+let partnerLastFocus=null;
+function openPartnerModal(){partnerLastFocus=document.activeElement;partnerForm.reset();partnerModal.hidden=false;document.body.style.overflow="hidden";document.getElementById("partnerModalClose").focus()}
+function closePartnerModal(){partnerModal.hidden=true;document.body.style.overflow="";if(partnerLastFocus&&partnerLastFocus.isConnected)partnerLastFocus.focus()}
+document.querySelectorAll(".partner-apply-trigger").forEach(button=>button.addEventListener("click",openPartnerModal));
+document.getElementById("partnerModalClose").addEventListener("click",closePartnerModal);
+partnerModal.querySelector("[data-close-partner]").addEventListener("click",closePartnerModal);
+document.addEventListener("keydown",event=>{
+ if(partnerModal.hidden)return;
+ if(event.key==="Escape"){event.preventDefault();closePartnerModal();return}
+ if(event.key==="Tab"){const focusable=[...partnerDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!focusable.length)return;if(event.shiftKey&&document.activeElement===focusable[0]){event.preventDefault();focusable[focusable.length-1].focus()}else if(!event.shiftKey&&document.activeElement===focusable[focusable.length-1]){event.preventDefault();focusable[0].focus()}}
+});
+partnerForm.addEventListener("submit",event=>{
+ event.preventDefault();if(!partnerForm.reportValidity())return;
+ const data=new FormData(partnerForm);
+ const rows=[["brandName","브랜드 또는 회사명"],["manager","담당자명"],["phone","연락처"],["email","이메일"],["productName","제안 제품명"],["productUrl","제품 소개 링크"],["message","제안 및 공급 조건"]].map(pair=>pair[1]+": "+(data.get(pair[0])||"미입력"));
+ const subject="[S2H 브랜드 입점 제안]"+" "+(data.get("brandName")||"");
+ window.location.href="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(rows.join("\n"));
+});
 </script>
 </body></html>
