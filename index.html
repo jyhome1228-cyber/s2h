@@ -353,6 +353,7 @@ body{font-family:Pretendard,"Noto Sans KR",Arial,sans-serif}
 @media(prefers-reduced-motion:reduce){.fade-in{animation:none}.business-card,.home-partnership-links a{transition:none}}
 
 </style>
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
@@ -474,4 +475,5 @@ if(!("IntersectionObserver" in window)){homeProductSection.classList.add("is-vis
 else{const homeProductObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add("is-visible");homeProductObserver.disconnect()}}},{threshold:.12});homeProductObserver.observe(homeProductSection)}
 
 </script>
+<script src="assets/s2h-motion.js?v=20261126" defer></script>
 </body></html>
