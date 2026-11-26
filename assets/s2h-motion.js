@@ -17,14 +17,18 @@
   mobile.addEventListener?.("change",()=>setMenu(false));
  }
  const entry=document.getElementById("entryScreen");
- if(entry){setTimeout(()=>{if(entry.isConnected&&!entry.classList.contains("is-hidden")){entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");setTimeout(()=>entry.remove(),500)}},1500)}
+ if(entry){setTimeout(()=>{if(entry.isConnected&&!entry.classList.contains("is-hidden")){entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");setTimeout(()=>entry.remove(),350)}},900)}
+ // Only animate when entering the viewport. Content remains visible if JS fails.
  if(!reduced.matches&&"IntersectionObserver" in window){
-  const selectors=".intro-layout>div,.company-intro-grid>div,.business-head,.business-card,.home-products-heading,.home-partnership-copy,.home-partnership-links,.performance-header,.service-heading,.service-card,.product-heading-line,.partner-hero .wrap,.partner-head,.partner-feature,.partner-step,.partner-apply,.contact-layout>div,.contact-layout>form,.info-table";
-  const items=[...document.querySelectorAll(selectors)];
-  const observer=new IntersectionObserver(entries=>{for(const item of entries){if(item.isIntersecting){item.target.classList.remove("s2h-pending");observer.unobserve(item.target)}}},{threshold:.10});
-  items.forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top>innerHeight+10){el.classList.add("s2h-reveal","s2h-pending");const index=Array.from(el.parentElement.children).indexOf(el);el.style.setProperty("--s2h-delay",Math.min(index,3)*55+"ms");observer.observe(el)}});
-  reduced.addEventListener?.("change",()=>{if(reduced.matches){observer.disconnect();items.forEach(el=>el.classList.remove("s2h-pending"))}});
+  const selectors=".intro-layout>div,.company-intro-grid>div,.business-head,.business-card,.home-products-heading,.home-partnership-copy,.home-partnership-links,.performance-header,.metric-card,.service-heading,.service-card,.product-heading-line,.seller-section-heading,.brand-section-heading,.partner-feature,.partner-step,.brand-preparation-inner,.partner-apply,.contact-info,.contact-form,.info-table";
+  const items=[...document.querySelectorAll(selectors)].filter(el=>el.getBoundingClientRect().top>innerHeight+12);
+  const observer=new IntersectionObserver(entries=>{for(const item of entries){if(!item.isIntersecting)continue;observer.unobserve(item.target);if(reduced.matches||document.hidden||item.target.contains(document.activeElement))continue;const index=Array.from(item.target.parentElement.children).indexOf(item.target);item.target.style.setProperty("--s2h-delay",Math.min(index,3)*(mobile.matches?25:45)+"ms");item.target.classList.add("s2h-entering");item.target.addEventListener("animationend",()=>item.target.classList.remove("s2h-entering"),{once:true});}},{threshold:.04});
+  items.forEach(el=>observer.observe(el));
+  reduced.addEventListener?.("change",()=>{if(reduced.matches){observer.disconnect();items.forEach(el=>el.classList.remove("s2h-entering"))}});
  }
+ window.S2HMotion=Object.freeze({
+  closeDialog(modal,finish){if(!modal||modal.hidden||modal.classList.contains("s2h-closing"))return;if(reduced.matches||document.hidden){finish();return}modal.classList.add("s2h-closing");const dialog=modal.querySelector('[role="dialog"]');let done=false;function complete(){if(done)return;done=true;modal.classList.remove("s2h-closing");finish()}if(dialog)dialog.addEventListener("animationend",complete,{once:true});setTimeout(complete,220);}
+ });
  const title=document.getElementById("heroTitle");
- if(title&&!reduced.matches&&"MutationObserver" in window){new MutationObserver(()=>{title.classList.remove("hero-title-change");void title.offsetWidth;title.classList.add("hero-title-change")}).observe(title,{childList:true,subtree:true})}
+ if(title&&"MutationObserver" in window){let animation;new MutationObserver(()=>{if(reduced.matches||document.hidden||!title.animate)return;animation?.cancel();animation=title.animate([{opacity:.35,transform:"translateY(6px)"},{opacity:1,transform:"translateY(0)"}],{duration:340,easing:"cubic-bezier(.22,.7,.2,1)"});}).observe(title,{childList:true,subtree:true});reduced.addEventListener?.("change",()=>{if(reduced.matches)animation?.cancel()})}
 })();
