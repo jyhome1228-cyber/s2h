@@ -1,0 +1,5 @@
+# S2H SEO and performance
+
+Current canonical: https://jyhome1228-cyber.github.io/s2h/ (repository deployment address; production DNS not verified). If s2hcorp.co.kr is confirmed as the primary domain, update canonical, OG, JSON-LD, sitemap and robots URLs together, and ensure the production origin serves /robots.txt and /sitemap.xml. On a GitHub Pages project URL, /s2h/robots.txt is not the origin-root robots file. Submit the sitemap in Google Search Console and Naver Search Advisor after ownership verification. No verification tokens have been fabricated. The administrator page is noindex; the draft terms are excluded from the sitemap. robots.txt is not authentication.
+
+The shared CSS is extracted byte-for-byte from all public pages in the same cascade position; page-specific styles and s2h-responsive.css remain in place. Pretendard dynamic subsets are pinned to v1.3.9. The main hero has responsive srcset, and the social image is a 1200×630 PNG derived from the existing logo. The product list includes ItemList data and a no-JS fallback, without invented offers or prices. Search ranking and Core Web Vitals require measurement after deployment.

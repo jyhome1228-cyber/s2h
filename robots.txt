@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /s2h/admin/
+Disallow: /s2h/backend/
+Disallow: /admin/
+Disallow: /backend/
+Sitemap: https://jyhome1228-cyber.github.io/s2h/sitemap.xml
