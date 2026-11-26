@@ -7,9 +7,11 @@
   const menuIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
   const closeIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>';
   function setMenu(open){open=mobile.matches&&open;top.classList.toggle("s2h-menu-open",open);toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"메뉴 닫기":"메뉴 열기");toggle.innerHTML=open?closeIcon:menuIcon;nav.inert=mobile.matches&&!open;}
-  top.querySelector(".top-inner").append(toggle);root.classList.add("s2h-nav-ready");setMenu(false);
+  top.querySelector(".top-inner").insertBefore(toggle,nav);root.classList.add("s2h-nav-ready");setMenu(false);
   toggle.addEventListener("click",()=>setMenu(!top.classList.contains("s2h-menu-open")));
   nav.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+  top.addEventListener("focusout",e=>{if(e.relatedTarget&&!top.contains(e.relatedTarget))setMenu(false)});
+  window.addEventListener("pageshow",()=>setMenu(false));
   document.addEventListener("pointerdown",e=>{if(!top.contains(e.target))setMenu(false)});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&top.classList.contains("s2h-menu-open")){setMenu(false);toggle.focus()}});
   mobile.addEventListener?.("change",()=>setMenu(false));
