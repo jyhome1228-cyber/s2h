@@ -385,7 +385,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
       <div class="product-dialog-formarea">
         <h3>이 제품 요청하기</h3>
         <p class="product-dialog-subtitle">셀러 정보를 입력해 주시면 선택한 상품이 요청 내용에 자동으로 포함됩니다.</p>
-        <form id="productRequestForm">
+        <form method="post" id="productRequestForm">
           <div class="product-request-field"><label for="requestSeller">셀러명 <span>*</span></label><input id="requestSeller" name="seller" maxlength="100" autocomplete="organization" placeholder="활동 중인 셀러명" required></div>
           <div class="product-request-field"><label for="requestInstagram">인스타그램 아이디 <span>*</span></label><input id="requestInstagram" name="instagram" autocapitalize="none" spellcheck="false" maxlength="100" placeholder="@instagram" required></div>
           <div class="product-request-field"><label for="requestMessage">요청사항 <span>*</span></label><textarea id="requestMessage" name="message" maxlength="2000" rows="5" placeholder="희망 공구 일정, 요청 내용 등을 작성해 주세요." required></textarea></div>
@@ -409,7 +409,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
   <div class="foot-legal"><div class="foot-legal-info">주식회사 에스투에이치 코퍼레이션 &nbsp;|&nbsp; 대표자 채희철 &nbsp;|&nbsp; 사업자등록번호 463-87-02632<br>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)<div class="foot-policy-links"><a href="privacy.html">개인정보처리방침</a><a href="terms.html">홈페이지 이용약관 (검토본)</a></div></div><div class="foot-legal-copy">© <span id="year"></span> S2H CORPORATION. ALL RIGHTS RESERVED.</div></div>
 </div>
 </footer>
-<script src="assets/inquiry-api.js" defer></script>
+<script src="assets/inquiry-api.js?v=20261126-6" defer></script>
 <script>
 
 const entry=document.getElementById("entryScreen");
@@ -459,7 +459,7 @@ function setStatus(message){requestStatus.textContent=message;requestStatus.hidd
 function setBusy(busy){submitting=busy;submitButton.disabled=busy;productClose.disabled=busy;submitButton.textContent=busy?"요청을 처리하고 있습니다…":window.S2HInquiryAPI?.isConfigured()?"선택한 제품 요청하기":"이메일로 제품 요청하기";requestForm.setAttribute("aria-busy",String(busy))}
 function updateNotice(){requestNotice.textContent=window.S2HInquiryAPI?.isConfigured()?"입력한 내용이 담당자에게 접수됩니다.":"이메일 앱에서 발송을 완료해야 요청이 전달됩니다. 홈페이지에 자동 저장되지 않습니다."}
 modalImage.addEventListener("error",()=>{modalImage.hidden=true;modalFallback.hidden=false});
-const backgroundElements=[document.querySelector(".top"),document.querySelector(".product-v3"),document.querySelector(".site-footer")].filter(Boolean);
+const backgroundElements=[document.querySelector(".s2h-skip"),document.querySelector(".top"),document.querySelector(".product-v3"),document.querySelector(".site-footer")].filter(Boolean);
 function openProduct(p){
  if(submitting||!productModal.hidden)return;selectedProduct=p;previousFocus=document.activeElement;
  modalImage.hidden=false;modalFallback.hidden=true;modalImage.alt=p.name+" 제품 이미지";modalImage.src=p.image;
@@ -478,7 +478,7 @@ renderProducts();
 const incomingProductId=new URLSearchParams(location.search).get("product");
 if(incomingProductId!==null&&/^\d+$/.test(incomingProductId)){const p=productData.find(p=>String(p.id)===incomingProductId);if(p){cards.get(p.id)?.querySelector("button")?.focus({preventScroll:true});openProduct(p)}}
 requestForm.addEventListener("submit",async e=>{
- e.preventDefault();if(submitting||!selectedProduct||!requestForm.reportValidity())return;
+ e.preventDefault();if(submitting||productModal.classList.contains("s2h-closing")||!selectedProduct||!requestForm.reportValidity())return;
  const p=selectedProduct,f=new FormData(requestForm),subject="[S2H 제품 요청] "+p.name;
  const body=["S2H 상품 공동구매 요청","","제품명: "+p.name,"제품번호: "+String(p.id).padStart(3,"0"),"카테고리: "+p.category,"셀러명: "+f.get("seller"),"인스타그램 아이디: "+f.get("instagram"),"","요청사항:",f.get("message")].join("\n");
  const mailUrl="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
