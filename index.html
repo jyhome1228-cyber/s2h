@@ -283,6 +283,75 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 }.home-products-track{transition:none!important;will-change:transform}
 .home-products-bottom{justify-content:flex-end}
 @media(prefers-reduced-motion:reduce){.home-products-track{transition:none!important}}
+
+/* Home refinement — S2H brand system, November 2026 */
+:root{--blue:#0089b3;--home-tint:#edf6f8;--home-radius:16px}
+body{font-family:Pretendard,"Noto Sans KR",Arial,sans-serif}
+.top{background:#fff}.desktop-nav a{font-size:14px}.desktop-nav a:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+.hero{width:min(var(--site-max),calc(100% - 80px));margin:24px auto 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:clamp(480px,42vw,640px);isolation:isolate;text-align:left;overflow:hidden;border-radius:var(--home-radius);background:var(--home-tint)}
+.hero::before,.hero::after{content:none}
+.hero-inner{padding:clamp(34px,5vw,80px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-width:0}
+.hero-kicker{color:var(--blue);font-weight:650;letter-spacing:.12em;font-size:13px;margin-bottom:24px}
+.hero h1{font-size:clamp(30px,3.5vw,54px);line-height:1.16;letter-spacing:-.045em;word-break:normal;overflow-wrap:break-word;font-weight:700}
+.hero h1 span{font-weight:500;margin-top:6px}
+.hero-description{font-size:17px;line-height:1.7;color:#425b66;word-break:keep-all;margin:25px 0 30px;max-width:430px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:9px}
+.hero-cta .btn{border-radius:8px;min-height:46px;font-size:14px;padding:12px 20px;justify-content:center}
+.hero-cta .primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hero-cta .primary:hover{background:#006f93;border-color:#006f93}
+.hero-media{min-width:0;position:relative;overflow:hidden;background:#dcebef}
+.hero-media img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center}
+.hero-controls{display:flex;align-items:center;gap:16px;margin-top:42px}
+.hero-dots{position:static;transform:none;display:flex;gap:7px}
+.hero-dots button{width:30px;height:24px;background:transparent;border:0;position:relative}
+.hero-dots button::after{content:"";position:absolute;top:10px;left:0;right:0;height:3px;border-radius:2px;background:#b1c7ce}
+.hero-dots button.active{background:transparent}.hero-dots button.active::after{background:var(--blue)}
+.hero-arrows{position:static;display:flex;gap:6px;pointer-events:auto}
+.hero-arrows button,.home-products-actions button{width:40px;height:40px;border:1px solid #cbdadf;border-radius:8px;background:#fff;color:#233f49;font-size:20px;display:grid;place-items:center}
+.hero-arrows button:hover,.home-products-actions button:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hero-bottom{display:none}
+.home-intro{padding:96px 0!important}
+.intro-layout{grid-template-columns:1fr 1fr;gap:8%;align-items:center}
+.intro-layout .section-title{font-size:clamp(34px,3.7vw,54px);margin:12px 0 22px}
+.intro-layout .statement{font-size:clamp(20px,2vw,28px);line-height:1.6}
+.intro-layout .desc{font-size:17px;line-height:1.85;margin:0 0 24px}
+.home-intro .btn{border-radius:8px;font-size:13px;min-height:44px}
+.business{background:#f5f7f8}
+.business-head{align-items:flex-end}.business-head .section-title{margin-bottom:0}
+.business-grid{gap:16px}
+.business-card{border:1px solid #e1e8eb;border-radius:12px;min-height:235px;padding:30px;gap:34px;transition:border-color .25s,transform .25s}
+.business-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.business-card .num{font-size:12px;letter-spacing:.08em;font-weight:600}
+.business-card h3{font-size:clamp(21px,2vw,27px);line-height:1.25}
+.business-card p{font-size:16px;line-height:1.75;color:#53666e;word-break:keep-all}
+.home-products{padding:90px 0}
+.home-products-heading h2{font-size:clamp(28px,3vw,40px)}
+.home-products-heading,.home-products-window{opacity:1;translate:none}
+.home-products-actions{flex-shrink:0;align-items:center}
+.home-products-actions button#homeProductsPause{font-size:12px;width:auto;padding:0 12px;white-space:nowrap}
+.home-product-image{border-radius:12px;border:1px solid #e7edef}
+.home-product-name{font-size:17px}.home-product-category{margin-top:15px;color:#007b9f}
+.home-product-card:focus-visible{outline-offset:-2px}
+.home-products-bottom{margin-top:28px}
+.home-products-bottom>a{padding:11px 0;color:#006f93}
+.home-partnership{background:var(--blue);border:0;color:white}
+.home-partnership-inner{padding-top:68px;padding-bottom:68px;gap:7%}
+.home-partnership-copy h2{font-size:clamp(28px,3vw,40px)}
+.home-partnership-copy p{color:#fff;opacity:.93;font-size:16px}
+.home-partnership-links{border:0;display:grid;gap:12px}
+.home-partnership-links a{border:1px solid #ffffff73;border-radius:10px;padding:20px 22px;background:#ffffff0c;transition:background .2s}
+.home-partnership-links a:hover{padding-left:22px;background:#ffffff22;color:white}
+.home-partnership-links a>span:first-child{color:white;opacity:.9}
+.home-partnership-links a>span:last-child{color:white;font-size:17px}
+.home-partnership-links strong{font-size:20px}
+.site-footer{background:#182125;padding-top:48px}.foot-primary{padding-bottom:32px}
+.foot-label{font-size:12px;letter-spacing:.07em;color:#afc1c8}
+.foot-tagline,.foot-legal-info,.foot-legal-copy{font-size:12px}
+.foot-nav a{font-size:14px}.foot-contact .btn{border-radius:8px}
+@media(max-width:950px){.hero{width:calc(100% - 40px);min-height:440px}.hero-inner{padding:35px}.hero h1{font-size:clamp(28px,4vw,40px)}.hero-description{font-size:15px}.business-card{padding:24px}.business-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.hero{width:calc(100% - 36px);margin-top:12px;grid-template-columns:1fr;min-height:0;border-radius:12px}.hero-inner{padding:34px 24px 26px}.hero h1{font-size:clamp(29px,7vw,44px)}.hero-kicker{margin-bottom:18px}.hero-description{margin:18px 0 22px}.hero-controls{margin-top:24px}.hero-media{min-height:240px;aspect-ratio:16/10}.hero-cta .btn{font-size:13px;padding:10px 14px}.home-intro{padding:64px 0!important}.intro-layout{grid-template-columns:1fr;gap:22px}.intro-layout .desc{font-size:15px}.business-grid{grid-template-columns:1fr;gap:10px}.business-card{min-height:0;gap:25px}.home-products{padding:60px 0}.home-products-heading{flex-wrap:wrap;gap:14px}.home-products-actions{margin-left:auto}.home-product-card{flex-basis:72%}.home-product-name{font-size:15px}.home-partnership-inner{padding:48px 0;grid-template-columns:1fr;gap:28px}.foot-primary{gap:25px}.desktop-nav a{font-size:clamp(10px,2.8vw,13px)}}
+@media(prefers-reduced-motion:reduce){.fade-in{animation:none}.business-card,.home-partnership-links a{transition:none}}
+
 </style>
 </head>
 <body>
@@ -290,18 +359,18 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
 <div class="route active" data-route="home">
-<section class="hero"><div class="hero-inner fade-in"><div class="hero-kicker">S2H CORPORATION</div><h1 id="heroTitle">INFLUENCER COMMERCE<span>MARKETING COMPANY</span></h1></div><div class="hero-arrows"><button type="button" id="heroPrev" aria-label="이전 슬라이드">←</button><button type="button" id="heroNext" aria-label="다음 슬라이드">→</button></div><div class="hero-dots"><button type="button" class="active" aria-label="첫번째 슬라이드"></button><button type="button" aria-label="두번째 슬라이드"></button></div><div class="hero-bottom">SCROLL DOWN</div></section>
-<section class="panel"><div class="wrap intro-layout"><div><div class="eyebrow">ABOUT S2H</div><h2 class="section-title">Beyond<br>Commerce.</h2><div class="statement">브랜드와 사람을 연결하고,<br><em>새로운 커머스의 가능성</em>을 만듭니다.</div></div><div><p class="desc">S2H CORPORATION은 인플루언서 커머스를 중심으로 브랜드와 소비자가 만나는 접점을 만들어 갑니다. 상품의 가치를 발견하고, 콘텐츠와 마케팅을 통해 더 많은 고객에게 전달합니다.</p><a class="btn" href="company.html">ABOUT COMPANY <span>↗</span></a></div></div></section>
-<section class="panel business"><div class="wrap"><div class="business-head"><div><div class="eyebrow">OUR BUSINESS</div><h2 class="section-title">What We Do.</h2></div><p class="desc">커머스의 시작부터 고객과 만나는 순간까지.</p></div><div class="business-grid"><article class="business-card"><span class="num">01 / COMMERCE</span><div><h3>Influencer Commerce</h3><p>인플루언서와 브랜드를 연결해 상품의 가치를 효과적으로 전달합니다.</p></div></article><article class="business-card"><span class="num">02 / PRODUCT</span><div><h3>Product Curation</h3><p>식품, 뷰티, 생활용품 등 다양한 카테고리의 상품을 소개합니다.</p></div></article><article class="business-card"><span class="num">03 / MARKETING</span><div><h3>Brand Marketing</h3><p>콘텐츠 기획부터 프로모션 디자인까지 브랜드에 맞는 커뮤니케이션을 추구합니다.</p></div></article></div></div></section>
+<section class="hero" aria-label="S2H 소개"><div class="hero-inner fade-in"><div class="hero-kicker">S2H CORPORATION</div><h1 id="heroTitle">INFLUENCER COMMERCE<span>MARKETING COMPANY</span></h1><p class="hero-description">브랜드와 셀러를 연결하고, 새로운 커머스의 가능성을 만듭니다.</p><div class="hero-cta"><a class="btn primary" href="product.html">제품 살펴보기</a><a class="btn" href="company.html">회사 소개</a></div><div class="hero-controls"><div class="hero-dots"><button type="button" class="active" aria-label="첫 번째 슬라이드" aria-pressed="true"></button><button type="button" aria-label="두 번째 슬라이드" aria-pressed="false"></button></div><div class="hero-arrows"><button type="button" id="heroPrev" aria-label="이전 슬라이드">‹</button><button type="button" id="heroNext" aria-label="다음 슬라이드">›</button></div></div></div><div class="hero-media"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="" fetchpriority="high" width="1400" height="1000"></div></section>
+<section class="panel home-intro"><div class="wrap intro-layout"><div><div class="eyebrow">ABOUT S2H</div><h2 class="section-title">Beyond<br>Commerce.</h2><div class="statement">브랜드와 사람을 연결하고,<br><em>새로운 커머스의 가능성</em>을 만듭니다.</div></div><div><p class="desc">S2H CORPORATION은 인플루언서 커머스를 중심으로 브랜드와 소비자가 만나는 접점을 만들어 갑니다. 상품의 가치를 발견하고, 콘텐츠와 마케팅을 통해 더 많은 고객에게 전달합니다.</p><a class="btn" href="company.html">ABOUT COMPANY <span>›</span></a></div></div></section>
+<section class="panel business"><div class="wrap"><div class="business-head"><div><div class="eyebrow">OUR BUSINESS</div><h2 class="section-title">What We Do.</h2></div><p class="desc">커머스의 시작부터 고객과 만나는 순간까지.</p></div><div class="business-grid"><article class="business-card"><span class="num">COMMERCE</span><div><h3>Influencer Commerce</h3><p>인플루언서와 브랜드를 연결해 상품의 가치를 효과적으로 전달합니다.</p></div></article><article class="business-card"><span class="num">PRODUCT</span><div><h3>Product Curation</h3><p>식품, 뷰티, 생활용품 등 다양한 카테고리의 상품을 소개합니다.</p></div></article><article class="business-card"><span class="num">MARKETING</span><div><h3>Brand Marketing</h3><p>콘텐츠 기획부터 프로모션 디자인까지 브랜드에 맞는 커뮤니케이션을 추구합니다.</p></div></article></div></div></section>
 <section class="home-products" aria-labelledby="homeProductsTitle"><div class="wrap">
 <div class="home-products-heading"><div><h2 id="homeProductsTitle">S2H의 다양한 제품을 만나보세요.</h2><p>식품부터 뷰티, 라이프스타일까지. 새로운 공동구매 기회를 발견해 보세요.</p></div>
-<div class="home-products-actions"><button type="button" id="homeProductsPrev" aria-label="이전 상품 보기">←</button><button type="button" id="homeProductsNext" aria-label="다음 상품 보기">→</button></div></div>
+<div class="home-products-actions"><button type="button" id="homeProductsPause" aria-label="제품 자동 롤링 일시정지" aria-pressed="false">일시정지</button><button type="button" id="homeProductsPrev" aria-label="이전 상품 보기">←</button><button type="button" id="homeProductsNext" aria-label="다음 상품 보기">→</button></div></div>
 <div class="home-products-window" id="homeProductsWindow" tabindex="0" aria-label="제품 목록 가로 슬라이더"><div class="home-products-track" id="homeProductsTrack"></div></div>
-<div class="home-products-bottom"><a href="product.html">전체 제품 보기 <span aria-hidden="true">↗</span></a></div>
+<div class="home-products-bottom"><a href="product.html">전체 제품 보기 <span aria-hidden="true">›</span></a></div>
 </div></section>
 <section class="home-partnership" aria-labelledby="homePartnerTitle"><div class="wrap home-partnership-inner">
 <div class="home-partnership-copy"><h2 id="homePartnerTitle">함께 만드는 더 좋은 커머스.</h2><p>판매할 상품을 찾는 셀러와 새로운 판로를 찾는 브랜드.<br>서로에게 필요한 기회를 S2H가 연결합니다.</p></div>
-<div class="home-partnership-links"><a href="seller.html"><span>셀러 파트너십</span><strong>공동구매 상품 제안받기</strong><span aria-hidden="true">↗</span></a><a href="brand.html"><span>브랜드 파트너십</span><strong>우리 제품 입점 제안하기</strong><span aria-hidden="true">↗</span></a></div></div></section>
+<div class="home-partnership-links"><a href="seller.html"><span>셀러 파트너십</span><strong>공동구매 상품 제안받기</strong><span aria-hidden="true">›</span></a><a href="brand.html"><span>브랜드 파트너십</span><strong>우리 제품 입점 제안하기</strong><span aria-hidden="true">›</span></a></div></div></section>
 </div>
 
 </main>
@@ -310,7 +379,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
   <div class="foot-primary">
     <div><a href="index.html" aria-label="S2H 홈페이지"><img class="foot-brand-logo" src="assets/logo.svg" alt="S2H Corporation"></a><p class="foot-tagline">Connecting Products &amp; Sellers.<br>Influencer Commerce Marketing Company.</p></div>
     <div><div class="foot-label">EXPLORE</div><nav class="foot-nav" aria-label="푸터 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div>
-    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn" href="contact.html" style="font-size:12px;margin-top:25px;border-color:#6d818a;color:#fff">CONTACT US <span>↗</span></a></div>
+    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn" href="contact.html" style="font-size:12px;margin-top:25px;border-color:#6d818a;color:#fff">CONTACT US <span>›</span></a></div>
   </div>
   <div class="foot-rule"></div>
   <div class="foot-legal"><div class="foot-legal-info">주식회사 에스투에이치 코퍼레이션 &nbsp;|&nbsp; 대표자 채희철 &nbsp;|&nbsp; 사업자등록번호 463-87-02632<br>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)<div class="foot-policy-links"><a href="privacy.html">개인정보처리방침</a><a href="terms.html">홈페이지 이용약관 (검토본)</a></div></div><div class="foot-legal-copy">© <span id="year"></span> S2H CORPORATION. ALL RIGHTS RESERVED.</div></div>
@@ -330,7 +399,7 @@ window.addEventListener("scroll",()=>document.querySelector(".top").classList.to
 
 let slide=0;const titles=[["INFLUENCER COMMERCE","MARKETING COMPANY"],["CONNECTING BRANDS","AND PEOPLE"]];
 const dots=[...document.querySelectorAll(".hero-dots button")];
-function showSlide(n){slide=(n+titles.length)%titles.length;document.getElementById("heroTitle").innerHTML=titles[slide][0]+"<span>"+titles[slide][1]+"</span>";dots.forEach((d,i)=>d.classList.toggle("active",i===slide))}
+function showSlide(n){slide=(n+titles.length)%titles.length;document.getElementById("heroTitle").innerHTML=titles[slide][0]+"<span>"+titles[slide][1]+"</span>";dots.forEach((d,i)=>{d.classList.toggle("active",i===slide);d.setAttribute("aria-pressed",String(i===slide))})}
 document.getElementById("heroPrev").addEventListener("click",()=>showSlide(slide-1));
 document.getElementById("heroNext").addEventListener("click",()=>showSlide(slide+1));
 dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
@@ -338,10 +407,10 @@ dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
 const featuredProducts=[{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"}];
 const productTrack=document.getElementById("homeProductsTrack");
 const productWindow=document.getElementById("homeProductsWindow");
-let carouselOffset=0,lastCarouselFrame=0,carouselPaused=false,carouselImpulse=0;
+let carouselOffset=0,lastCarouselFrame=0,carouselPaused=false,carouselImpulse=0,userPaused=false,carouselVisible=true,cachedStep=0;
 const reducedCarouselMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
 for(const item of featuredProducts){
- const card=document.createElement("a");card.className="home-product-card";card.href="product.html";card.setAttribute("aria-label",item.name+" 제품 목록에서 보기");
+ const card=document.createElement("a");card.className="home-product-card";card.href="product.html?product="+encodeURIComponent(item.id);card.setAttribute("aria-label",item.name+" 제품 상세 보기");
  const photo=document.createElement("div");photo.className="home-product-image";
  const img=document.createElement("img");img.src=item.image;img.alt=item.name;img.loading="lazy";img.decoding="async";img.addEventListener("error",()=>{photo.textContent="S2H";photo.style.display="grid";photo.style.placeItems="center";photo.style.color="#0089b3"},{once:true});
  photo.append(img);
@@ -361,7 +430,7 @@ for(const original of originalCards){
 }
 productTrack.style.transition="none";
 const carouselGap=()=>parseFloat(getComputedStyle(productTrack).gap)||0;
-const carouselStep=()=>originalCards[0]?originalCards[0].getBoundingClientRect().width+carouselGap():0;
+const measureCarousel=()=>{cachedStep=originalCards[0]?originalCards[0].getBoundingClientRect().width+carouselGap():0};measureCarousel();const carouselStep=()=>cachedStep;
 const carouselCycle=()=>carouselStep()*originalCards.length;
 function renderCarouselPosition(){
  const cycle=carouselCycle();
@@ -373,7 +442,7 @@ function carouselFrame(now){
  if(!lastCarouselFrame)lastCarouselFrame=now;
  const elapsed=Math.min((now-lastCarouselFrame)/1000,.05);
  lastCarouselFrame=now;
- if(!carouselPaused&&!document.hidden&&!reducedCarouselMotion.matches)carouselOffset+=34*elapsed;
+ if(!carouselPaused&&!userPaused&&carouselVisible&&!document.hidden&&!reducedCarouselMotion.matches)carouselOffset+=34*elapsed;
  if(Math.abs(carouselImpulse)>.1){
   const chunk=carouselImpulse*Math.min(1,elapsed*8);
   carouselOffset+=chunk;carouselImpulse-=chunk;
@@ -381,7 +450,7 @@ function carouselFrame(now){
  renderCarouselPosition();
  requestAnimationFrame(carouselFrame);
 }
-function nudgeCarousel(direction){carouselImpulse+=direction*carouselStep()}
+function nudgeCarousel(direction){if(reducedCarouselMotion.matches){carouselOffset+=direction*carouselStep();renderCarouselPosition()}else carouselImpulse+=direction*carouselStep()}
 document.getElementById("homeProductsPrev").addEventListener("click",()=>nudgeCarousel(-1));
 document.getElementById("homeProductsNext").addEventListener("click",()=>nudgeCarousel(1));
 productWindow.addEventListener("mouseenter",()=>carouselPaused=true);
@@ -392,7 +461,13 @@ productWindow.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="A
 let swipeStart=null;
 productWindow.addEventListener("touchstart",e=>{swipeStart=e.touches[0].clientX;carouselPaused=true},{passive:true});
 productWindow.addEventListener("touchend",e=>{if(swipeStart!==null){const delta=e.changedTouches[0].clientX-swipeStart;if(Math.abs(delta)>30)nudgeCarousel(delta<0?1:-1)}swipeStart=null;carouselPaused=false},{passive:true});
-window.addEventListener("resize",renderCarouselPosition);
+const pauseButton=document.getElementById("homeProductsPause");
+function syncPause(){pauseButton.textContent=userPaused||reducedCarouselMotion.matches?"자동 재생":"일시정지";pauseButton.setAttribute("aria-pressed",String(userPaused||reducedCarouselMotion.matches));pauseButton.disabled=reducedCarouselMotion.matches;pauseButton.setAttribute("aria-label",reducedCarouselMotion.matches?"동작 줄이기 설정으로 자동 롤링 꺼짐":userPaused?"제품 자동 롤링 재생":"제품 자동 롤링 일시정지")}
+pauseButton.addEventListener("click",()=>{userPaused=!userPaused;syncPause()});syncPause();reducedCarouselMotion.addEventListener?.("change",syncPause);
+if("IntersectionObserver" in window){new IntersectionObserver(entries=>{carouselVisible=entries[0].isIntersecting}).observe(productWindow)}
+productWindow.addEventListener("touchcancel",()=>{swipeStart=null;carouselPaused=false},{passive:true});
+productWindow.addEventListener("focusin",e=>{const card=e.target.closest(".home-product-card");const i=originalCards.indexOf(card);if(i>=0){const start=i*carouselStep();carouselOffset=start;carouselImpulse=0;productWindow.scrollLeft=0;renderCarouselPosition()}});
+window.addEventListener("resize",()=>{measureCarousel();renderCarouselPosition()});
 requestAnimationFrame(carouselFrame);
 const homeProductSection=document.querySelector(".home-products");
 if(!("IntersectionObserver" in window)){homeProductSection.classList.add("is-visible")}
