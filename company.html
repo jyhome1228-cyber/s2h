@@ -333,51 +333,108 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(prefers-reduced-motion:reduce){.service-section .service-card,.service-section .service-card::before,.service-section .service-card .service-icon{transition:none}}
 </style>
 <link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
+<style>
+
+/* COMPANY v2 — clean editorial composition and stable KPI grid */
+.company-v2 .company-hero{margin:24px auto 0;width:min(var(--site-max),calc(100% - var(--site-gutter)*2));border-radius:16px;background:#edf6f8;overflow:hidden}
+.company-v2 .company-hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:440px;gap:0}
+.company-hero-main{padding:clamp(34px,5vw,76px);align-self:center}
+.company-hero-main h1{font-size:clamp(36px,4.3vw,65px);line-height:1.12;letter-spacing:-.055em;margin:18px 0 24px;font-weight:700}
+.company-hero-main p{font-size:clamp(16px,1.6vw,20px);line-height:1.7;color:#425b66;word-break:keep-all;margin:0 0 28px}
+.company-hero-cta{background:var(--blue);color:#fff;border:1px solid var(--blue);font-size:14px;padding:12px 22px}
+.company-hero-cta:hover{background:#006e91}
+.company-hero-visual{background:#0089b3;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:28px;gap:30px;min-width:0}
+.connection-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:12px;width:min(100%,450px);position:relative}
+.connection-stage:before{content:"";position:absolute;left:10%;right:10%;top:50%;border-top:1px solid #ffffff80}
+.connection-node,.connection-bridge{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:50%;font-size:clamp(11px,1.35vw,18px);font-weight:600;color:white;border:1px solid #ffffffa0;background:#0089b3;letter-spacing:.03em}
+.connection-bridge{background:#fff;border:0;padding:18px;box-shadow:0 10px 34px #00567530}
+.connection-bridge img{width:100%;height:auto}
+.connection-caption{color:white;font-size:14px;letter-spacing:.035em;text-align:center}
+.company-v2 .company-intro{padding:85px 0}
+.company-v2 .company-intro-grid{gap:8%;align-items:start}
+.company-v2 .company-intro-grid h2{font-size:clamp(29px,3.1vw,45px);line-height:1.32;margin:14px 0}
+.company-v2 .company-copy p{font-size:17px;line-height:1.85;margin:0 0 18px}
+.company-v2 .company-copy p:last-child{margin-bottom:0}
+.company-v2 .company-stats{background:#f5f7f8;padding:80px 0}
+.company-v2 .performance-header{margin-bottom:30px}
+.company-v2 .performance-header h2{font-size:clamp(27px,3vw,40px)}
+.company-v2 .performance-helper{white-space:normal;color:#52656e;font-size:14px}
+.metric-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.metric-card{min-width:0}
+.metric-select{width:100%;min-height:190px;height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:18px;text-align:left;background:white;color:#20343e;border:1px solid #dce6ea;border-radius:12px;padding:24px 20px;transition:background .25s,border-color .25s,color .25s}
+.metric-label{font-size:14px;font-weight:600;line-height:1.4;word-break:keep-all}
+.metric-value{display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;font-size:clamp(30px,3vw,48px);font-weight:700;line-height:1;letter-spacing:-.05em;color:#007b9f;font-variant-numeric:tabular-nums}
+.metric-value small{font-size:15px;font-weight:500;letter-spacing:-.02em}
+.metric-sub{font-size:13px;color:#5e717a;line-height:1.4;word-break:keep-all}
+.metric-select.is-active{background:#0089b3;border-color:#0089b3;color:white}
+.metric-select.is-active .metric-value,.metric-select.is-active .metric-sub{color:white}
+.metric-source{font-size:14px;line-height:1.7;color:#53666e}
+.metrics-ready .metric-source{display:none}
+.metric-detail{margin-top:14px;border:1px solid #dce6ea;border-radius:12px;background:white;padding:23px 26px}
+.metric-detail strong{font-size:16px;color:#1a333d}
+.metric-detail p{font-size:15px;line-height:1.7;color:#4d6069;margin:9px 0 0}
+.company-v2 .performance-note{font-size:13px;color:#52656e}
+.company-v2 .service-section{padding:84px 0}
+.company-v2 .service-heading{font-size:clamp(28px,3vw,40px);margin:14px 0 32px}
+.company-v2 .service-section .service-card{opacity:1;translate:none;background:white;border:1px solid #dfe7eb;min-height:245px;padding:30px;transition:border-color .25s,transform .25s}
+.company-v2 .service-section .service-card::before{display:none}
+.company-v2 .service-section .service-card .service-icon{width:52px;height:52px;margin-bottom:22px}
+.company-v2 .service-section .service-card h3{font-size:23px;color:#20343e}
+.company-v2 .service-section .service-card p{color:#52656e}
+.company-v2 .service-section .service-card:hover{color:#20343e;box-shadow:none;transform:none}
+.company-v2 .service-section .service-card:hover .service-icon{color:var(--blue);transform:none}
+.company-v2 .service-section .service-card:hover p{color:#52656e}
+.company-v2 .service-section .service-card.s2h-pending{opacity:0;translate:0 15px}
+.company-v2 .company-information{background:#f5f7f8;padding:76px 0}
+.company-information-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:6%;align-items:start}
+.company-information-layout h2{font-size:clamp(28px,3vw,40px);margin:14px 0}
+.company-information-layout .info-table{margin:0;background:white;border:1px solid #dfe7eb;table-layout:fixed}
+.company-information-layout th,.company-information-layout td{text-align:left;vertical-align:top;padding:20px 22px;border-bottom:1px solid #e4eaed;line-height:1.6;overflow-wrap:anywhere;font-size:15px}
+.company-information-layout th{width:30%;font-weight:500;color:#52656e;background:#fafbfc}
+.company-partner{background:var(--blue);color:white;padding:48px 0}
+.company-partner-inner{display:flex;justify-content:space-between;align-items:center;gap:25px}
+.company-partner h2{font-size:clamp(26px,3vw,38px);letter-spacing:-.045em;margin:0 0 10px}
+.company-partner p{font-size:16px;line-height:1.65;margin:0}
+.company-partner-actions{display:flex;gap:10px;flex-wrap:wrap}
+.company-partner-actions .btn{color:#fff;border:1px solid #ffffffa0;font-size:14px;padding:12px 20px}
+.company-partner-actions .btn:hover{background:white;color:#006e91}
+@media(hover:hover) and (pointer:fine){.metric-select:not(.is-active):hover{border-color:var(--blue);background:#eef7f9}.company-v2 .service-section .service-card:hover{border-color:var(--blue);transform:translateY(-3px)}}
+@media(prefers-reduced-motion:no-preference){.company-hero-main{animation:companyEnter .55s var(--s2h-ease) both}.connection-stage{animation:companyEnter .65s var(--s2h-ease) .12s both}@keyframes companyEnter{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}}
+@media(max-width:1100px){.metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.metric-select{min-height:160px}.company-v2 .company-hero-inner{min-height:380px}}
+@media(max-width:760px){.company-v2 .company-hero{margin-top:12px;border-radius:12px}.company-v2 .company-hero-inner{grid-template-columns:1fr;min-height:0}.company-hero-main{padding:34px 24px}.company-hero-main h1{font-size:clamp(34px,8vw,45px)}.company-hero-visual{min-height:220px;padding:25px;gap:18px}.connection-stage{max-width:290px;gap:9px}.connection-node{font-size:13px}.connection-bridge{padding:12px}.company-v2 .company-intro,.company-v2 .company-stats,.company-v2 .service-section,.company-v2 .company-information{padding:56px 0}.company-v2 .company-intro-grid{grid-template-columns:1fr;gap:18px}.company-v2 .company-copy p{font-size:16px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.metric-card:last-child{grid-column:1/-1}.metric-select{min-height:145px;padding:17px 14px;gap:14px}.metric-value{font-size:35px}.metric-value small{font-size:13px}.metric-label,.metric-sub{font-size:13px}.metric-detail{padding:20px;min-height:0}.company-v2 .service-section .service-card{min-height:0;padding:25px}.company-information-layout{grid-template-columns:1fr;gap:18px}.company-information-layout th,.company-information-layout td{font-size:14px;padding:14px 12px}.company-information-layout th{width:34%}.company-partner-inner{flex-direction:column;align-items:flex-start}.company-partner{padding:38px 0}}
+@media(max-width:360px){.metric-select{padding:14px 11px}.metric-value{font-size:29px}.metric-value small{font-size:12px}.company-hero-main{padding:26px 18px}}
+@media(prefers-reduced-motion:reduce){.metric-select,.company-v2 .service-section .service-card{transition:none}.company-v2 .service-section .service-card.s2h-pending{opacity:1;translate:none}}
+
+</style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
-<div class="route active" data-route="company">
-<section class="subhero"><div class="wrap"><div class="eyebrow">ABOUT S2H</div><h1>COMPANY</h1><p>S2H Corporation · Influencer Commerce Partner</p></div></section>
-<section class="content-section company-intro"><div class="wrap company-intro-grid"><div><h2 class="section-title">Connecting<br>Products &amp; Sellers.</h2><p class="company-lead">상품의 가치가 더 많은 사람에게 닿도록,<br><strong>S2H가 브랜드와 셀러를 연결합니다.</strong></p></div><div class="company-copy"><p>저희 S2H Corporation은 식품, 리빙, 뷰티 등 제조사들의 상품을 판매자(셀러)에게 공동구매로 제안하고 운영하는 <strong>온라인 벤더 사업 법인 회사</strong>입니다.</p><p>판매자의 이익을 극대화할 수 있도록 <strong>100여 개 이상의 상품군</strong>을 보유하고 있으며, 끊임없이 다양한 상품들을 발굴하고 새로운 분야에 도전하고 있습니다.</p></div></div></section>
+<div class="route active company-v2" data-route="company">
+<section class="company-hero"><div class="wrap company-hero-inner"><div class="company-hero-main"><div class="eyebrow">COMPANY</div><h1>Connecting<br>Products &amp; Sellers.</h1><p>상품의 가치가 더 많은 사람에게 닿도록,<br>S2H가 브랜드와 셀러를 연결합니다.</p><a href="contact.html" class="btn company-hero-cta">제휴 문의하기</a></div><div class="company-hero-visual" aria-hidden="true"><div class="connection-stage"><span class="connection-node connection-brand">BRAND</span><span class="connection-bridge"><img src="assets/logo.svg" alt="" width="110" height="39"></span><span class="connection-node connection-seller">SELLER</span></div><div class="connection-caption">Influencer Commerce Partner</div></div></div></section>
+<section class="content-section company-intro"><div class="wrap company-intro-grid"><div><div class="eyebrow">ABOUT S2H</div><h2 class="section-title">브랜드와 셀러가<br>함께 성장하는 커머스.</h2></div><div class="company-copy"><p>저희 S2H Corporation은 식품, 리빙, 뷰티 등 제조사들의 상품을 판매자(셀러)에게 공동구매로 제안하고 운영하는 <strong>온라인 벤더 사업 법인 회사</strong>입니다.</p><p>판매자의 이익을 극대화할 수 있도록 <strong>100여 개 이상의 상품군</strong>을 보유하고 있으며, 끊임없이 다양한 상품들을 발굴하고 새로운 분야에 도전하고 있습니다.</p></div></div></section>
 <section class="company-stats content-section" aria-labelledby="performanceTitle">
 <div class="wrap">
   <div class="performance-header company-reveal">
     <div><h2 id="performanceTitle">S2H가 만들어 온 연결의 규모</h2><p class="performance-heading-desc">실제 협업 현장에서 쌓아온 성과를 숫자로 소개합니다.</p></div>
-    <p class="performance-helper">각 지표를 선택하면 자세한 설명을 볼 수 있습니다.</p>
+    <p class="performance-helper">지표를 선택해 자세한 내용을 확인할 수 있습니다.</p>
   </div>
-  <div class="performance-interactive" id="performanceCards" aria-label="S2H 성과 지표">
-    <article class="performance-panel is-active" tabindex="0" aria-expanded="true" aria-label="인플루언서 네트워크 2,000명, 자세한 설명 보기">
-      <div class="performance-panel-top"><span>인플루언서 네트워크</span><span class="performance-panel-arrow" aria-hidden="true">›</span></div>
-      <div class="performance-panel-body"><strong class="performance-value"><span data-count="2000">2,000</span><small>명</small></strong><p>진행 인플루언서 수</p></div>
-      <div class="performance-panel-detail"><p>S2H 소개자료에 기재된 진행 인플루언서 수입니다. 다양한 셀러 채널과의 공동구매 협업을 소개하는 지표입니다.</p></div>
-    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="인플루언서 평균 팔로워 8만 명, 자세한 설명 보기">
-      <div class="performance-panel-top"><span>인플루언서 평균 팔로워</span><span class="performance-panel-arrow" aria-hidden="true">›</span></div>
-      <div class="performance-panel-body"><strong class="performance-value"><span data-count="8">8</span><small>만 명</small></strong><p>1인당 평균 팔로워 수</p></div>
-      <div class="performance-panel-detail"><p>소개자료에 기재된 인플루언서 1인당 평균 팔로워 규모입니다. 채널과 고객의 특성에 맞는 상품 제안을 지향합니다.</p></div>
-    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="거래처 판매 성과 5억 원, 자세한 설명 보기">
-      <div class="performance-panel-top"><span>거래처 판매 성과</span><span class="performance-panel-arrow" aria-hidden="true">›</span></div>
-      <div class="performance-panel-body"><strong class="performance-value"><span data-count="5">5</span><small>억 원</small></strong><p>거래처 월 평균 매출액</p></div>
-      <div class="performance-panel-detail"><p>기존 소개자료 기준 거래처 월 평균 매출액입니다. 개별 거래처의 실적이나 향후 매출을 보장하는 수치는 아닙니다.</p></div>
-    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="제품 판매 성과 33억 원, 자세한 설명 보기">
-      <div class="performance-panel-top"><span>제품 판매 성과</span><span class="performance-panel-arrow" aria-hidden="true">›</span></div>
-      <div class="performance-panel-body"><strong class="performance-value"><span data-count="33">33</span><small>억 원</small></strong><p>상위 제품 매출 (1 SKU 기준)</p></div>
-      <div class="performance-panel-detail"><p>기존 소개자료에 기재된 단일 상품 기준 상위 제품 매출 규모입니다. 집계 기준 시점은 확인 후 업데이트됩니다.</p></div>
-    </article><article class="performance-panel" tabindex="0" aria-expanded="false" aria-label="연간 사업 성과 150억 원, 자세한 설명 보기">
-      <div class="performance-panel-top"><span>연간 사업 성과</span><span class="performance-panel-arrow" aria-hidden="true">›</span></div>
-      <div class="performance-panel-body"><strong class="performance-value"><span data-count="150">150</span><small>억 원</small></strong><p>연간 매출액</p></div>
-      <div class="performance-panel-detail"><p>기존 S2H 소개자료의 연간 매출액 표기입니다. 집계 대상 기간은 공식 자료 확인 후 기재할 예정입니다.</p></div>
-    </article>
-  </div>
+  <div class="metric-grid" id="performanceCards" aria-label="S2H 성과 지표">
+<article class="metric-card"><button type="button" class="metric-select is-active" aria-pressed="true" aria-controls="metricDetail"><span class="metric-label">인플루언서 네트워크</span><span class="metric-value"><span data-count="2000">2,000</span><small>명</small></span><span class="metric-sub">진행 인플루언서 수</span></button><p class="metric-source">S2H 소개자료에 기재된 진행 인플루언서 수입니다. 다양한 셀러 채널과의 공동구매 협업을 소개하는 지표입니다.</p></article>
+<article class="metric-card"><button type="button" class="metric-select" aria-pressed="false" aria-controls="metricDetail"><span class="metric-label">인플루언서 평균 팔로워</span><span class="metric-value"><span data-count="8">8</span><small>만 명</small></span><span class="metric-sub">1인당 평균 팔로워 수</span></button><p class="metric-source">소개자료에 기재된 인플루언서 1인당 평균 팔로워 규모입니다. 채널과 고객의 특성에 맞는 상품 제안을 지향합니다.</p></article>
+<article class="metric-card"><button type="button" class="metric-select" aria-pressed="false" aria-controls="metricDetail"><span class="metric-label">거래처 판매 성과</span><span class="metric-value"><span data-count="5">5</span><small>억 원</small></span><span class="metric-sub">거래처 월 평균 매출액</span></button><p class="metric-source">기존 소개자료 기준 거래처 월 평균 매출액입니다. 개별 거래처의 실적이나 향후 매출을 보장하는 수치는 아닙니다.</p></article>
+<article class="metric-card"><button type="button" class="metric-select" aria-pressed="false" aria-controls="metricDetail"><span class="metric-label">제품 판매 성과</span><span class="metric-value"><span data-count="33">33</span><small>억 원</small></span><span class="metric-sub">상위 제품 매출 (1 SKU 기준)</span></button><p class="metric-source">기존 소개자료에 기재된 단일 상품 기준 상위 제품 매출 규모입니다. 집계 기준 시점은 확인 후 업데이트됩니다.</p></article>
+<article class="metric-card"><button type="button" class="metric-select" aria-pressed="false" aria-controls="metricDetail"><span class="metric-label">연간 사업 성과</span><span class="metric-value"><span data-count="150">150</span><small>억 원</small></span><span class="metric-sub">연간 매출액</span></button><p class="metric-source">기존 S2H 소개자료의 연간 매출액 표기입니다. 집계 대상 기간은 공식 자료 확인 후 기재할 예정입니다.</p></article>
+</div><div id="metricDetail" class="metric-detail" hidden aria-live="polite"><div><strong id="metricDetailTitle"></strong><p id="metricDetailText"></p></div></div>
   <p class="performance-note">기존 S2H 회사소개 자료에 기재된 성과입니다. 수치별 집계 시점과 기준은 확인 후 업데이트할 예정입니다.</p>
 </div></section>
-<section class="content-section service-section"><div class="wrap"><h2 class="service-heading">공동구매의 전 과정을<br>체계적으로 운영합니다.</h2><div class="service-cards">
+<section class="content-section service-section"><div class="wrap"><div class="eyebrow">OUR SERVICES</div><h2 class="service-heading">공동구매의 전 과정을<br>체계적으로 운영합니다.</h2><div class="service-cards">
 <article class="service-card"><div class="service-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="12" y="12" width="40" height="40" rx="5"/><path d="M20 23h24M20 32h17M20 41h10"/><path d="m37 40 5 5 10-12"/></svg></div><h3>판매피드 필터링</h3><p>진행 전·진행 중·진행 후의 판매 피드를 모니터링해 공동구매 운영 상황을 점검합니다.</p></article>
 <article class="service-card"><div class="service-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M8 25 32 11l24 14v27H8V25Z"/><path d="M8 25h48M22 52V34h20v18M16 31h4M44 31h4"/></svg></div><h3>자체 물류 운영과<br>안전한 결제 시스템</h3><p>자체 물류와 결제 시스템을 기반으로 공동구매의 운영 안정성을 높입니다.</p></article>
 <article class="service-card"><div class="service-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="13" y="9" width="38" height="46" rx="4"/><path d="M21 22h22M21 32h22M21 42h10m6 0 4 4 7-9"/></svg></div><h3>투명한 정산 시스템</h3><p>판매자와 파트너가 신뢰할 수 있도록 투명하고 빠른 정산 시스템을 운영합니다.</p></article>
 </div></div></section>
-<section class="content-section"><div class="wrap"><h2>기업정보</h2><table class="info-table"><tbody><tr><td>법인명</td><td>주식회사 에스투에이치 코퍼레이션</td></tr><tr><td>대표자</td><td>채희철</td></tr><tr><td>사업자등록번호</td><td>463-87-02632</td></tr><tr><td>개업일</td><td>2023. 01. 06.</td></tr><tr><td>주소</td><td>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)</td></tr><tr><td>대표번호</td><td><a href="tel:18005112">1800-5112</a></td></tr></tbody></table></div></section></div>
+<section class="content-section company-information"><div class="wrap company-information-layout"><div><div class="eyebrow">COMPANY INFORMATION</div><h2>기업정보</h2></div><table class="info-table"><tbody><tr><th scope="row">법인명</th><td>주식회사 에스투에이치 코퍼레이션</td></tr><tr><th scope="row">대표자</th><td>채희철</td></tr><tr><th scope="row">사업자등록번호</th><td>463-87-02632</td></tr><tr><th scope="row">개업일</th><td>2023. 01. 06.</td></tr><tr><th scope="row">주소</th><td>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)</td></tr><tr><th scope="row">대표번호</th><td><a href="tel:18005112">1800-5112</a></td></tr></tbody></table></div></section><section class="company-partner"><div class="wrap company-partner-inner"><div><h2>함께하는 커머스의 시작.</h2><p>셀러와 브랜드를 위한 S2H의 제휴 서비스를 만나보세요.</p></div><div class="company-partner-actions"><a href="seller.html" class="btn">셀러 파트너십</a><a href="brand.html" class="btn">브랜드 파트너십</a></div></div></section></div>
 
 </main>
 <footer class="site-footer" id="footer">
@@ -404,38 +461,27 @@ document.getElementById("year").textContent=new Date().getFullYear();
 window.addEventListener("scroll",()=>document.querySelector(".top").classList.toggle("scrolled",window.scrollY>12),{passive:true});
 
 
-const revealItems=document.querySelectorAll(".company-reveal");
-if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches){revealItems.forEach(el=>el.classList.add("is-visible"))}
-else{const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:"0px 0px -25px 0px"});revealItems.forEach(el=>observer.observe(el))}
-
-const performanceCards=[...document.querySelectorAll(".performance-panel")];
-function activatePerformanceCard(card){
- performanceCards.forEach(el=>{const active=el===card;el.classList.toggle("is-active",active);el.setAttribute("aria-expanded",String(active))});
+const metricCards=[...document.querySelectorAll(".metric-card")];
+const metricDetail=document.getElementById("metricDetail");
+const detailTitle=document.getElementById("metricDetailTitle"),detailText=document.getElementById("metricDetailText");
+function selectMetric(card){
+ metricCards.forEach(el=>{const selected=el===card;const button=el.querySelector("button");button.classList.toggle("is-active",selected);button.setAttribute("aria-pressed",String(selected))});
+ detailTitle.textContent=card.querySelector(".metric-label").textContent;
+ detailText.textContent=card.querySelector(".metric-source").textContent;
 }
-performanceCards.forEach(card=>{
- card.addEventListener("mouseenter",()=>activatePerformanceCard(card));
- card.addEventListener("focus",()=>activatePerformanceCard(card));
- card.addEventListener("click",()=>activatePerformanceCard(card));
- card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activatePerformanceCard(card)}});
-});
-const countNodes=[...document.querySelectorAll(".performance-value [data-count]")];
-let countsStarted=false;
+metricCards.forEach(card=>card.querySelector("button").addEventListener("click",()=>selectMetric(card)));
+if(metricCards.length){selectMetric(metricCards[0]);metricDetail.hidden=false;document.getElementById("performanceCards").classList.add("metrics-ready")}
+const countNodes=[...document.querySelectorAll(".metric-value [data-count]")];
+const motionQuery=matchMedia("(prefers-reduced-motion: reduce)");
+function showMetricCounts(){countNodes.forEach(n=>n.textContent=Number(n.dataset.count).toLocaleString("ko-KR"))}
 function animateMetricCounts(){
- if(countsStarted)return;countsStarted=true;
- const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- if(reducedMotion){countNodes.forEach(n=>n.textContent=Number(n.dataset.count).toLocaleString("ko-KR"));return}
- const begin=performance.now(),duration=1350;
- function frame(now){const t=Math.min(1,(now-begin)/duration),ease=1-Math.pow(1-t,3);countNodes.forEach(n=>{const target=Number(n.dataset.count);n.textContent=Math.round(target*ease).toLocaleString("ko-KR")});if(t<1)requestAnimationFrame(frame)}
+ if(motionQuery.matches){showMetricCounts();return}
+ const begin=performance.now(),duration=850;
+ function frame(now){if(motionQuery.matches){showMetricCounts();return}const t=Math.min(1,(now-begin)/duration),ease=1-Math.pow(1-t,3);countNodes.forEach(n=>n.textContent=Math.round(Number(n.dataset.count)*ease).toLocaleString("ko-KR"));if(t<1)requestAnimationFrame(frame)}
  requestAnimationFrame(frame);
 }
 const perfSection=document.getElementById("performanceCards");
-if(!("IntersectionObserver" in window))animateMetricCounts();
-else{const countObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();countObserver.disconnect()}},{threshold:.22});countObserver.observe(perfSection)}
-
-
-const serviceCards=[...document.querySelectorAll(".service-section .service-card")];
-if(!("IntersectionObserver" in window)){serviceCards.forEach(el=>el.classList.add("service-visible"))}
-else{const serviceObserver=new IntersectionObserver(entries=>{for(const item of entries){if(item.isIntersecting){item.target.classList.add("service-visible");serviceObserver.unobserve(item.target)}}},{threshold:.13});serviceCards.forEach(el=>serviceObserver.observe(el))}
+if(!motionQuery.matches&&"IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();observer.disconnect()}},{threshold:.12});observer.observe(perfSection)}
 </script>
 <script src="assets/s2h-motion.js?v=20261126" defer></script>
 </body></html>
