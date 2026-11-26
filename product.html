@@ -375,6 +375,11 @@ document.addEventListener("keydown",e=>{
  if(e.key==="Escape"){e.preventDefault();closeProduct()}
  if(e.key==="Tab"){const controls=[...productDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!controls.length)return;const first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
 });
+const incomingProductId=new URLSearchParams(location.search).get("product");
+if(incomingProductId!==null&&/^\d+$/.test(incomingProductId)){
+ const incomingProduct=productData.find(p=>String(p.id)===incomingProductId);
+ if(incomingProduct){const incomingCard=[...grid.querySelectorAll(".catalog-card")].find(card=>card.querySelector("h3")?.textContent===incomingProduct.name);if(incomingCard)incomingCard.focus({preventScroll:true});openProduct(incomingProduct);}
+}
 requestForm.addEventListener("submit",async e=>{
  e.preventDefault();if(!selectedProduct||!requestForm.reportValidity())return;
  const f=new FormData(requestForm);
