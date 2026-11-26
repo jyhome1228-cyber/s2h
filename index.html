@@ -437,7 +437,7 @@ productWindow.addEventListener("keydown",e=>{if(e.target===productWindow&&(e.key
 let touchStart=null,swipeHandledUntil=0;
 productWindow.addEventListener("touchstart",e=>{if(e.touches.length!==1)return;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};touching=true;swipeHandledUntil=0;schedule()},{passive:true});
 productWindow.addEventListener("touchend",e=>{if(touchStart){const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.35){swipeHandledUntil=performance.now()+400;nudge(dx<0?1:-1)}}touchStart=null;touching=false;schedule()},{passive:true});
-productWindow.addEventListener("touchcancel",()=>{touchStart=null;touching=false;swipeHandled=false;schedule()},{passive:true});
+productWindow.addEventListener("touchcancel",()=>{touchStart=null;touching=false;swipeHandledUntil=0;schedule()},{passive:true});
 productWindow.addEventListener("click",e=>{if(performance.now()<swipeHandledUntil){e.preventDefault();swipeHandledUntil=0}},true);
 const pauseButton=document.getElementById("homeProductsPause");
 function syncPause(){pauseButton.textContent=userPaused||motion.matches?"자동 재생":"일시정지";pauseButton.setAttribute("aria-pressed",String(userPaused||motion.matches));pauseButton.disabled=motion.matches;pauseButton.setAttribute("aria-label",motion.matches?"동작 줄이기 설정으로 자동 롤링 꺼짐":userPaused?"제품 자동 롤링 재생":"제품 자동 롤링 일시정지");if(motion.matches&&impulse){carouselOffset+=impulse;impulse=0;render()}schedule()}
