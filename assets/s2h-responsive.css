@@ -90,3 +90,83 @@ section.panel,.content-section,.partner-section{padding:54px 0}
 @media(max-width:360px){:root{--site-gutter:14px}.hero-inner{padding-inline:18px}.hero h1{font-size:27px}.product-grid{gap:14px 9px}.catalog-info h3{font-size:14px}.home-products-heading h2{font-size:25px}}
 @media(hover:none){.business-card:hover,.service-section .service-card:hover,.partner-feature:hover{transform:none;box-shadow:none}.service-section .service-card:hover{color:var(--ink);background:#f6f9fa}.service-section .service-card:hover::before{height:0}.service-section .service-card:hover p{color:#687b84}.service-section .service-card:hover .service-icon{color:var(--blue);transform:none}.performance-panel:not(.is-active):hover{background:#f3f7f8;color:var(--ink);box-shadow:none;border-color:#e4ecef}.performance-panel:not(.is-active):hover .performance-value{color:#143c49}.performance-panel:not(.is-active):hover .performance-panel-body>p{color:#70838c}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.s2h-reveal,.s2h-reveal.s2h-pending,.s2h-nav-ready .top .desktop-nav{transition:none;animation:none}.s2h-reveal.s2h-pending{opacity:1;translate:none}.hero-title-change{animation:none}}
+
+/* S2H shell v7 — canonical public-page header, footer and width rhythm */
+:root{--header:76px;--site-max:1440px;--site-gutter:40px;--section-space:80px;--section-space-mobile:54px}
+html{scroll-padding-top:calc(var(--header) + 18px)}
+body{min-width:0;margin:0;display:flex;flex-direction:column;min-height:100vh;min-height:100svh}
+body>main{padding-top:var(--header);flex:1 0 auto;min-width:0}
+body .top{--header:76px;height:var(--header);z-index:50;background:#fff;border-bottom:1px solid #e4eaed;box-shadow:none}
+body .top.scrolled{box-shadow:0 4px 18px rgba(21,47,58,.055)}
+body .top-inner,body .foot-wrap,body main .wrap{width:min(var(--site-max),calc(100% - 2 * var(--site-gutter)));max-width:var(--site-max);margin-inline:auto}
+body .top-inner{height:100%;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:30px;padding:0}
+body .top .logo{display:flex;align-items:center;width:142px;flex:0 0 142px}
+body .top .logo img{width:100%;height:auto;display:block}
+body .top .desktop-nav{display:flex!important;align-items:center;justify-content:flex-end;gap:clamp(18px,3.2vw,50px);flex:1}
+body .top .desktop-nav a{min-height:44px;font-size:14px;font-weight:600;color:#26363d;position:relative;letter-spacing:0}
+body .top .desktop-nav a[aria-current="page"],body .top .desktop-nav a:hover{color:#007a9e}
+body .top .desktop-nav a::after{bottom:3px;height:2px;border-radius:2px;background:var(--blue)}
+body .top .desktop-nav a[aria-current="page"]::after{width:100%}
+.s2h-skip{position:fixed;top:8px;left:var(--site-gutter);z-index:1000;padding:12px 18px;border-radius:8px;color:white;background:#006d90;transform:translateY(-160%);font-size:14px}
+.s2h-skip:focus{transform:none}
+body main :is(.hero,.company-hero,.catalog-hero,.seller-hero,.brand-hero,.contact-hero){width:min(var(--site-max),calc(100% - 2 * var(--site-gutter)));max-width:var(--site-max);margin:24px auto 0}
+body main :is(.company-hero,.catalog-hero,.seller-hero,.brand-hero,.contact-hero)>.wrap{width:100%;max-width:none}
+body main section.panel,body main .content-section,body main .partner-section,body main .home-products{padding-block:var(--section-space)}
+body main .home-intro{padding-block:var(--section-space)!important}
+body main .company-v2 .company-stats,body main .company-v2 .service-section,body main .company-v2 .company-information,body main .company-v2 .company-intro,body main .product-v3 .catalog-section,body main.seller-v4 .partner-section,body main.brand-v5 .partner-section{padding-block:var(--section-space)}
+body main.seller-v4 .seller-hero,body main.brand-v5 .brand-hero{padding:0}
+body main.seller-v4 .partnership-last,body main.brand-v5 .partnership-last{padding-block:44px}
+body main .home-partnership-inner{padding-block:56px}
+body .site-footer{margin-top:auto;background:#182125;color:#fff;padding:42px 0 22px}
+body .site-footer .foot-primary{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.85fr) minmax(0,1fr);align-items:start;gap:clamp(24px,4vw,60px);padding:0 0 28px}
+body .site-footer .foot-primary>div{min-width:0}
+body .site-footer .foot-brand-logo{width:160px;max-width:100%;height:auto;display:block}
+body .site-footer .foot-tagline{font-size:13px;line-height:1.65;color:#c5cfd3;margin:16px 0 0}
+body .site-footer .foot-label{font-size:13px;font-weight:600;letter-spacing:0;color:#c5cfd3;margin:0 0 14px}
+body .site-footer .foot-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
+body .site-footer .foot-nav a{font-size:13px;line-height:1.5;min-height:32px;display:flex;align-items:center;color:#fff;overflow-wrap:anywhere}
+body .site-footer .foot-contact>a:not(.btn){font-size:19px;line-height:1.5;font-weight:600;display:block}
+body .site-footer .foot-contact .foot-mail{font-size:14px!important;font-weight:400;color:#d4dce0;margin:4px 0 0}
+body .site-footer .foot-contact .foot-cta{display:inline-flex;margin-top:14px;padding:9px 16px;min-height:40px;font-size:13px;color:#fff;border:1px solid #647981;border-radius:8px;justify-content:center}
+body .site-footer .foot-contact .foot-cta:hover{background:var(--blue);border-color:var(--blue)}
+body .site-footer .foot-rule{border-top:1px solid #ffffff26}
+body .site-footer .foot-legal{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-top:19px}
+body .site-footer .foot-legal-info,body .site-footer .foot-legal-copy{font-size:12px;color:#bec9cd;line-height:1.75;white-space:normal}
+body .site-footer .foot-policy-links{gap:8px 20px;margin-top:10px}
+body .site-footer .foot-policy-links a{color:#e1e8eb;font-size:12px;min-height:32px;display:inline-flex;align-items:center}
+body .site-footer .foot-nav a:hover,body .site-footer .foot-policy-links a:hover{color:#78d2e9}
+body .site-footer :focus-visible{outline-color:#78d2e9}
+@media(max-width:1050px){:root{--site-gutter:28px;--section-space:68px}body .top .logo{width:124px;flex-basis:124px}body .top .desktop-nav{gap:22px}body .site-footer .foot-primary{gap:26px}}
+@media(max-width:760px){
+ :root{--header:66px;--site-gutter:18px;--section-space:var(--section-space-mobile)}
+ body .top{--header:66px}
+ body .top-inner{gap:12px}
+ body .top .logo{width:116px;flex:0 0 116px}
+ body .top .desktop-nav{gap:8px}
+ .s2h-nav-ready body .top .desktop-nav{top:var(--header);max-height:calc(100vh - var(--header));max-height:calc(100dvh - var(--header));overflow-y:auto;overscroll-behavior:contain;gap:0;padding:8px var(--site-gutter) 16px}
+ .s2h-nav-ready body .top .desktop-nav a{font-size:15px;padding:12px;min-height:48px}
+ .s2h-nav-ready body .top .desktop-nav a[aria-current="page"]{background:#edf6f8;border-radius:8px}
+ .s2h-nav-ready body .top .desktop-nav a::after{display:none}
+ .s2h-nav-ready body .s2h-mobile-toggle{flex:0 0 44px}
+ :root:not(.s2h-nav-ready){--header:106px}
+ :root:not(.s2h-nav-ready) body .top{--header:106px}
+ :root:not(.s2h-nav-ready) body .top-inner{flex-direction:column;justify-content:center;gap:4px}
+ :root:not(.s2h-nav-ready) body .top .logo{flex:0 0 auto}
+ :root:not(.s2h-nav-ready) body .top .desktop-nav{flex:none;width:100%;justify-content:space-between;gap:6px;flex-wrap:nowrap}
+ :root:not(.s2h-nav-ready) body .top .desktop-nav a{font-size:clamp(10px,2.7vw,13px);min-height:36px}
+ body main :is(.hero,.company-hero,.catalog-hero,.seller-hero,.brand-hero,.contact-hero){margin-top:12px}
+ body main .home-partnership-inner{padding-block:42px}
+ body main.seller-v4 .partnership-last,body main.brand-v5 .partnership-last{padding-block:36px}
+ body .site-footer{padding:32px 0 18px}
+ body .site-footer .foot-primary{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-bottom:22px}
+ body .site-footer .foot-primary>div:first-child{grid-column:1/-1}
+ body .site-footer .foot-brand-logo{width:142px}
+ body .site-footer .foot-legal{flex-direction:column;gap:12px;padding-top:16px}
+ body .site-footer .foot-contact>a:not(.btn){font-size:17px}
+ body .site-footer .foot-contact .foot-mail{font-size:13px!important}
+ body .site-footer .foot-nav a{min-height:36px}
+ .product-modal,.partner-modal{padding:12px;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@media(max-width:520px){body .site-footer .foot-primary{grid-template-columns:1fr 1fr;gap:20px 14px}body .site-footer .foot-primary>div:nth-child(2){grid-column:1/-1}body .site-footer .foot-primary>div:nth-child(3){grid-column:1/-1}body .site-footer .foot-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px 10px}}
+@media(max-width:360px){:root{--site-gutter:14px}body .site-footer .foot-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.s2h-skip,body .top,body .top .desktop-nav a::after{transition:none}}
