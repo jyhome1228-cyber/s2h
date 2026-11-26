@@ -170,3 +170,39 @@ body .site-footer :focus-visible{outline-color:#78d2e9}
 @media(max-width:520px){body .site-footer .foot-primary{grid-template-columns:1fr 1fr;gap:20px 14px}body .site-footer .foot-primary>div:nth-child(2){grid-column:1/-1}body .site-footer .foot-primary>div:nth-child(3){grid-column:1/-1}body .site-footer .foot-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:3px 10px}}
 @media(max-width:360px){:root{--site-gutter:14px}body .site-footer .foot-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.s2h-skip,body .top,body .top .desktop-nav a::after{transition:none}}
+
+/* S2H motion v8 — progressive, restrained, interaction-first */
+:root{--s2h-ease:cubic-bezier(.22,.7,.2,1);--s2h-fast:180ms;--s2h-normal:340ms}
+body .has-js .entry-screen{transition:opacity .25s ease,visibility .25s ease}
+.has-js body .entry-screen{transition:opacity .25s ease,visibility .25s ease}
+.has-js body .entry-logo{animation-duration:.35s;animation-delay:0s}
+body main .s2h-entering{opacity:1;translate:none}
+body main .home-products-heading,body main .home-products-window{opacity:1;translate:none}
+body main .company-v2 .service-section .service-card{opacity:1;translate:none}
+body main .home-products-track{will-change:auto}
+body main .home-products-track.s2h-rolling{will-change:transform}
+body main .home-products-window{overflow:hidden;touch-action:pan-y}
+body main .home-product-card img{transition:transform .32s var(--s2h-ease)}
+body main .hero-dots button::after{transition:background-color .18s ease}
+body main :is(.btn,.catalog-card-button,.metric-select,.partner-feature,.business-card){transition-property:background-color,border-color,color,transform,box-shadow;transition-duration:.22s;transition-timing-function:var(--s2h-ease)}
+body main :is(.btn,.catalog-card-button,.metric-select):active{transform:scale(.985)}
+@media(prefers-reduced-motion:no-preference){
+ body main .s2h-entering{animation:s2hRevealV8 .48s var(--s2h-ease) both;animation-delay:var(--s2h-delay,0ms)}
+ body main .s2h-entering:focus-within{animation:none}
+ @keyframes s2hRevealV8{from{opacity:.35;translate:0 12px}to{opacity:1;translate:0 0}}
+ .product-modal.s2h-closing .product-dialog,.partner-modal.s2h-closing .partner-modal-dialog{animation:s2hDialogOut .16s ease both}
+ .product-modal.s2h-closing .product-modal-backdrop,.partner-modal.s2h-closing .partner-modal-backdrop{animation:s2hBackdropOut .16s ease both}
+ @keyframes s2hDialogOut{from{opacity:1;translate:0 0;scale:1}to{opacity:0;translate:0 8px;scale:.99}}
+ @keyframes s2hBackdropOut{from{opacity:1}to{opacity:0}}
+ .metric-detail.s2h-detail-change>div{animation:s2hRevealV8 .3s var(--s2h-ease) both}
+ .product-grid .catalog-card.s2h-filter-enter{animation:s2hRevealV8 .26s var(--s2h-ease) both}
+}
+.s2h-closing{pointer-events:none}
+@media(hover:none){body main .home-product-card:hover img,body main .catalog-card:hover img{transform:none}}
+@media(max-width:760px){@media(prefers-reduced-motion:no-preference){body main .s2h-entering{animation-duration:.35s}}}
+@media(prefers-reduced-motion:reduce){
+ body main .s2h-entering,body main .s2h-filter-enter,body main .metric-detail>div{animation:none!important;opacity:1;translate:none}
+ body main :is(.btn,.catalog-card-button,.metric-select,.partner-feature,.business-card),body main .home-product-card img{transition:none!important}
+ body main :is(.btn,.catalog-card-button,.metric-select):active{transform:none}
+ .product-modal .product-dialog,.partner-modal .partner-modal-dialog,.product-modal .product-modal-backdrop,.partner-modal .partner-modal-backdrop{animation:none!important}
+}
