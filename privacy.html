@@ -276,12 +276,13 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(max-width:750px){.s2h-privacy{padding:45px 0 75px}.privacy-index{grid-template-columns:repeat(2,minmax(0,1fr))}.s2h-privacy section{padding:28px 0}.s2h-privacy section h2{font-size:19px}.s2h-privacy section p,.s2h-privacy section li{font-size:14px}}
 @media(max-width:420px){.privacy-index{grid-template-columns:1fr}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
+<a class="s2h-skip" href="#main-content">본문 바로가기</a>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
-<main>
+<main id="main-content" tabindex="-1">
 <article class="legal-page s2h-privacy">
   <div class="wrap">
     <header class="legal-head">
@@ -318,7 +319,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
   <div class="foot-primary">
     <div><a href="index.html" aria-label="S2H 홈페이지"><img class="foot-brand-logo" src="assets/logo.svg" alt="S2H Corporation"></a><p class="foot-tagline">Connecting Products &amp; Sellers.<br>Influencer Commerce Marketing Company.</p></div>
     <div><div class="foot-label">EXPLORE</div><nav class="foot-nav" aria-label="푸터 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div>
-    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn" href="contact.html" style="font-size:12px;margin-top:25px;border-color:#6d818a;color:#fff">CONTACT US <span>›</span></a></div>
+    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn foot-cta" href="contact.html">문의하기</a></div>
   </div>
   <div class="foot-rule"></div>
   <div class="foot-legal"><div class="foot-legal-info">주식회사 에스투에이치 코퍼레이션 &nbsp;|&nbsp; 대표자 채희철 &nbsp;|&nbsp; 사업자등록번호 463-87-02632<br>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)<div class="foot-policy-links"><a href="privacy.html">개인정보처리방침</a><a href="terms.html">홈페이지 이용약관 (검토본)</a></div></div><div class="foot-legal-copy">© <span id="year"></span> S2H CORPORATION. ALL RIGHTS RESERVED.</div></div>
@@ -337,5 +338,5 @@ document.getElementById("year").textContent=new Date().getFullYear();
 window.addEventListener("scroll",()=>document.querySelector(".top").classList.toggle("scrolled",window.scrollY>12),{passive:true});
 
 </script>
-<script src="assets/s2h-motion.js?v=20261126" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
 </body></html>
