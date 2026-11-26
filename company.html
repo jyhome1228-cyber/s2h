@@ -332,7 +332,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 }
 @media(prefers-reduced-motion:reduce){.service-section .service-card,.service-section .service-card::before,.service-section .service-card .service-icon{transition:none}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-8">
 <style>
 
 /* COMPANY v2 — clean editorial composition and stable KPI grid */
@@ -454,8 +454,8 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
+function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),300)}
+if(seen||reduced){finishIntro();entry?.remove()}else setTimeout(finishIntro,560);
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
@@ -469,6 +469,7 @@ function selectMetric(card){
  metricCards.forEach(el=>{const selected=el===card;const button=el.querySelector("button");button.classList.toggle("is-active",selected);button.setAttribute("aria-pressed",String(selected))});
  detailTitle.textContent=card.querySelector(".metric-label").textContent;
  detailText.textContent=card.querySelector(".metric-source").textContent;
+ if(!metricDetail.hidden&&!matchMedia("(prefers-reduced-motion: reduce)").matches){const node=metricDetail.firstElementChild;node?.getAnimations?.().forEach(a=>a.cancel());node?.animate?.([{opacity:.4,transform:"translateY(4px)"},{opacity:1,transform:"translateY(0)"}],{duration:260,easing:"ease-out"})}
 }
 metricCards.forEach(card=>card.querySelector("button").addEventListener("click",()=>selectMetric(card)));
 if(metricCards.length){selectMetric(metricCards[0]);metricDetail.hidden=false;document.getElementById("performanceCards").classList.add("metrics-ready")}
@@ -484,5 +485,5 @@ function animateMetricCounts(){
 const perfSection=document.getElementById("performanceCards");
 if(!motionQuery.matches&&"IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();observer.disconnect()}},{threshold:.12});observer.observe(perfSection)}
 </script>
-<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-8" defer></script>
 </body></html>
