@@ -332,7 +332,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 }
 @media(prefers-reduced-motion:reduce){.service-section .service-card,.service-section .service-card::before,.service-section .service-card .service-icon{transition:none}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
 <style>
 
 /* COMPANY v2 — clean editorial composition and stable KPI grid */
@@ -409,8 +409,9 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
-<header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
-<main>
+<a class="s2h-skip" href="#main-content">본문 바로가기</a>
+<header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html" aria-current="page">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
+<main id="main-content" tabindex="-1">
 <div class="route active company-v2" data-route="company">
 <section class="company-hero"><div class="wrap company-hero-inner"><div class="company-hero-main"><div class="eyebrow">COMPANY</div><h1>Connecting<br>Products &amp; Sellers.</h1><p>상품의 가치가 더 많은 사람에게 닿도록,<br>S2H가 브랜드와 셀러를 연결합니다.</p><a href="contact.html" class="btn company-hero-cta">제휴 문의하기</a></div><div class="company-hero-visual" aria-hidden="true"><div class="connection-stage"><span class="connection-node connection-brand">BRAND</span><span class="connection-bridge"><img src="assets/logo.svg" alt="" width="110" height="39"></span><span class="connection-node connection-seller">SELLER</span></div><div class="connection-caption">Influencer Commerce Partner</div></div></div></section>
 <section class="content-section company-intro"><div class="wrap company-intro-grid"><div><div class="eyebrow">ABOUT S2H</div><h2 class="section-title">브랜드와 셀러가<br>함께 성장하는 커머스.</h2></div><div class="company-copy"><p>저희 S2H Corporation은 식품, 리빙, 뷰티 등 제조사들의 상품을 판매자(셀러)에게 공동구매로 제안하고 운영하는 <strong>온라인 벤더 사업 법인 회사</strong>입니다.</p><p>판매자의 이익을 극대화할 수 있도록 <strong>100여 개 이상의 상품군</strong>을 보유하고 있으며, 끊임없이 다양한 상품들을 발굴하고 새로운 분야에 도전하고 있습니다.</p></div></div></section>
@@ -442,7 +443,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
   <div class="foot-primary">
     <div><a href="index.html" aria-label="S2H 홈페이지"><img class="foot-brand-logo" src="assets/logo.svg" alt="S2H Corporation"></a><p class="foot-tagline">Connecting Products &amp; Sellers.<br>Influencer Commerce Marketing Company.</p></div>
     <div><div class="foot-label">EXPLORE</div><nav class="foot-nav" aria-label="푸터 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div>
-    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn" href="contact.html" style="font-size:12px;margin-top:25px;border-color:#6d818a;color:#fff">CONTACT US <span>›</span></a></div>
+    <div class="foot-contact"><div class="foot-label">GET IN TOUCH</div><a href="tel:18005112">1800-5112</a><a class="foot-mail" href="mailto:s2hcorp@naver.com">s2hcorp@naver.com</a><a class="btn foot-cta" href="contact.html">문의하기</a></div>
   </div>
   <div class="foot-rule"></div>
   <div class="foot-legal"><div class="foot-legal-info">주식회사 에스투에이치 코퍼레이션 &nbsp;|&nbsp; 대표자 채희철 &nbsp;|&nbsp; 사업자등록번호 463-87-02632<br>경기도 남양주시 다산순환로 20, 디에이동 7층 07-011호 (다산동, 현대프리미어캠퍼스)<div class="foot-policy-links"><a href="privacy.html">개인정보처리방침</a><a href="terms.html">홈페이지 이용약관 (검토본)</a></div></div><div class="foot-legal-copy">© <span id="year"></span> S2H CORPORATION. ALL RIGHTS RESERVED.</div></div>
@@ -483,5 +484,5 @@ function animateMetricCounts(){
 const perfSection=document.getElementById("performanceCards");
 if(!motionQuery.matches&&"IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateMetricCounts();observer.disconnect()}},{threshold:.12});observer.observe(perfSection)}
 </script>
-<script src="assets/s2h-motion.js?v=20261126" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
 </body></html>
