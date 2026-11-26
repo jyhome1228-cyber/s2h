@@ -309,22 +309,85 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(max-width:650px){.partner-modal{padding:10px}.partner-modal-dialog{padding:34px 22px 27px;max-height:95dvh}.partner-modal-dialog h2{font-size:24px}.partner-form-grid{grid-template-columns:1fr;gap:15px}.partner-form-field.wide{grid-column:auto}}
 </style>
 <link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
+<style>
+
+/* SELLER v4 — product-led partnership and clear application journey */
+.seller-v4 .seller-hero{width:min(var(--site-max),calc(100% - var(--site-gutter)*2));margin:24px auto 0;border-radius:16px;background:#edf6f8;padding:0;overflow:hidden}
+.seller-v4 .seller-hero-inner{width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:0}
+.seller-hero-copy{padding:clamp(34px,5vw,76px)}
+.seller-kicker{font-size:13px;font-weight:650;color:#007a9e;letter-spacing:.07em;margin-bottom:22px}
+.seller-v4 .seller-hero h1{font-size:clamp(31px,3.7vw,53px);line-height:1.25;letter-spacing:-.055em;font-weight:700;word-break:keep-all;margin:0 0 21px}
+.seller-v4 .seller-hero p{color:#425b66;font-size:17px;line-height:1.75;word-break:keep-all;margin-bottom:27px}
+.seller-actions{display:flex;flex-wrap:wrap;gap:10px}
+.seller-actions .btn,.seller-v4 .partner-primary-cta{font-size:14px;font-weight:600;min-height:48px;justify-content:center}
+.seller-secondary{background:#fff;border-color:#cbdbe0;color:#29444f;padding:12px 20px}
+.seller-hero-visual{padding:26px;background:#0089b3;align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:15px;min-width:0}
+.seller-visual-header{display:flex;justify-content:space-between;align-items:center;color:white;gap:10px;font-size:15px}
+.seller-visual-header a{font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.seller-hero-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.seller-hero-product{display:flex;flex-direction:column;min-width:0;border-radius:10px;overflow:hidden;background:#fff;color:#20343e;padding:0 0 11px}
+.seller-hero-product img{width:100%;height:auto;aspect-ratio:1.5;object-fit:contain;display:block;background:#f5f7f8}
+.seller-hero-product span{color:#007a9e;font-size:12px;margin:10px 12px 4px}
+.seller-hero-product strong{font-size:14px;line-height:1.45;margin:0 12px;word-break:keep-all;overflow-wrap:anywhere}
+.seller-hero-product.seller-image-missing:before{content:"이미지 준비 중";display:grid;place-items:center;aspect-ratio:1.5;background:#edf2f4;color:#607680;font-size:13px}
+.seller-hero-product img[hidden]{display:none!important}
+.seller-v4 .partner-section{padding:76px 0}
+.seller-section-heading{margin-bottom:30px}
+.seller-v4 .seller-section-heading .partner-head{font-size:clamp(27px,3vw,40px);margin:0 0 13px}
+.seller-section-heading p{font-size:16px;color:#52656e;line-height:1.65;margin:0}
+.seller-v4 .partner-features{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.seller-v4 .partner-feature{justify-content:flex-start;padding:28px;min-height:230px;border-color:#dfe7eb;background:white}
+.seller-feature-icon{width:52px;height:52px;background:#edf6f8;border-radius:10px;color:var(--blue);display:grid;place-items:center;margin-bottom:24px}
+.seller-feature-icon svg{width:36px;height:36px}
+.seller-v4 .partner-feature h3{font-size:22px;line-height:1.4;margin:0 0 12px;word-break:keep-all}
+.seller-v4 .partner-feature p{font-size:16px;line-height:1.7;color:#52656e}
+.seller-v4 .seller-process{background:#f5f7f8}
+.seller-v4 .partner-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.seller-v4 .partner-step{border:1px solid #dfe7eb;border-radius:12px;background:white;padding:22px 18px;min-height:185px}
+.seller-v4 .partner-step strong{display:flex;width:38px;height:38px;align-items:center;justify-content:center;background:#edf6f8;border-radius:50%;color:#007a9e;font-size:14px;margin-bottom:20px}
+.seller-v4 .partner-step h3{font-size:19px;line-height:1.35;word-break:keep-all}
+.seller-v4 .partner-step p{font-size:15px;color:#52656e;word-break:keep-all;margin:10px 0 0}
+.seller-v4 .partnership-last{background:var(--blue);color:#fff;padding:46px 0}
+.seller-v4 .partnership-last .partner-apply{border:0;padding:0}
+.seller-v4 .partnership-last .partner-apply h2{font-size:clamp(25px,3vw,37px);margin:0 0 10px;word-break:keep-all}
+.seller-v4 .partnership-last .partner-apply p{color:white;opacity:.95;margin:0}
+.seller-v4 .partnership-last .partner-primary-cta{background:white;border-color:white;color:#006d90;flex-shrink:0}
+.seller-v4 .partner-modal-dialog{padding:0;width:min(680px,100%);scrollbar-gutter:auto}
+.seller-dialog-top{position:sticky;top:0;z-index:5;background:white;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 24px;border-bottom:1px solid #e1e8eb}
+.seller-v4 .seller-dialog-top h2{font-size:23px;margin:0;line-height:1.3}
+.seller-v4 .seller-dialog-top .partner-modal-close{position:static;flex:0 0 44px;font-size:25px}
+.seller-dialog-body{padding:24px 30px 28px}
+.seller-v4 .partner-modal-lead{font-size:15px;color:#52656e;margin:0 0 22px}
+.seller-v4 .partner-form-field label{font-size:14px}
+.seller-v4 .partner-form-field input,.seller-v4 .partner-form-field select,.seller-v4 .partner-form-field textarea{font-size:16px}
+.seller-v4 .partner-form-submit{justify-content:center;font-size:15px;min-height:48px}
+.seller-v4 .partner-form-submit:disabled,.seller-v4 .partner-modal-close:disabled{opacity:.6;cursor:wait}
+.seller-request-status{background:#edf6f8;color:#274651;padding:12px 14px;border-radius:8px;font-size:14px;line-height:1.6;margin:12px 0}
+.seller-mail-fallback{font-size:14px;color:#006d90}
+.seller-mail-fallback[hidden],.seller-request-status[hidden]{display:none!important}
+@media(hover:hover) and (pointer:fine){.seller-hero-product{transition:transform .25s var(--s2h-ease)}.seller-hero-product:hover{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:no-preference){.seller-hero-copy,.seller-hero-visual{animation:sellerEnter .55s var(--s2h-ease) both}.seller-hero-visual{animation-delay:.1s}@keyframes sellerEnter{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}}
+@media(max-width:1050px){.seller-v4 .seller-hero h1{font-size:clamp(30px,4vw,42px)}.seller-hero-copy{padding:35px}.seller-hero-visual{padding:20px}.seller-v4 .partner-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.seller-v4 .seller-hero{margin-top:12px;border-radius:12px}.seller-v4 .seller-hero-inner{grid-template-columns:1fr}.seller-hero-copy{padding:30px 22px}.seller-v4 .seller-hero h1{font-size:clamp(30px,7.8vw,42px)}.seller-v4 .seller-hero p{font-size:15px}.seller-kicker{margin-bottom:17px}.seller-actions{gap:8px}.seller-actions .btn{padding:11px 13px;font-size:13px}.seller-hero-visual{padding:18px;gap:12px}.seller-hero-product strong{font-size:13px}.seller-hero-product img{aspect-ratio:1.4}.seller-v4 .partner-section{padding:52px 0}.seller-section-heading{margin-bottom:23px}.seller-section-heading p{font-size:15px}.seller-v4 .partner-features{grid-template-columns:1fr;gap:10px}.seller-v4 .partner-feature{min-height:0;padding:22px}.seller-feature-icon{margin-bottom:17px}.seller-v4 .partner-feature h3{font-size:20px}.seller-v4 .partner-feature p{font-size:15px}.seller-v4 .partner-steps{grid-template-columns:1fr;gap:9px}.seller-v4 .partner-step{min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:14px;align-items:center;padding:17px}.seller-v4 .partner-step strong{grid-row:1/3;margin:0;align-self:start}.seller-v4 .partner-step h3{font-size:18px}.seller-v4 .partner-step p{margin:7px 0 0;font-size:14px}.seller-v4 .partnership-last{padding:36px 0}.seller-v4 .partnership-last .partner-apply{gap:19px}.seller-v4 .partnership-last .partner-primary-cta{width:100%}.seller-dialog-top{padding:10px 15px}.seller-v4 .seller-dialog-top h2{font-size:21px}.seller-dialog-body{padding:20px 18px 24px}}
+@media(max-width:360px){.seller-hero-copy{padding:27px 18px}.seller-hero-visual{padding:12px}.seller-hero-product span,.seller-hero-product strong{margin-inline:8px}}
+@media(prefers-reduced-motion:reduce){.seller-hero-product{transition:none}}
+
+</style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
-<main>
-<section class="partner-hero partnership-first"><div class="wrap"><h1>공구할 상품을 찾고 있다면,<br>이제 S2H에서 시작하세요.</h1><p>상품 소싱에 들이는 시간은 줄이고, 내 채널에 맞는 공동구매 기회를 넓혀보세요.</p><button class="btn partner-primary-cta partner-apply-trigger" type="button">셀러 파트너 신청<span aria-hidden="true">›</span></button></div></section>
-<section class="partner-section partnership-benefits"><div class="wrap"><h2 class="partner-head">상품 찾기부터 공동구매 운영까지.</h2><div class="partner-features"><article class="partner-feature"><h3>상품 소싱 부담을 덜어보세요</h3><p>식품·뷰티·리빙 등 다양한 상품군을 바탕으로 채널에 맞는 판매 기회를 함께 검토합니다.</p></article><article class="partner-feature"><h3>판매에 더 집중할 수 있도록</h3><p>판매 피드 진행 전·중·후 모니터링과 공동구매 운영 과정을 지원합니다.</p></article><article class="partner-feature"><h3>물류와 정산도 체계적으로</h3><p>자체 물류 및 정산 시스템을 바탕으로 파트너와 안정적인 협업을 추구합니다.</p></article></div></div></section>
-<section class="partner-section partner-section--soft"><div class="wrap"><h2 class="partner-head">복잡하지 않게, 함께 시작합니다.</h2><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>협업 문의</h3><p>활동 채널과 관심 상품군을 알려주세요.</p></article><article class="partner-step"><strong>02</strong><h3>채널·상품 검토</h3><p>판매 채널과 상품의 적합성을 살펴봅니다.</p></article><article class="partner-step"><strong>03</strong><h3>공구 상품 제안</h3><p>조건을 협의할 수 있는 제품을 제안합니다.</p></article><article class="partner-step"><strong>04</strong><h3>공동구매 진행</h3><p>일정과 콘텐츠를 협의하고 판매를 진행합니다.</p></article><article class="partner-step"><strong>05</strong><h3>정산 및 다음 협업</h3><p>진행 결과를 확인하고 후속 협업을 논의합니다.</p></article></div></div></section>
-<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>다음 공동구매, 어떤 상품으로 시작할까요?</h2><p>활동 채널 링크와 관심 상품군을 알려주시면 협업 가능성을 검토하겠습니다.</p></div><button class="btn partner-primary-cta partner-apply-trigger" type="button">셀러 파트너 신청<span aria-hidden="true">›</span></button></div></div></section><div id="partnerModal" class="partner-modal" hidden><div class="partner-modal-backdrop" data-close-partner></div><section class="partner-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="partnerModalTitle" tabindex="-1">
-<button type="button" class="partner-modal-close" id="partnerModalClose" aria-label="신청 창 닫기">×</button>
-<h2 id="partnerModalTitle">셀러 파트너 신청</h2><p class="partner-modal-lead">활동 채널과 관심 상품을 알려주세요. S2H 담당자에게 제휴 문의를 작성할 수 있습니다.</p>
-<form id="partnerRequestForm"><div class="partner-form-grid"><div class="partner-form-field "><label for="partner-sellerName">셀러명 <b>*</b></label><input type="text" id="partner-sellerName" name="sellerName" placeholder="활동 중인 셀러명" maxlength="200" required></div><div class="partner-form-field "><label for="partner-instagram">인스타그램 아이디 <b>*</b></label><input type="text" id="partner-instagram" name="instagram" placeholder="@계정명" maxlength="200" required></div><div class="partner-form-field "><label for="partner-phone">연락처 <b>*</b></label><input type="tel" id="partner-phone" name="phone" placeholder="연락 가능한 번호" maxlength="200" required></div><div class="partner-form-field "><label for="partner-email">이메일 <b>*</b></label><input type="email" id="partner-email" name="email" placeholder="답변받을 이메일" maxlength="200" required></div><div class="partner-form-field wide"><label for="partner-categories">관심 상품군</label><select id="partner-categories" name="categories"><option value="">선택하지 않음</option><option value="식품">식품</option><option value="건강식품">건강식품</option><option value="뷰티">뷰티</option><option value="패션·리빙">패션·리빙</option><option value="기타">기타</option></select></div><div class="partner-form-field wide"><label for="partner-message">요청사항 <b>*</b></label><textarea id="partner-message" name="message" placeholder="희망 상품·진행 일정 등" maxlength="2000" rows="4" required></textarea></div></div>
-<label class="partner-form-consent"><input type="checkbox" required><span>제휴 문의를 위한 개인정보 이용 안내를 확인했습니다. <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a></span></label>
-<button class="partner-form-submit" type="submit">셀러 파트너 신청 이메일 작성 <span aria-hidden="true">›</span></button>
-<p class="partner-form-note">메일 프로그램이 열리면 실제 발송을 완료해야 제안이 전달됩니다. 홈페이지 서버에 별도로 저장되지는 않습니다.</p>
-</form></section></div></main>
+<main class="seller-v4">
+<section class="partner-hero partnership-first seller-hero"><div class="wrap seller-hero-inner"><div class="seller-hero-copy"><div class="seller-kicker">SELLER PARTNERSHIP</div><h1>공구할 상품을 찾고 있다면,<br>이제 S2H에서 시작하세요.</h1><p>상품 소싱에 들이는 시간은 줄이고, 내 채널에 맞는 공동구매 기회를 넓혀보세요.</p><div class="seller-actions"><button class="btn partner-primary-cta partner-apply-trigger" type="button">셀러 파트너 신청</button><a class="btn seller-secondary" href="product.html">취급 상품 보기</a></div></div><div class="seller-hero-visual"><div class="seller-visual-header"><strong>S2H 제품 포트폴리오</strong><a href="product.html">전체 보기</a></div><div class="seller-hero-grid"><a class="seller-hero-product" href="product.html?product=63"><img src="https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp" alt="" width="480" height="480" decoding="async"><span>식품</span><strong>아빠가만든 꿀고구마</strong></a><a class="seller-hero-product" href="product.html?product=7"><img src="https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp" alt="" width="480" height="480" decoding="async"><span>뷰티</span><strong>가쉬 에어버블 마스크팩</strong></a><a class="seller-hero-product" href="product.html?product=75"><img src="https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp" alt="" width="480" height="480" decoding="async"><span>패션·리빙</span><strong>윈드스토리 휴대용 선풍기</strong></a><a class="seller-hero-product" href="product.html?product=53"><img src="https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp" alt="" width="480" height="480" decoding="async"><span>건강식품</span><strong>사노셀 애사비 구미</strong></a></div></div></div></section>
+<section class="partner-section partnership-benefits"><div class="wrap"><div class="seller-section-heading"><h2 class="partner-head">상품 찾기부터 공동구매 운영까지.</h2><p>셀러가 판매에 집중할 수 있도록 협업의 전 과정을 지원합니다.</p></div><div class="partner-features"><article class="partner-feature"><div class="seller-feature-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="10" width="30" height="28" rx="4"/><path d="M9 18h30M19 10v8M20 28h8M24 24v8" stroke-linecap="round"/></svg></div><h3>상품 소싱 부담을 덜어보세요</h3><p>식품·뷰티·리빙 등 다양한 상품군을 바탕으로 채널에 맞는 판매 기회를 함께 검토합니다.</p></article><article class="partner-feature"><div class="seller-feature-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="10" width="32" height="28" rx="4"/><path d="M14 30l7-7 5 4 8-9M29 18h5v5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>판매에 더 집중할 수 있도록</h3><p>판매 피드 진행 전·중·후 모니터링과 공동구매 운영 과정을 지원합니다.</p></article><article class="partner-feature"><div class="seller-feature-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="11" y="7" width="26" height="34" rx="4"/><path d="M17 16h14M17 23h10m-10 9 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>물류와 정산도 체계적으로</h3><p>자체 물류 및 정산 시스템을 바탕으로 파트너와 안정적인 협업을 추구합니다.</p></article></div></div></section>
+<section class="partner-section partner-section--soft seller-process"><div class="wrap"><div class="seller-section-heading"><h2 class="partner-head">복잡하지 않게, 함께 시작합니다.</h2><p>협업 문의부터 공동구매 진행, 정산까지의 기본 절차입니다.</p></div><div class="partner-steps"><article class="partner-step"><strong>01</strong><h3>협업 문의</h3><p>활동 채널과 관심 상품군을 알려주세요.</p></article><article class="partner-step"><strong>02</strong><h3>채널·상품 검토</h3><p>판매 채널과 상품의 적합성을 살펴봅니다.</p></article><article class="partner-step"><strong>03</strong><h3>공구 상품 제안</h3><p>조건을 협의할 수 있는 제품을 제안합니다.</p></article><article class="partner-step"><strong>04</strong><h3>공동구매 진행</h3><p>일정과 콘텐츠를 협의하고 판매를 진행합니다.</p></article><article class="partner-step"><strong>05</strong><h3>정산 및 다음 협업</h3><p>진행 결과를 확인하고 후속 협업을 논의합니다.</p></article></div></div></section>
+<section class="partner-section partnership-last"><div class="wrap"><div class="partner-apply"><div><h2>다음 공동구매, 어떤 상품으로 시작할까요?</h2><p>활동 채널 링크와 관심 상품군을 알려주시면 협업 가능성을 검토하겠습니다.</p></div><button class="btn partner-primary-cta partner-apply-trigger" type="button">셀러 파트너 신청</button></div></div></section><div id="partnerModal" class="partner-modal" hidden><div class="partner-modal-backdrop" data-close-partner></div><section class="partner-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="partnerModalTitle" tabindex="-1">
+<div class="seller-dialog-top"><h2 id="partnerModalTitle">셀러 파트너 신청</h2><button type="button" class="partner-modal-close" id="partnerModalClose" aria-label="신청 창 닫기">×</button></div><div class="seller-dialog-body"><p class="partner-modal-lead">활동 채널과 관심 상품을 알려주세요. S2H 담당자에게 제휴 문의를 작성할 수 있습니다.</p>
+<form id="partnerRequestForm"><div class="partner-form-grid"><div class="partner-form-field "><label for="partner-sellerName">셀러명 <b>*</b></label><input type="text" id="partner-sellerName" name="sellerName" autocomplete="organization" placeholder="활동 중인 셀러명" maxlength="200" required></div><div class="partner-form-field "><label for="partner-instagram">인스타그램 아이디 <b>*</b></label><input type="text" id="partner-instagram" name="instagram" autocapitalize="none" spellcheck="false" placeholder="@계정명" maxlength="200" required></div><div class="partner-form-field "><label for="partner-phone">연락처 <b>*</b></label><input type="tel" id="partner-phone" name="phone" autocomplete="tel" placeholder="연락 가능한 번호" maxlength="200" required></div><div class="partner-form-field "><label for="partner-email">이메일 <b>*</b></label><input type="email" id="partner-email" name="email" autocomplete="email" placeholder="답변받을 이메일" maxlength="200" required></div><div class="partner-form-field wide"><label for="partner-categories">관심 상품군</label><select id="partner-categories" name="categories"><option value="">선택하지 않음</option><option value="식품">식품</option><option value="건강식품">건강식품</option><option value="뷰티">뷰티</option><option value="패션·리빙">패션·리빙</option><option value="기타">기타</option></select></div><div class="partner-form-field wide"><label for="partner-message">요청사항 <b>*</b></label><textarea id="partner-message" name="message" placeholder="희망 상품·진행 일정 등" maxlength="2000" rows="4" required></textarea></div></div>
+<label class="partner-form-consent"><input type="checkbox" name="consent" value="confirmed" required><span>제휴 문의를 위한 개인정보 이용 안내를 확인했습니다. <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a></span></label>
+<button class="partner-form-submit" type="submit">셀러 파트너 신청 이메일 작성</button>
+<p class="partner-form-note" id="sellerRequestNote">메일 프로그램이 열리면 실제 발송을 완료해야 제안이 전달됩니다. 홈페이지 서버에 별도로 저장되지는 않습니다.</p><p id="sellerRequestStatus" class="seller-request-status" role="status" aria-live="polite" hidden></p><a id="sellerMailFallback" class="btn seller-mail-fallback" hidden>이메일로 문의하기</a>
+</form></div></section></div></main>
 <footer class="site-footer" id="footer">
 <div class="foot-wrap">
   <div class="foot-primary">
@@ -350,24 +413,32 @@ document.getElementById("year").textContent=new Date().getFullYear();
 window.addEventListener("scroll",()=>document.querySelector(".top").classList.toggle("scrolled",window.scrollY>12),{passive:true});
 
 
-const partnerModal=document.getElementById("partnerModal"),partnerForm=document.getElementById("partnerRequestForm"),partnerDialog=partnerModal.querySelector(".partner-modal-dialog");
-let partnerLastFocus=null;
-function openPartnerModal(){partnerLastFocus=document.activeElement;partnerForm.reset();partnerModal.hidden=false;document.body.style.overflow="hidden";document.getElementById("partnerModalClose").focus()}
-function closePartnerModal(){partnerModal.hidden=true;document.body.style.overflow="";if(partnerLastFocus&&partnerLastFocus.isConnected)partnerLastFocus.focus()}
+const partnerModal=document.getElementById("partnerModal"),partnerForm=document.getElementById("partnerRequestForm"),partnerDialog=partnerModal.querySelector(".partner-modal-dialog"),partnerClose=document.getElementById("partnerModalClose"),partnerSubmit=partnerForm.querySelector("button[type=submit]"),sellerNote=document.getElementById("sellerRequestNote"),sellerStatus=document.getElementById("sellerRequestStatus"),sellerMail=document.getElementById("sellerMailFallback");
+const sellerBackground=[document.querySelector(".top"),...document.querySelectorAll(".seller-v4 > section"),document.querySelector(".site-footer")].filter(Boolean);
+let partnerLastFocus=null,previousOverflow="",partnerSubmitting=false;
+function showSellerStatus(message){sellerStatus.textContent=message;sellerStatus.hidden=!message}
+function setSellerBusy(busy){partnerSubmitting=busy;partnerClose.disabled=busy;partnerSubmit.disabled=busy;partnerForm.setAttribute("aria-busy",String(busy));partnerSubmit.textContent=busy?"신청 내용을 처리하고 있습니다…":window.S2HInquiryAPI?.isConfigured()?"셀러 파트너 신청":"셀러 파트너 신청 이메일 작성"}
+function openPartnerModal(){if(!partnerModal.hidden)return;partnerLastFocus=document.activeElement;showSellerStatus("");sellerMail.hidden=true;setSellerBusy(false);sellerNote.textContent=window.S2HInquiryAPI?.isConfigured()?"입력하신 내용이 S2H 담당자에게 접수됩니다.":"이메일 앱에서 발송을 완료해야 요청이 전달됩니다. 홈페이지에는 자동 저장되지 않습니다.";previousOverflow=document.body.style.overflow;partnerModal.hidden=false;document.body.style.overflow="hidden";sellerBackground.forEach(el=>el.inert=true);partnerDialog.scrollTop=0;partnerClose.focus({preventScroll:true})}
+function closePartnerModal(){if(partnerSubmitting||partnerModal.hidden)return;partnerModal.hidden=true;sellerBackground.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;if(partnerLastFocus?.isConnected)partnerLastFocus.focus({preventScroll:true})}
 document.querySelectorAll(".partner-apply-trigger").forEach(button=>button.addEventListener("click",openPartnerModal));
-document.getElementById("partnerModalClose").addEventListener("click",closePartnerModal);
+partnerClose.addEventListener("click",closePartnerModal);
 partnerModal.querySelector("[data-close-partner]").addEventListener("click",closePartnerModal);
 document.addEventListener("keydown",event=>{
  if(partnerModal.hidden)return;
  if(event.key==="Escape"){event.preventDefault();closePartnerModal();return}
- if(event.key==="Tab"){const focusable=[...partnerDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!focusable.length)return;if(event.shiftKey&&document.activeElement===focusable[0]){event.preventDefault();focusable[focusable.length-1].focus()}else if(!event.shiftKey&&document.activeElement===focusable[focusable.length-1]){event.preventDefault();focusable[0].focus()}}
+ if(event.key==="Tab"){const focusable=[...partnerDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),a[href]:not([hidden])')].filter(el=>el.getClientRects().length);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&(document.activeElement===first||!partnerDialog.contains(document.activeElement))){event.preventDefault();last.focus()}else if(!event.shiftKey&&(document.activeElement===last||!partnerDialog.contains(document.activeElement))){event.preventDefault();first.focus()}}
 });
+document.querySelectorAll(".seller-hero-product img").forEach(img=>img.addEventListener("error",()=>{img.hidden=true;img.parentElement.classList.add("seller-image-missing")},{once:true}));
 partnerForm.addEventListener("submit",async event=>{
- event.preventDefault();if(!partnerForm.reportValidity())return;
- const data=new FormData(partnerForm);
- const rows=[["sellerName","셀러명"],["instagram","인스타그램 아이디"],["phone","연락처"],["email","이메일"],["categories","관심 상품군"],["message","요청사항"]].map(pair=>pair[1]+": "+(data.get(pair[0])||"미입력"));
- const subject="[S2H 셀러 협업 신청]"+" "+(data.get("sellerName")||"");
- const api=window.S2HInquiryAPI;if(api?.isConfigured()){try{const receipt=await api.submit("seller",Object.fromEntries(data.entries()));if(receipt.success){alert("신청이 정상 접수되었습니다. 접수번호: "+receipt.id);closePartnerModal();return}}catch(error){alert("서버에 신청이 접수되지 않았습니다. 이메일 작성 화면을 열겠습니다.")}}window.location.href="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(rows.join("\n"));
+ event.preventDefault();if(partnerSubmitting||!partnerForm.reportValidity())return;
+ const data=new FormData(partnerForm),rows=[["sellerName","셀러명"],["instagram","인스타그램 아이디"],["phone","연락처"],["email","이메일"],["categories","관심 상품군"],["message","요청사항"]].map(pair=>pair[1]+": "+(data.get(pair[0])||"미입력"));
+ const subject="[S2H 셀러 협업 신청] "+(data.get("sellerName")||""),url="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(rows.join("\n")),api=window.S2HInquiryAPI;
+ showSellerStatus("");sellerMail.hidden=true;
+ if(!api?.isConfigured()){showSellerStatus("이메일 앱에서 발송을 완료해 주세요. 아직 신청이 접수된 것은 아닙니다.");sellerMail.href=url;sellerMail.hidden=false;location.href=url;return}
+ setSellerBusy(true);
+ try{const receipt=await api.submit("seller",Object.fromEntries(data.entries()));if(!receipt?.success)throw new Error("Missing acknowledgement");partnerForm.reset();showSellerStatus("신청이 접수되었습니다. 접수번호: "+receipt.id)}
+ catch(error){showSellerStatus("접수 여부를 확인하지 못했습니다. 재시도 전 담당자에게 확인하거나 이메일로 문의해 주세요.");sellerMail.href=url;sellerMail.hidden=false}
+ finally{setSellerBusy(false)}
 });
 </script>
 <script src="assets/s2h-motion.js?v=20261126" defer></script>
