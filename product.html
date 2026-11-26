@@ -285,41 +285,112 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 @media(max-width:750px){.product-modal{padding:10px}.product-dialog{max-height:94dvh}.product-dialog-layout{grid-template-columns:1fr}.product-dialog-preview{padding:22px}.product-dialog-photo{max-width:210px;margin:0 auto}.product-dialog-category{margin-top:14px}.product-dialog-preview h2{font-size:19px}.product-dialog-preview>p:last-child{margin-top:13px}.product-dialog-formarea{padding:26px 22px 28px}.product-dialog-formarea h3{font-size:22px}}
 </style>
 <link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126">
+<style>
+
+/* PRODUCT v3 — catalog discovery and compact request dialog */
+.product-v3 .catalog-hero{margin:24px auto 0;width:min(var(--site-max),calc(100% - var(--site-gutter)*2));border-radius:16px;background:#edf6f8}
+.catalog-hero-inner{width:100%;padding:clamp(32px,5vw,75px);display:flex;align-items:end;justify-content:space-between;gap:32px;min-height:300px}
+.catalog-hero h1{font-size:clamp(36px,4.3vw,60px);line-height:1.17;letter-spacing:-.055em;margin:18px 0;font-weight:700;word-break:keep-all}
+.catalog-hero p{font-size:17px;line-height:1.75;color:#425b66;margin:0;word-break:keep-all}
+.catalog-hero-count{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;flex:0 0 auto;color:#007a9e}
+.catalog-hero-count strong{font-size:clamp(56px,7vw,96px);line-height:1;font-weight:700;letter-spacing:-.06em}
+.catalog-hero-count span{font-size:16px;font-weight:600;margin-top:10px}
+.product-v3 .catalog-section{padding:66px 0 85px}
+.product-v3 .product-heading-line{margin-bottom:24px}
+.product-v3 .product-page-title{font-size:clamp(28px,3vw,38px);margin:0 0 10px}
+.product-v3 .product-heading-line .desc{margin:0;font-size:16px}
+.product-v3 .product-toolbar{padding:0 0 20px;border-top:0;gap:20px}
+.product-v3 .product-filters{gap:8px;flex:1;min-width:0}
+.product-v3 .product-filters button{border-radius:8px;background:#f5f7f8;padding:11px 15px;font-weight:600;color:#43565f;display:flex;align-items:center;gap:7px}
+.product-v3 .product-filters button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.filter-count{font-size:12px;font-weight:500;opacity:.85}
+.product-v3 .product-search-wrap{border:1px solid #d6e0e4;border-radius:8px;padding:0 12px;gap:8px;min-width:230px;max-width:330px;color:#52666f;background:white}
+.product-v3 .product-search-wrap input{min-width:0;flex:1;padding:12px 0}
+.product-search-wrap input::-webkit-search-cancel-button{display:none}
+#clearProductSearch{border:0;background:transparent;color:#52666f;font-size:24px;width:32px;height:40px;padding:0}
+#clearProductSearch[hidden],.product-no-results[hidden],.product-email-fallback[hidden],.product-request-status[hidden],#modalImageFallback[hidden],#modalProductImage[hidden]{display:none!important}
+.catalog-results-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0}
+.catalog-results-bar .product-results{font-size:14px;color:#53666e;margin:0}
+.catalog-sort{display:flex;align-items:center;gap:8px;color:#53666e;font-size:14px}
+.catalog-sort select{border:1px solid #d6e0e4;border-radius:7px;background:white;color:#20343e;padding:8px 10px;min-height:40px;font-size:14px}
+.product-v3 .product-grid{gap:20px 16px}
+.product-v3 .catalog-card{min-width:0;outline:none}
+.catalog-card-button{display:flex;flex-direction:column;align-items:stretch;text-align:left;border:1px solid #e1e8eb;border-radius:12px;background:white;padding:0;width:100%;height:100%;overflow:hidden;color:inherit;transition:border-color .24s}
+.product-v3 .catalog-photo{border-radius:0;background:#f5f7f8;aspect-ratio:1/1}
+.product-v3 .catalog-photo img{object-fit:contain}
+.product-v3 .catalog-photo:before,.product-v3 .catalog-photo:after{display:none}
+.product-v3 .catalog-placeholder{font-size:14px;color:#607680;font-weight:500;letter-spacing:0}
+.product-v3 .catalog-info{display:flex;flex-direction:column;flex:1;padding:17px 16px;gap:9px}
+.product-v3 .catalog-tag{font-size:13px;color:#007a9e}
+.catalog-name{font-size:17px;line-height:1.45;letter-spacing:-.025em;font-weight:650;word-break:keep-all;overflow-wrap:anywhere}
+.catalog-action{font-size:13px;color:#52666f;margin-top:auto;padding-top:8px}
+.product-v3 .product-no-results{border:1px solid #e0e8eb;border-radius:12px;padding:52px 15px;color:#43565f}
+.product-no-results strong{font-size:20px;color:#20343e}.product-no-results p{margin:10px 0 20px}
+.product-v3 .product-cta{background:#edf6f8;border:0;border-radius:12px;padding:30px;margin-top:54px}
+.product-v3 .product-cta h3{margin:0}
+.product-v3 .product-cta .btn{background:var(--blue);color:white;border-color:var(--blue);font-size:14px}
+.product-dialog{max-height:min(90dvh,850px);width:min(920px,100%);scrollbar-gutter:auto}
+.product-dialog-top{display:flex;position:sticky;top:0;z-index:5;justify-content:space-between;align-items:center;background:white;border-bottom:1px solid #e1e8eb;padding:10px 20px}
+.product-dialog-top strong{font-size:16px;color:#20343e}
+.product-dialog-top .product-modal-close{position:static;flex:0 0 44px;font-size:25px}
+.product-dialog-layout{grid-template-columns:minmax(0,44%) minmax(0,56%)}
+.product-dialog-preview{padding:28px}
+.product-dialog-photo{border-radius:10px;background:#eef2f4;display:grid;place-items:center}
+.product-dialog-photo img{object-fit:contain}
+#modalImageFallback{font-size:14px;color:#607680}
+.product-dialog-preview h2{font-size:25px;word-break:keep-all;overflow-wrap:anywhere}
+.product-dialog-id{font-size:13px;color:#607680}
+#modalProductGuide{font-size:14px;color:#52666f;line-height:1.6}
+.product-dialog-formarea{padding:28px 32px}
+.product-dialog-formarea h3{font-size:24px}
+.product-request-field input,.product-request-field textarea{font-size:16px}
+.product-request-submit{justify-content:center;min-height:48px;font-size:15px}
+.product-request-submit:disabled,.product-modal-close:disabled{opacity:.6;cursor:wait}
+.product-request-status{padding:12px;background:#eef6f8;border-radius:8px;font-size:14px;line-height:1.6;color:#274651;margin:12px 0}
+.product-email-fallback{font-size:14px;color:#006e91}
+@media(hover:hover) and (pointer:fine){.catalog-card-button:hover{border-color:var(--blue)}.catalog-card-button:hover .catalog-name,.catalog-card-button:hover .catalog-action{color:#007a9e}}
+@media(prefers-reduced-motion:no-preference){.catalog-hero-inner{animation:catalogEnter .5s var(--s2h-ease) both}@keyframes catalogEnter{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}}
+@media(max-width:1050px){.product-v3 .product-toolbar{align-items:stretch;flex-direction:column;gap:14px}.product-v3 .product-search-wrap{max-width:none;flex:none}.product-v3 .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.product-v3 .catalog-hero{margin-top:12px;border-radius:12px}.catalog-hero-inner{min-height:0;padding:28px 23px;gap:16px;align-items:flex-start;flex-direction:column}.catalog-hero h1{font-size:clamp(33px,7.8vw,44px)}.catalog-hero p{font-size:15px}.catalog-hero-count{flex-direction:row;align-items:baseline;gap:8px}.catalog-hero-count strong{font-size:38px}.catalog-hero-count span{font-size:14px}.product-v3 .catalog-section{padding:46px 0 60px}.product-v3 .product-filters{flex:none;padding-bottom:5px}.product-v3 .product-filters button{padding:10px 13px}.product-v3 .product-search-wrap{min-width:0}.product-v3 .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product-v3 .catalog-info{padding:12px 11px;gap:6px}.catalog-name{font-size:15px}.catalog-action,.product-v3 .catalog-tag{font-size:12px}.catalog-results-bar{padding:15px 0}.catalog-sort>span{display:none}.product-v3 .product-cta{padding:23px;margin-top:36px}.product-dialog-top{padding:8px 14px}.product-dialog-layout{grid-template-columns:1fr}.product-dialog-preview{display:grid;grid-template-columns:minmax(0,105px) minmax(0,1fr);align-items:center;gap:14px;padding:18px}.product-dialog-photo{width:100%;max-width:none;margin:0}.product-dialog-category{margin-top:0}.product-dialog-preview h2{font-size:19px;margin:6px 0}.product-dialog-id{font-size:12px}#modalProductGuide{font-size:13px;margin:8px 0 0}.product-dialog-formarea{padding:24px 18px}.product-dialog-formarea h3{font-size:22px}}
+@media(max-width:360px){.product-v3 .product-grid{gap:8px}.product-v3 .catalog-info{padding:11px 9px}.catalog-name{font-size:14px}.product-dialog-preview{grid-template-columns:82px minmax(0,1fr);gap:10px}}
+@media(prefers-reduced-motion:reduce){.catalog-card-button,.catalog-photo img{transition:none}}
+
+</style>
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
 <header class="top"><div class="top-inner"><a href="index.html" class="logo" aria-label="S2H 홈페이지"><img src="assets/logo.svg" alt="S2H Corporation" width="142" height="50"></a><nav class="desktop-nav" aria-label="주요 메뉴"><a href="company.html">COMPANY</a><a href="product.html">PRODUCT</a><a href="seller.html">SELLER</a><a href="brand.html">BRAND</a><a href="contact.html">CONTACT</a></nav></div></header>
 <main>
-<div class="route active" data-route="product"><section class="subhero"><div class="wrap"><div class="eyebrow">S2H CORPORATION</div><h1>PRODUCT</h1><p>Curated products for everyday life</p></div></section><section class="content-section"><div class="wrap">
-<div class="eyebrow">OUR PRODUCTS</div><div class="product-heading-line"><div><h2 class="product-page-title">브랜드와 상품을 연결합니다.</h2><p class="desc">식품부터 뷰티, 건강식품, 라이프스타일까지 S2H의 다양한 취급 상품을 소개합니다.</p></div><div class="product-total"><b>62</b><span>PRODUCTS</span></div></div>
-<div class="product-toolbar"><div class="product-filters" role="group" aria-label="상품 카테고리"><button type="button" class="active" data-filter="전체" aria-pressed="true">전체</button><button type="button" data-filter="식품" aria-pressed="false">식품</button><button type="button" data-filter="건강식품" aria-pressed="false">건강식품</button><button type="button" data-filter="뷰티" aria-pressed="false">뷰티</button><button type="button" data-filter="패션·리빙" aria-pressed="false">패션·리빙</button><button type="button" data-filter="기타" aria-pressed="false">기타</button></div><label class="product-search-wrap"><span class="sr-only">제품 검색</span><input id="productSearch" type="search" placeholder="제품명 검색" autocomplete="off" aria-label="제품명 검색"><span aria-hidden="true">⌕</span></label></div>
-<p id="productResults" class="product-results" role="status" aria-live="polite">전체 62개 상품</p>
-<div id="productGrid" class="product-grid"></div><div id="productNoResults" class="product-no-results" hidden>검색 결과가 없습니다. 다른 제품명이나 카테고리로 다시 찾아보세요.</div>
-<div class="product-cta"><h3>브랜드 및 제품 협업이 필요하신가요?</h3><a href="contact.html" class="btn">CONTACT US <span>›</span></a></div>
+<div class="route active product-v3" data-route="product"><section class="catalog-hero"><div class="wrap catalog-hero-inner"><div><div class="eyebrow">PRODUCT</div><h1>다양한 상품,<br>새로운 커머스의 기회.</h1><p>식품부터 뷰티, 건강식품, 라이프스타일까지 S2H의 다양한 취급 상품을 소개합니다.</p></div><div class="catalog-hero-count"><strong id="productTotal">62</strong><span>취급 상품</span></div></div></section><section class="content-section catalog-section"><div class="wrap">
+<div class="product-heading-line"><div><h2 class="product-page-title">전체 제품</h2><p class="desc">관심 있는 제품을 선택해 공동구매를 제안해 보세요.</p></div></div>
+<div class="product-toolbar"><div class="product-filters" role="group" aria-label="상품 카테고리"><button type="button" class="active" data-filter="전체" aria-pressed="true">전체</button><button type="button" data-filter="식품" aria-pressed="false">식품</button><button type="button" data-filter="건강식품" aria-pressed="false">건강식품</button><button type="button" data-filter="뷰티" aria-pressed="false">뷰티</button><button type="button" data-filter="패션·리빙" aria-pressed="false">패션·리빙</button><button type="button" data-filter="기타" aria-pressed="false">기타</button></div><div class="product-search-wrap"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4" stroke-linecap="round"/></svg><input id="productSearch" type="search" placeholder="제품명 검색" autocomplete="off" aria-label="제품명 검색"><button type="button" id="clearProductSearch" aria-label="검색어 지우기" hidden>×</button></div></div>
+<div class="catalog-results-bar"><p id="productResults" class="product-results" role="status" aria-live="polite">전체 62개 상품</p><label class="catalog-sort"><span>정렬</span><select id="productSort" aria-label="상품 정렬"><option value="default">기본순</option><option value="name">상품명순</option></select></label></div>
+<div id="productGrid" class="product-grid"></div><div id="productNoResults" class="product-no-results" hidden><strong>검색 결과가 없습니다.</strong><p>다른 제품명이나 카테고리로 다시 찾아보세요.</p><button type="button" id="resetProductFilters" class="btn">전체 제품 보기</button></div>
+<div class="product-cta"><h3>브랜드 및 제품 협업이 필요하신가요?</h3><a href="contact.html" class="btn">제휴 문의하기</a></div>
 </div></section></div>
 
 <div class="product-modal" id="productModal" hidden>
   <div class="product-modal-backdrop" data-close-product></div>
   <section class="product-dialog" role="dialog" aria-modal="true" aria-labelledby="modalProductName" aria-describedby="modalProductGuide" tabindex="-1">
-    <button type="button" class="product-modal-close" id="productModalClose" aria-label="닫기">×</button>
+    <div class="product-dialog-top"><strong>제품 상세</strong><button type="button" class="product-modal-close" id="productModalClose" aria-label="닫기">×</button></div>
     <div class="product-dialog-layout">
       <div class="product-dialog-preview">
-        <div class="product-dialog-photo"><img id="modalProductImage" src="" alt=""></div>
+        <div class="product-dialog-photo"><img id="modalProductImage" alt=""><span id="modalImageFallback" hidden>이미지 준비 중</span></div><div class="product-dialog-summary">
         <div class="product-dialog-category" id="modalProductCategory"></div>
         <h2 id="modalProductName"></h2>
         <p class="product-dialog-id" id="modalProductId"></p>
-        <p id="modalProductGuide">관심 있는 상품의 공동구매 진행을 요청해 주세요. 담당자가 요청 내용을 확인할 수 있도록 이메일 문의를 작성합니다.</p>
+        <p id="modalProductGuide">관심 있는 상품의 공동구매 진행을 요청해 주세요.</p></div>
       </div>
       <div class="product-dialog-formarea">
         <h3>이 제품 요청하기</h3>
         <p class="product-dialog-subtitle">셀러 정보를 입력해 주시면 선택한 상품이 요청 내용에 자동으로 포함됩니다.</p>
         <form id="productRequestForm">
           <div class="product-request-field"><label for="requestSeller">셀러명 <span>*</span></label><input id="requestSeller" name="seller" maxlength="100" autocomplete="organization" placeholder="활동 중인 셀러명" required></div>
-          <div class="product-request-field"><label for="requestInstagram">인스타그램 아이디 <span>*</span></label><input id="requestInstagram" name="instagram" maxlength="100" placeholder="@instagram" required></div>
+          <div class="product-request-field"><label for="requestInstagram">인스타그램 아이디 <span>*</span></label><input id="requestInstagram" name="instagram" autocapitalize="none" spellcheck="false" maxlength="100" placeholder="@instagram" required></div>
           <div class="product-request-field"><label for="requestMessage">요청사항 <span>*</span></label><textarea id="requestMessage" name="message" maxlength="2000" rows="5" placeholder="희망 공구 일정, 요청 내용 등을 작성해 주세요." required></textarea></div>
-          <label class="product-request-consent"><input id="requestConsent" type="checkbox" required><span>문의 목적의 개인정보 이용 내용을 확인했습니다. <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a></span></label>
-          <button class="product-request-submit" type="submit">선택한 제품 요청하기 <span aria-hidden="true">›</span></button>
-          <p class="product-request-notice">버튼을 누르면 이메일 프로그램이 열립니다. 메일 앱에서 실제 발송을 완료해야 요청이 전달됩니다. 현재 홈페이지에 요청 내역이 자동 저장되지는 않습니다.</p>
+          <label class="product-request-consent"><input id="requestConsent" name="consent" value="confirmed" type="checkbox" required><span>문의 목적의 개인정보 이용 내용을 확인했습니다. <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a></span></label>
+          <button class="product-request-submit" type="submit">선택한 제품 요청하기</button>
+          <p id="productRequestNotice" class="product-request-notice"></p><p id="productRequestStatus" class="product-request-status" role="status" aria-live="polite" hidden></p><a id="productEmailFallback" class="btn product-email-fallback" hidden>이메일로 요청하기</a>
         </form>
       </div>
     </div>
@@ -351,44 +422,73 @@ document.getElementById("year").textContent=new Date().getFullYear();
 window.addEventListener("scroll",()=>document.querySelector(".top").classList.toggle("scrolled",window.scrollY>12),{passive:true});
 const productData=[{"id":1,"name":"EMS 자주파자극 오마이턱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010738-ems-15ef184b.webp"},{"id":2,"name":"NGT 오늘은 애플페논","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010738-ngt-cf10b1e6.webp"},{"id":3,"name":"NGT 잇츠 라인","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010739-ngt-2c2eb0a4.webp"},{"id":4,"name":"NGT 잇츠 버닝 CLA","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010739-ngt-cla-de6369d9.webp"},{"id":5,"name":"NGT 잇츠 차전자피","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-ngt-725e7968.webp"},{"id":6,"name":"NGT 잇츠 크랜베리","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-ngt-f5e1f95d.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":17,"name":"달링브라 갓벽브라 + 팬티 2.0","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010744-2-0-80745ddd.webp"},{"id":18,"name":"달링브라 라운지웨어(원피스&투피스)","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-image-e6198557.webp"},{"id":19,"name":"달링브라 시크릿티 2.0","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-2-0-08492126.webp"},{"id":20,"name":"달링브라 육각하이팬티 컴핏","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-image-8ebd2437.webp"},{"id":21,"name":"달링브라 착붙팬티","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011202-image-a598ece8.webp"},{"id":22,"name":"더하이라인 드라이시트","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011203-image-f07deabe.webp"},{"id":24,"name":"도파밍 모기기피제","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011203-image-96091e62.webp"},{"id":25,"name":"듀얼테트라","category":"기타","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-04fffdb4.webp"},{"id":26,"name":"똑순이 아구찜","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-6f016b73.webp"},{"id":27,"name":"레모니즈백","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-5ab9de84.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":29,"name":"리메스카 흉터스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-4bb99f92.webp"},{"id":30,"name":"리투 에어 데일리 크루 삭스","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-c45c2122.webp"},{"id":31,"name":"리투 에어 데일리 키즈 크루 삭스","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-ff8bcbd5.webp"},{"id":32,"name":"릴렉_PVC 투명 주방매트","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-pvc-a9231b8d.webp"},{"id":33,"name":"마음먹은김","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-16e7688e.webp"},{"id":34,"name":"맥스메이드 100만 파로효소","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-100-15cece3b.webp"},{"id":35,"name":"맥스메이드 스노우칼마디K2","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011206-k2-8f36d6f5.webp"},{"id":36,"name":"맥스메이드 아이언츄","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011206-image-dedb23de.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":46,"name":"바사삭먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011537-image-da3f760e.webp"},{"id":50,"name":"비타민하우스 데일리낙산균","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011539-image-4f75b6c1.webp"},{"id":51,"name":"비타민하우스 키글키글 덴탈케어치약액","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011539-image-206a3bf3.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"},{"id":54,"name":"사노셀 애사비 콤부차 2종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-2-41f1fe45.webp"},{"id":55,"name":"새싹보리굴비","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011541-image-d1191f05.webp"},{"id":56,"name":"새우앤먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011541-image-c05ea4ad.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":60,"name":"쎄담 프로 더마 클리너 항균패드","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011543-image-bbc03a46.webp"},{"id":61,"name":"쎄담 프로더마 포켓패드","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012356-image-5fff2d10.webp"},{"id":62,"name":"아바노바 드뉴 마스크 패치","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-b264ecca.webp"},{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":82,"name":"작영 셀룰라이트 스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-90944825.webp"},{"id":83,"name":"천호앤케어 흑염소프리미엄","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012651-image-a6372e7d.webp"},{"id":87,"name":"피타니 그래니스미스 애사비 플로라","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012652-image-796eb85d.webp"},{"id":88,"name":"피타니 리얼비네 애사비 핏","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012652-image-49ea8476.webp"},{"id":89,"name":"피타니 리포멜팅 화이톤C","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012653-c-8b9fc9a4.webp"},{"id":90,"name":"피타니 유기농 리얼 애플 애사비","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012653-image-b27f5bc7.webp"},{"id":91,"name":"피타니 제니스칼 팻아웃 브루","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-02043cba.webp"},{"id":92,"name":"피타니 제니스칼 팻킬 슬림 (정제)","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-2ff32cfd.webp"},{"id":93,"name":"피타니 제니스칼 팻킬 슬림 샷(분말)","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-9ddb669c.webp"},{"id":94,"name":"피타니 화이톤 로젠지","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012655-image-63f0c3b5.webp"},{"id":97,"name":"홍익낙지","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012656-image-e46541c6.webp"},{"id":98,"name":"홍익동태탕","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012657-image-9467f942.webp"},{"id":99,"name":"홍익시래기코다리조림","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012657-image-9ea714a0.webp"}];
 let activeProductCategory="전체";
-const grid=document.getElementById("productGrid"),queryInput=document.getElementById("productSearch"),resultLabel=document.getElementById("productResults"),emptyState=document.getElementById("productNoResults");
-function renderProducts(){const query=(queryInput.value||"").trim().toLocaleLowerCase("ko");const items=productData.filter(p=>(activeProductCategory==="전체"||p.category===activeProductCategory)&&p.name.toLocaleLowerCase("ko").includes(query));const frag=document.createDocumentFragment();for(const p of items){const card=document.createElement("article");card.className="catalog-card";const visual=document.createElement("div");visual.className="catalog-photo";const img=document.createElement("img");img.src=p.image;img.alt=p.name+" 제품 썸네일";img.loading="lazy";img.decoding="async";img.width=480;img.height=480;img.addEventListener("error",()=>{img.remove();const fallback=document.createElement("span");fallback.className="catalog-placeholder";fallback.textContent="S2H";visual.append(fallback)},{once:true});visual.append(img);const info=document.createElement("div");info.className="catalog-info";const tag=document.createElement("span");tag.className="catalog-tag";tag.textContent=p.category;const name=document.createElement("h3");name.textContent=p.name;const id=document.createElement("div");id.className="catalog-id";id.textContent="PRODUCT NO. "+String(p.id).padStart(3,"0");info.append(tag,name,id);card.append(visual,info);card.setAttribute("role","button");card.setAttribute("tabindex","0");card.setAttribute("aria-label",p.name+" 자세히 보고 제품 요청하기");card.addEventListener("click",()=>openProduct(p));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openProduct(p)}});frag.append(card)}grid.replaceChildren(frag);emptyState.hidden=items.length!==0;resultLabel.textContent=(activeProductCategory==="전체"?"전체":activeProductCategory)+" "+items.length+"개 상품"}
-document.querySelectorAll(".product-filters button").forEach(button=>button.addEventListener("click",()=>{activeProductCategory=button.dataset.filter;document.querySelectorAll(".product-filters button").forEach(b=>{const yes=b===button;b.classList.toggle("active",yes);b.setAttribute("aria-pressed",String(yes))});renderProducts()}));
-queryInput.addEventListener("input",renderProducts);
-renderProducts();
-
-const productModal=document.getElementById("productModal"),productDialog=productModal.querySelector(".product-dialog"),productClose=document.getElementById("productModalClose"),requestForm=document.getElementById("productRequestForm");
-let selectedProduct=null,previousFocus=null;
-function openProduct(p){
- selectedProduct=p;previousFocus=document.activeElement;
- document.getElementById("modalProductImage").src=p.image;
- document.getElementById("modalProductImage").alt=p.name+" 제품 이미지";
- document.getElementById("modalProductCategory").textContent=p.category;
- document.getElementById("modalProductName").textContent=p.name;
- document.getElementById("modalProductId").textContent="PRODUCT NO. "+String(p.id).padStart(3,"0");
- requestForm.reset();productModal.hidden=false;document.body.style.overflow="hidden";productClose.focus();
+const grid=document.getElementById("productGrid"),queryInput=document.getElementById("productSearch"),resultLabel=document.getElementById("productResults"),emptyState=document.getElementById("productNoResults"),sortInput=document.getElementById("productSort"),clearSearch=document.getElementById("clearProductSearch"),filterButtons=[...document.querySelectorAll(".product-filters button")];
+const productModal=document.getElementById("productModal"),productDialog=productModal.querySelector(".product-dialog"),productClose=document.getElementById("productModalClose"),requestForm=document.getElementById("productRequestForm"),submitButton=requestForm.querySelector("button[type=submit]"),requestNotice=document.getElementById("productRequestNotice"),requestStatus=document.getElementById("productRequestStatus"),emailFallback=document.getElementById("productEmailFallback"),modalImage=document.getElementById("modalProductImage"),modalFallback=document.getElementById("modalImageFallback");
+const motion=matchMedia("(prefers-reduced-motion: reduce)");
+let selectedProduct=null,previousFocus=null,previousOverflow="",submitting=false;
+const normalize=value=>String(value).normalize("NFKC").toLocaleLowerCase("ko").replace(/\s+/g,"");
+document.getElementById("productTotal").textContent=productData.length;
+filterButtons.forEach(button=>{const category=button.dataset.filter;const n=category==="전체"?productData.length:productData.filter(p=>p.category===category).length;const count=document.createElement("span");count.className="filter-count";count.textContent=n;button.append(count)});
+function selectCategory(category){activeProductCategory=category;filterButtons.forEach(b=>{const yes=b.dataset.filter===category;b.classList.toggle("active",yes);b.setAttribute("aria-pressed",String(yes))})}
+const cards=new Map();
+for(const p of productData){
+ const card=document.createElement("article");card.className="catalog-card";card.dataset.productId=String(p.id);
+ const button=document.createElement("button");button.type="button";button.className="catalog-card-button";button.setAttribute("aria-label",p.name+" 제품 상세 보기");
+ const visual=document.createElement("div");visual.className="catalog-photo";
+ const img=document.createElement("img");img.src=p.image;img.alt="";img.loading="lazy";img.decoding="async";img.width=480;img.height=480;
+ img.addEventListener("error",()=>{img.remove();const fallback=document.createElement("span");fallback.className="catalog-placeholder";fallback.textContent="이미지 준비 중";visual.append(fallback)},{once:true});
+ visual.append(img);
+ const info=document.createElement("div");info.className="catalog-info";
+ const tag=document.createElement("span");tag.className="catalog-tag";tag.textContent=p.category;
+ const name=document.createElement("strong");name.className="catalog-name";name.textContent=p.name;
+ const action=document.createElement("span");action.className="catalog-action";action.textContent="제품 상세 보기";
+ info.append(tag,name,action);button.append(visual,info);card.append(button);button.addEventListener("click",()=>openProduct(p));cards.set(p.id,card);
 }
-function closeProduct(){productModal.hidden=true;document.body.style.overflow="";if(previousFocus&&previousFocus.isConnected)previousFocus.focus()}
-productClose.addEventListener("click",closeProduct);
-productModal.querySelector("[data-close-product]").addEventListener("click",closeProduct);
+function renderProducts(){
+ const query=normalize(queryInput.value);const items=productData.filter(p=>(activeProductCategory==="전체"||p.category===activeProductCategory)&&normalize(p.name).includes(query));
+ if(sortInput.value==="name")items.sort((a,b)=>a.name.localeCompare(b.name,"ko"));
+ const frag=document.createDocumentFragment();items.forEach(p=>frag.append(cards.get(p.id)));grid.replaceChildren(frag);emptyState.hidden=items.length!==0;clearSearch.hidden=!queryInput.value;
+ resultLabel.textContent=(activeProductCategory==="전체"?"전체":activeProductCategory)+" "+items.length+"개 상품";
+}
+filterButtons.forEach(b=>b.addEventListener("click",()=>{selectCategory(b.dataset.filter);renderProducts()}));
+queryInput.addEventListener("input",renderProducts);sortInput.addEventListener("change",renderProducts);
+clearSearch.addEventListener("click",()=>{queryInput.value="";renderProducts();queryInput.focus()});
+document.getElementById("resetProductFilters").addEventListener("click",()=>{queryInput.value="";sortInput.value="default";selectCategory("전체");renderProducts();filterButtons[0].focus()});
+function setStatus(message){requestStatus.textContent=message;requestStatus.hidden=!message}
+function setBusy(busy){submitting=busy;submitButton.disabled=busy;productClose.disabled=busy;submitButton.textContent=busy?"요청을 처리하고 있습니다…":window.S2HInquiryAPI?.isConfigured()?"선택한 제품 요청하기":"이메일로 제품 요청하기";requestForm.setAttribute("aria-busy",String(busy))}
+function updateNotice(){requestNotice.textContent=window.S2HInquiryAPI?.isConfigured()?"입력한 내용이 담당자에게 접수됩니다.":"이메일 앱에서 발송을 완료해야 요청이 전달됩니다. 홈페이지에 자동 저장되지 않습니다."}
+modalImage.addEventListener("error",()=>{modalImage.hidden=true;modalFallback.hidden=false});
+const backgroundElements=[document.querySelector(".top"),document.querySelector(".product-v3"),document.querySelector(".site-footer")].filter(Boolean);
+function openProduct(p){
+ if(submitting)return;selectedProduct=p;previousFocus=document.activeElement;
+ modalImage.hidden=false;modalFallback.hidden=true;modalImage.alt=p.name+" 제품 이미지";modalImage.src=p.image;
+ document.getElementById("modalProductCategory").textContent=p.category;document.getElementById("modalProductName").textContent=p.name;document.getElementById("modalProductId").textContent="상품번호 "+String(p.id).padStart(3,"0");
+ requestForm.reset();setStatus("");emailFallback.hidden=true;setBusy(false);updateNotice();
+ previousOverflow=document.body.style.overflow;productModal.hidden=false;document.body.style.overflow="hidden";backgroundElements.forEach(el=>el.inert=true);productDialog.scrollTop=0;productClose.focus({preventScroll:true});
+}
+function closeProduct(){if(submitting||productModal.hidden)return;productModal.hidden=true;backgroundElements.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;selectedProduct=null;if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});else queryInput.focus({preventScroll:true})}
+productClose.addEventListener("click",closeProduct);productModal.querySelector("[data-close-product]").addEventListener("click",closeProduct);
 document.addEventListener("keydown",e=>{
  if(productModal.hidden)return;
  if(e.key==="Escape"){e.preventDefault();closeProduct()}
- if(e.key==="Tab"){const controls=[...productDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!controls.length)return;const first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+ if(e.key==="Tab"){const controls=[...productDialog.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),a[href]:not([hidden])')].filter(el=>el.getClientRects().length);if(!controls.length)return;const first=controls[0],last=controls[controls.length-1];if(e.shiftKey&&(document.activeElement===first||!productDialog.contains(document.activeElement))){e.preventDefault();last.focus()}else if(!e.shiftKey&&(document.activeElement===last||!productDialog.contains(document.activeElement))){e.preventDefault();first.focus()}}
 });
+renderProducts();
 const incomingProductId=new URLSearchParams(location.search).get("product");
-if(incomingProductId!==null&&/^\d+$/.test(incomingProductId)){
- const incomingProduct=productData.find(p=>String(p.id)===incomingProductId);
- if(incomingProduct){const incomingCard=[...grid.querySelectorAll(".catalog-card")].find(card=>card.querySelector("h3")?.textContent===incomingProduct.name);if(incomingCard)incomingCard.focus({preventScroll:true});openProduct(incomingProduct);}
-}
+if(incomingProductId!==null&&/^\d+$/.test(incomingProductId)){const p=productData.find(p=>String(p.id)===incomingProductId);if(p){cards.get(p.id)?.querySelector("button")?.focus({preventScroll:true});openProduct(p)}}
 requestForm.addEventListener("submit",async e=>{
- e.preventDefault();if(!selectedProduct||!requestForm.reportValidity())return;
- const f=new FormData(requestForm);
- const subject="[S2H 제품 요청] "+selectedProduct.name;
- const body=["S2H 상품 공동구매 요청","", "제품명: "+selectedProduct.name,"제품번호: "+String(selectedProduct.id).padStart(3,"0"),"카테고리: "+selectedProduct.category,"셀러명: "+f.get("seller"),"인스타그램 아이디: "+f.get("instagram"),"","요청사항:",f.get("message")].join("\n");
- const configFields={...Object.fromEntries(f.entries()),productId:selectedProduct.id,productName:selectedProduct.name,category:selectedProduct.category};const api=window.S2HInquiryAPI;if(api?.isConfigured()){try{const receipt=await api.submit("product_request",configFields);if(receipt.success){alert("제품 요청이 정상 접수되었습니다. 접수번호: "+receipt.id);closeProduct();return}}catch(error){alert("서버 요청에 실패했습니다. 이메일 작성 화면을 열겠습니다.")}}window.location.href="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+ e.preventDefault();if(submitting||!selectedProduct||!requestForm.reportValidity())return;
+ const p=selectedProduct,f=new FormData(requestForm),subject="[S2H 제품 요청] "+p.name;
+ const body=["S2H 상품 공동구매 요청","","제품명: "+p.name,"제품번호: "+String(p.id).padStart(3,"0"),"카테고리: "+p.category,"셀러명: "+f.get("seller"),"인스타그램 아이디: "+f.get("instagram"),"","요청사항:",f.get("message")].join("\n");
+ const mailUrl="mailto:s2hcorp@naver.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+ emailFallback.hidden=true;setStatus("");
+ const api=window.S2HInquiryAPI;
+ if(!api?.isConfigured()){setStatus("이메일 앱이 열리면 발송을 완료해 주세요. 아직 요청이 접수된 것은 아닙니다.");emailFallback.href=mailUrl;emailFallback.hidden=false;location.href=mailUrl;return}
+ setBusy(true);
+ try{const receipt=await api.submit("product_request",{...Object.fromEntries(f.entries()),productId:p.id,productName:p.name,category:p.category});if(!receipt?.success)throw new Error("No acknowledgement");requestForm.reset();setStatus("제품 요청이 접수되었습니다. 접수번호: "+receipt.id)}
+ catch(error){setStatus("접수 여부를 확인하지 못했습니다. 재시도 전 담당자에게 확인하거나 이메일로 문의해 주세요.");emailFallback.href=mailUrl;emailFallback.hidden=false}
+ finally{setBusy(false)}
 });
-
 </script>
 <script src="assets/s2h-motion.js?v=20261126" defer></script>
 </body></html>
