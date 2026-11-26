@@ -15,15 +15,16 @@ window.S2H_API_CONFIG=Object.freeze({
 });
 window.S2HInquiryAPI={
   isConfigured(){const c=window.S2H_API_CONFIG;return Boolean(c&&c.enabled&&/^https:\/\//.test(c.baseUrl))},
-  async adminList(kind){
+  async adminList(kind, token){
     if(!this.isConfigured())return {configured:false};
     // The server MUST enforce an authenticated admin session and role checks.
     const url=window.S2H_API_CONFIG.baseUrl.replace(/\/$/,"")+"/admin/inquiries?kind="+encodeURIComponent(kind);
-    const response=await fetch(url,{method:"GET",mode:"cors",credentials:"include",headers:{"Accept":"application/json"}});
-    if(!response.ok)throw new Error("Admin authorization or API error: "+response.status);
+    if(typeof token!=="string"||!token.trim())throw new Error("관리자 인증이 필요합니다.");
+    const response=await fetch(url,{method:"GET",mode:"cors",credentials:"omit",cache:"no-store",headers:{"Accept":"application/json","Authorization":"Bearer "+token.trim()}});
+    if(!response.ok)throw new Error("관리자 API 응답: "+response.status);
     const data=await response.json();
     if(!data||!Array.isArray(data.items))throw new Error("Invalid admin response");
-    return {configured:true,items:data.items};
+    return {configured:true,items:data.items,total:Number.isSafeInteger(data.total)&&data.total>=data.items.length?data.total:data.items.length};
   },
   async submit(kind,fields){
     if(!this.isConfigured())return {configured:false};
