@@ -249,7 +249,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .legal-page section ul{padding-left:20px}
 @media(max-width:650px){.site-footer{padding-top:42px}.foot-contact>a:not(.btn){font-size:17px}.foot-legal-info{font-size:11px}.legal-page{padding:52px 0 75px}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-8">
 <style>/* CONTACT v6 */
 .contact-v6 .contact-hero{width:min(var(--site-max),calc(100% - var(--site-gutter)*2));margin:24px auto 0;border-radius:16px;background:#edf6f8}
 .contact-hero-inner{width:100%;padding:clamp(32px,5vw,70px);display:flex;align-items:end;justify-content:space-between;gap:30px}
@@ -286,8 +286,8 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
+function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),300)}
+if(seen||reduced){finishIntro();entry?.remove()}else setTimeout(finishIntro,560);
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
@@ -302,5 +302,5 @@ form.addEventListener("submit",async e=>{e.preventDefault();if(busy||!form.repor
 if(!api?.isConfigured()){showStatus("이메일 앱에서 발송을 완료해 주세요. 아직 문의가 접수된 것은 아닙니다.");fallback.href=url;fallback.hidden=false;location.href=url;return}
 busy=true;sync();try{const receipt=await api.submit("contact",fields);if(!receipt?.success)throw new Error("Missing acknowledgement");form.reset();showStatus("문의가 접수되었습니다. 접수번호: "+receipt.id)}catch(error){showStatus("접수 여부를 확인하지 못했습니다. 재시도 전 담당자에게 확인하거나 이메일로 문의해 주세요.");fallback.href=url;fallback.hidden=false}finally{busy=false;sync()}});
 </script>
-<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-8" defer></script>
 </body></html>
