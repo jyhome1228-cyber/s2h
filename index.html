@@ -353,7 +353,7 @@ body{font-family:Pretendard,"Noto Sans KR",Arial,sans-serif}
 @media(prefers-reduced-motion:reduce){.fade-in{animation:none}.business-card,.home-partnership-links a{transition:none}}
 
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-8">
 </head>
 <body>
 <div class="entry-screen" id="entryScreen" role="status" aria-label="S2H 시작 화면"><div class="entry-inner"><img class="entry-logo" src="assets/logo.svg" alt="S2H Corporation"></div></div>
@@ -392,8 +392,8 @@ body{font-family:Pretendard,"Noto Sans KR",Arial,sans-serif}
 const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
+function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),300)}
+if(seen||reduced){finishIntro();entry?.remove()}else setTimeout(finishIntro,560);
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
@@ -447,5 +447,5 @@ document.addEventListener("visibilitychange",schedule);window.addEventListener("
 if("ResizeObserver" in window)new ResizeObserver(()=>{measure();schedule()}).observe(productWindow);
 measure();syncPause();
 </script>
-<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-8" defer></script>
 </body></html>
