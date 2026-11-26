@@ -284,7 +284,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .product-request-notice{font-size:11px;line-height:1.8;color:#7f8b92;margin-top:13px}
 @media(max-width:750px){.product-modal{padding:10px}.product-dialog{max-height:94dvh}.product-dialog-layout{grid-template-columns:1fr}.product-dialog-preview{padding:22px}.product-dialog-photo{max-width:210px;margin:0 auto}.product-dialog-category{margin-top:14px}.product-dialog-preview h2{font-size:19px}.product-dialog-preview>p:last-child{margin-top:13px}.product-dialog-formarea{padding:26px 22px 28px}.product-dialog-formarea h3{font-size:22px}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-8">
 <style>
 
 /* PRODUCT v3 — catalog discovery and compact request dialog */
@@ -415,8 +415,8 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
+function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),300)}
+if(seen||reduced){finishIntro();entry?.remove()}else setTimeout(finishIntro,560);
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
@@ -451,7 +451,7 @@ function renderProducts(){
  const frag=document.createDocumentFragment();items.forEach(p=>frag.append(cards.get(p.id)));grid.replaceChildren(frag);emptyState.hidden=items.length!==0;clearSearch.hidden=!queryInput.value;
  resultLabel.textContent=(activeProductCategory==="전체"?"전체":activeProductCategory)+" "+items.length+"개 상품";
 }
-filterButtons.forEach(b=>b.addEventListener("click",()=>{selectCategory(b.dataset.filter);renderProducts()}));
+filterButtons.forEach(b=>b.addEventListener("click",()=>{if(activeProductCategory===b.dataset.filter)return;selectCategory(b.dataset.filter);renderProducts();if(!motion.matches){[...grid.children].slice(0,8).forEach((card,i)=>{card.animate?.([{opacity:.45,transform:"translateY(5px)"},{opacity:1,transform:"translateY(0)"}],{duration:230,delay:Math.min(i,3)*25,easing:"ease-out"})})}}));
 queryInput.addEventListener("input",renderProducts);sortInput.addEventListener("change",renderProducts);
 clearSearch.addEventListener("click",()=>{queryInput.value="";renderProducts();queryInput.focus()});
 document.getElementById("resetProductFilters").addEventListener("click",()=>{queryInput.value="";sortInput.value="default";selectCategory("전체");renderProducts();filterButtons[0].focus()});
@@ -461,13 +461,13 @@ function updateNotice(){requestNotice.textContent=window.S2HInquiryAPI?.isConfig
 modalImage.addEventListener("error",()=>{modalImage.hidden=true;modalFallback.hidden=false});
 const backgroundElements=[document.querySelector(".top"),document.querySelector(".product-v3"),document.querySelector(".site-footer")].filter(Boolean);
 function openProduct(p){
- if(submitting)return;selectedProduct=p;previousFocus=document.activeElement;
+ if(submitting||!productModal.hidden)return;selectedProduct=p;previousFocus=document.activeElement;
  modalImage.hidden=false;modalFallback.hidden=true;modalImage.alt=p.name+" 제품 이미지";modalImage.src=p.image;
  document.getElementById("modalProductCategory").textContent=p.category;document.getElementById("modalProductName").textContent=p.name;document.getElementById("modalProductId").textContent="상품번호 "+String(p.id).padStart(3,"0");
  requestForm.reset();setStatus("");emailFallback.hidden=true;setBusy(false);updateNotice();
  previousOverflow=document.body.style.overflow;productModal.hidden=false;document.body.style.overflow="hidden";backgroundElements.forEach(el=>el.inert=true);productDialog.scrollTop=0;productClose.focus({preventScroll:true});
 }
-function closeProduct(){if(submitting||productModal.hidden)return;productModal.hidden=true;backgroundElements.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;selectedProduct=null;if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});else queryInput.focus({preventScroll:true})}
+function closeProduct(){if(submitting||productModal.hidden||productModal.classList.contains("s2h-closing"))return;const finish=()=>{productModal.hidden=true;backgroundElements.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;selectedProduct=null;if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});else queryInput.focus({preventScroll:true})};if(window.S2HMotion)window.S2HMotion.closeDialog(productModal,finish);else finish()}
 productClose.addEventListener("click",closeProduct);productModal.querySelector("[data-close-product]").addEventListener("click",closeProduct);
 document.addEventListener("keydown",e=>{
  if(productModal.hidden)return;
@@ -491,5 +491,5 @@ requestForm.addEventListener("submit",async e=>{
  finally{setBusy(false)}
 });
 </script>
-<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-8" defer></script>
 </body></html>
