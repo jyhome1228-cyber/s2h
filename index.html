@@ -401,7 +401,7 @@ window.addEventListener("scroll",()=>document.querySelector(".top").classList.to
 
 let slide=0;const titles=[["INFLUENCER COMMERCE","MARKETING COMPANY"],["CONNECTING BRANDS","AND PEOPLE"]];
 const dots=[...document.querySelectorAll(".hero-dots button")];
-function showSlide(n){slide=(n+titles.length)%titles.length;document.getElementById("heroTitle").innerHTML=titles[slide][0]+"<span>"+titles[slide][1]+"</span>";dots.forEach((d,i)=>{d.classList.toggle("active",i===slide);d.setAttribute("aria-pressed",String(i===slide))})}
+function showSlide(n){const next=(n+titles.length)%titles.length;if(next===slide)return;slide=next;document.getElementById("heroTitle").innerHTML=titles[slide][0]+"<span>"+titles[slide][1]+"</span>";dots.forEach((d,i)=>{d.classList.toggle("active",i===slide);d.setAttribute("aria-pressed",String(i===slide))})}
 document.getElementById("heroPrev").addEventListener("click",()=>showSlide(slide-1));
 document.getElementById("heroNext").addEventListener("click",()=>showSlide(slide+1));
 dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
@@ -409,72 +409,43 @@ dots.forEach((d,i)=>d.addEventListener("click",()=>showSlide(i)));
 const featuredProducts=[{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"}];
 const productTrack=document.getElementById("homeProductsTrack");
 const productWindow=document.getElementById("homeProductsWindow");
-let carouselOffset=0,lastCarouselFrame=0,carouselPaused=false,carouselImpulse=0,userPaused=false,carouselVisible=true,cachedStep=0;
-const reducedCarouselMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+let carouselOffset=0,lastFrame=0,impulse=0,cachedStep=0,raf=0,visible=false,userPaused=false,hovered=false,focused=false,touching=false;
+const motion=matchMedia("(prefers-reduced-motion: reduce)"),finePointer=matchMedia("(hover:hover) and (pointer:fine)");
 for(const item of featuredProducts){
  const card=document.createElement("a");card.className="home-product-card";card.href="product.html?product="+encodeURIComponent(item.id);card.setAttribute("aria-label",item.name+" 제품 상세 보기");
  const photo=document.createElement("div");photo.className="home-product-image";
- const img=document.createElement("img");img.src=item.image;img.alt=item.name;img.loading="lazy";img.decoding="async";img.addEventListener("error",()=>{photo.textContent="S2H";photo.style.display="grid";photo.style.placeItems="center";photo.style.color="#0089b3"},{once:true});
- photo.append(img);
- const category=document.createElement("span");category.className="home-product-category";category.textContent=item.category;
- const name=document.createElement("strong");name.className="home-product-name";name.textContent=item.name;
- card.append(photo,category,name);productTrack.append(card);
+ const img=document.createElement("img");img.src=item.image;img.alt="";img.loading="lazy";img.decoding="async";img.width=480;img.height=480;
+ img.addEventListener("error",()=>{photo.textContent="이미지 준비 중";photo.style.display="grid";photo.style.placeItems="center";photo.style.color="#52656e"},{once:true});
+ photo.append(img);const category=document.createElement("span");category.className="home-product-category";category.textContent=item.category;const name=document.createElement("strong");name.className="home-product-name";name.textContent=item.name;card.append(photo,category,name);productTrack.append(card);
 }
-
-/* Seamless product slider: one card every 4 seconds, continuously to the left */
-/* Continuous, seamless horizontal product marquee */
-const originalCards=[...productTrack.querySelectorAll(".home-product-card")];
-for(const original of originalCards){
- const duplicate=original.cloneNode(true);
- duplicate.setAttribute("aria-hidden","true");
- duplicate.tabIndex=-1;
- productTrack.appendChild(duplicate);
-}
-productTrack.style.transition="none";
-const carouselGap=()=>parseFloat(getComputedStyle(productTrack).gap)||0;
-const measureCarousel=()=>{cachedStep=originalCards[0]?originalCards[0].getBoundingClientRect().width+carouselGap():0};measureCarousel();const carouselStep=()=>cachedStep;
-const carouselCycle=()=>carouselStep()*originalCards.length;
-function renderCarouselPosition(){
- const cycle=carouselCycle();
- if(!cycle)return;
- carouselOffset=((carouselOffset%cycle)+cycle)%cycle;
- productTrack.style.transform="translate3d("+(-carouselOffset)+"px,0,0)";
-}
-function carouselFrame(now){
- if(!lastCarouselFrame)lastCarouselFrame=now;
- const elapsed=Math.min((now-lastCarouselFrame)/1000,.05);
- lastCarouselFrame=now;
- if(!carouselPaused&&!userPaused&&carouselVisible&&!document.hidden&&!reducedCarouselMotion.matches)carouselOffset+=34*elapsed;
- if(Math.abs(carouselImpulse)>.1){
-  const chunk=carouselImpulse*Math.min(1,elapsed*8);
-  carouselOffset+=chunk;carouselImpulse-=chunk;
- }else carouselImpulse=0;
- renderCarouselPosition();
- requestAnimationFrame(carouselFrame);
-}
-function nudgeCarousel(direction){if(reducedCarouselMotion.matches){carouselOffset+=direction*carouselStep();renderCarouselPosition()}else carouselImpulse+=direction*carouselStep()}
-document.getElementById("homeProductsPrev").addEventListener("click",()=>nudgeCarousel(-1));
-document.getElementById("homeProductsNext").addEventListener("click",()=>nudgeCarousel(1));
-productWindow.addEventListener("mouseenter",()=>carouselPaused=true);
-productWindow.addEventListener("mouseleave",()=>carouselPaused=false);
-productWindow.addEventListener("focusin",()=>carouselPaused=true);
-productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget))carouselPaused=false});
-productWindow.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();nudgeCarousel(e.key==="ArrowRight"?1:-1)}});
-let swipeStart=null;
-productWindow.addEventListener("touchstart",e=>{swipeStart=e.touches[0].clientX;carouselPaused=true},{passive:true});
-productWindow.addEventListener("touchend",e=>{if(swipeStart!==null){const delta=e.changedTouches[0].clientX-swipeStart;if(Math.abs(delta)>30)nudgeCarousel(delta<0?1:-1)}swipeStart=null;carouselPaused=false},{passive:true});
+const originalCards=[...productTrack.children];
+for(const original of originalCards){const duplicate=original.cloneNode(true);duplicate.setAttribute("aria-hidden","true");duplicate.tabIndex=-1;const img=duplicate.querySelector("img");if(img)img.addEventListener("error",()=>{const photo=img.parentElement;photo.textContent="이미지 준비 중";photo.style.display="grid";photo.style.placeItems="center"},{once:true});productTrack.append(duplicate)}
+const cycle=()=>cachedStep*originalCards.length;
+function render(){const c=cycle();if(!c)return;carouselOffset=((carouselOffset%c)+c)%c;productTrack.style.transform="translate3d("+(-carouselOffset)+"px,0,0)"}
+function measure(){const old=cachedStep;cachedStep=originalCards[0]?originalCards[0].getBoundingClientRect().width+(parseFloat(getComputedStyle(productTrack).gap)||0):0;if(old&&cachedStep)carouselOffset=carouselOffset/old*cachedStep;render()}
+function canAuto(){return visible&&!document.hidden&&!motion.matches&&!userPaused&&!hovered&&!focused&&!touching&&cachedStep>0}
+function needsFrame(){return visible&&!document.hidden&&(canAuto()||Math.abs(impulse)>.2)}
+function schedule(){if(needsFrame()&&!raf){lastFrame=0;productTrack.classList.add("s2h-rolling");raf=requestAnimationFrame(frame)}else if(!needsFrame()&&raf){cancelAnimationFrame(raf);raf=0;lastFrame=0;productTrack.classList.remove("s2h-rolling")}}
+function frame(now){raf=0;const dt=lastFrame?Math.min((now-lastFrame)/1000,.05):1/60;lastFrame=now;if(canAuto())carouselOffset+=24*dt;if(Math.abs(impulse)>.2){const chunk=impulse*Math.min(1,dt*10);carouselOffset+=chunk;impulse-=chunk}else{carouselOffset+=impulse;impulse=0}render();if(needsFrame())raf=requestAnimationFrame(frame);else{lastFrame=0;productTrack.classList.remove("s2h-rolling")}}
+function nudge(direction){if(!cachedStep)return;const target=(direction>0?Math.floor((carouselOffset+impulse)/cachedStep+.01)+1:Math.ceil((carouselOffset+impulse)/cachedStep-.01)-1)*cachedStep;const delta=target-carouselOffset;if(motion.matches||!visible){impulse=0;carouselOffset=target;render()}else impulse=delta;schedule()}
+document.getElementById("homeProductsPrev").addEventListener("click",()=>nudge(-1));document.getElementById("homeProductsNext").addEventListener("click",()=>nudge(1));
+productWindow.addEventListener("mouseenter",()=>{if(finePointer.matches){hovered=true;schedule()}});
+productWindow.addEventListener("mouseleave",()=>{hovered=false;schedule()});
+productWindow.addEventListener("focusin",e=>{focused=true;const card=e.target.closest(".home-product-card"),i=originalCards.indexOf(card);if(i>=0){impulse=0;carouselOffset=i*cachedStep;productWindow.scrollLeft=0;render()}schedule()});
+productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget)){focused=false;schedule()}});
+productWindow.addEventListener("keydown",e=>{if(e.target===productWindow&&(e.key==="ArrowRight"||e.key==="ArrowLeft")){e.preventDefault();nudge(e.key==="ArrowRight"?1:-1)}});
+let touchStart=null,swipeHandled=false;
+productWindow.addEventListener("touchstart",e=>{if(e.touches.length!==1)return;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};touching=true;swipeHandled=false;schedule()},{passive:true});
+productWindow.addEventListener("touchend",e=>{if(touchStart){const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.35){swipeHandled=true;nudge(dx<0?1:-1)}}touchStart=null;touching=false;schedule()},{passive:true});
+productWindow.addEventListener("touchcancel",()=>{touchStart=null;touching=false;swipeHandled=false;schedule()},{passive:true});
+productWindow.addEventListener("click",e=>{if(swipeHandled){e.preventDefault();swipeHandled=false}},true);
 const pauseButton=document.getElementById("homeProductsPause");
-function syncPause(){pauseButton.textContent=userPaused||reducedCarouselMotion.matches?"자동 재생":"일시정지";pauseButton.setAttribute("aria-pressed",String(userPaused||reducedCarouselMotion.matches));pauseButton.disabled=reducedCarouselMotion.matches;pauseButton.setAttribute("aria-label",reducedCarouselMotion.matches?"동작 줄이기 설정으로 자동 롤링 꺼짐":userPaused?"제품 자동 롤링 재생":"제품 자동 롤링 일시정지")}
-pauseButton.addEventListener("click",()=>{userPaused=!userPaused;syncPause()});syncPause();reducedCarouselMotion.addEventListener?.("change",syncPause);
-if("IntersectionObserver" in window){new IntersectionObserver(entries=>{carouselVisible=entries[0].isIntersecting}).observe(productWindow)}
-productWindow.addEventListener("touchcancel",()=>{swipeStart=null;carouselPaused=false},{passive:true});
-productWindow.addEventListener("focusin",e=>{const card=e.target.closest(".home-product-card");const i=originalCards.indexOf(card);if(i>=0){const start=i*carouselStep();carouselOffset=start;carouselImpulse=0;productWindow.scrollLeft=0;renderCarouselPosition()}});
-window.addEventListener("resize",()=>{measureCarousel();renderCarouselPosition()});
-requestAnimationFrame(carouselFrame);
-const homeProductSection=document.querySelector(".home-products");
-if(!("IntersectionObserver" in window)){homeProductSection.classList.add("is-visible")}
-else{const homeProductObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add("is-visible");homeProductObserver.disconnect()}}},{threshold:.12});homeProductObserver.observe(homeProductSection)}
-
+function syncPause(){pauseButton.textContent=userPaused||motion.matches?"자동 재생":"일시정지";pauseButton.setAttribute("aria-pressed",String(userPaused||motion.matches));pauseButton.disabled=motion.matches;pauseButton.setAttribute("aria-label",motion.matches?"동작 줄이기 설정으로 자동 롤링 꺼짐":userPaused?"제품 자동 롤링 재생":"제품 자동 롤링 일시정지");if(motion.matches&&impulse){carouselOffset+=impulse;impulse=0;render()}schedule()}
+pauseButton.addEventListener("click",()=>{userPaused=!userPaused;syncPause()});motion.addEventListener?.("change",syncPause);
+if("IntersectionObserver" in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule()}).observe(productWindow)}else visible=true;
+document.addEventListener("visibilitychange",schedule);window.addEventListener("resize",()=>{measure();schedule()});
+if("ResizeObserver" in window)new ResizeObserver(()=>{measure();schedule()}).observe(productWindow);
+measure();syncPause();
 </script>
 <script src="assets/s2h-motion.js?v=20261126-7" defer></script>
 </body></html>
