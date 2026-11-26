@@ -1,0 +1,22 @@
+name = "s2h-inquiry-api"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://s2hcorp.co.kr,https://jyhome1228-cyber.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "s2h-inquiries"
+database_id = "REPLACE_WITH_CREATED_D1_DATABASE_ID"
+
+[[ratelimits]]
+name = "PUBLIC_LIMITER"
+namespace_id = "601"
+simple = { limit = 8, period = 60 }
+
+[[ratelimits]]
+name = "ADMIN_LIMITER"
+namespace_id = "602"
+simple = { limit = 30, period = 60 }
