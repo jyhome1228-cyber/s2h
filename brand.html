@@ -308,7 +308,7 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 .partner-form-note{font-size:11px;line-height:1.75;color:#72828a;margin:14px 0 0}
 @media(max-width:650px){.partner-modal{padding:10px}.partner-modal-dialog{padding:34px 22px 27px;max-height:95dvh}.partner-modal-dialog h2{font-size:24px}.partner-form-grid{grid-template-columns:1fr;gap:15px}.partner-form-field.wide{grid-column:auto}}
 </style>
-<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-7">
+<link rel="stylesheet" href="assets/s2h-responsive.css?v=20261126-8">
 <style>
 /* BRAND v5 — coordinated partnership design */
 .brand-v5 .brand-hero{width:min(var(--site-max),calc(100% - var(--site-gutter)*2));margin:24px auto 0;border-radius:16px;background:#edf6f8;padding:0;overflow:hidden}
@@ -431,8 +431,8 @@ body,button,input,textarea,select{font-family:Pretendard,"Noto Sans KR",Arial,sa
 const entry=document.getElementById("entryScreen");
 let seen=false;try{seen=sessionStorage.getItem("s2h-intro-seen")==="1"}catch(e){}
 const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),700)}
-if(seen||reduced)finishIntro();else setTimeout(finishIntro,1050);
+function finishIntro(){if(!entry||entry.classList.contains("is-hidden"))return;entry.classList.add("is-hidden");entry.setAttribute("aria-hidden","true");try{sessionStorage.setItem("s2h-intro-seen","1")}catch(e){}setTimeout(()=>entry.remove(),300)}
+if(seen||reduced){finishIntro();entry?.remove()}else setTimeout(finishIntro,560);
 const current=location.pathname.split("/").pop()||"index.html";
 document.querySelectorAll(".desktop-nav a,.menu-links a,.foot-nav a").forEach(a=>{if(a.getAttribute("href")===current)a.setAttribute("aria-current","page")});
 document.getElementById("year").textContent=new Date().getFullYear();
@@ -445,7 +445,7 @@ let partnerLastFocus=null,previousOverflow="",partnerSubmitting=false;
 function showBrandStatus(message){brandStatus.textContent=message;brandStatus.hidden=!message}
 function setBrandBusy(busy){partnerSubmitting=busy;partnerClose.disabled=busy;partnerSubmit.disabled=busy;partnerForm.setAttribute("aria-busy",String(busy));partnerSubmit.textContent=busy?"신청 내용을 처리하고 있습니다…":window.S2HInquiryAPI?.isConfigured()?"브랜드 입점 제안":"브랜드 입점 제안 이메일 작성"}
 function openPartnerModal(){if(!partnerModal.hidden)return;partnerLastFocus=document.activeElement;showBrandStatus("");brandMail.hidden=true;setBrandBusy(false);brandNote.textContent=window.S2HInquiryAPI?.isConfigured()?"입력하신 내용이 S2H 담당자에게 접수됩니다.":"이메일 앱에서 발송을 완료해야 요청이 전달됩니다. 홈페이지에는 자동 저장되지 않습니다.";previousOverflow=document.body.style.overflow;partnerModal.hidden=false;document.body.style.overflow="hidden";brandBackground.forEach(el=>el.inert=true);partnerDialog.scrollTop=0;partnerClose.focus({preventScroll:true})}
-function closePartnerModal(){if(partnerSubmitting||partnerModal.hidden)return;partnerModal.hidden=true;brandBackground.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;if(partnerLastFocus?.isConnected)partnerLastFocus.focus({preventScroll:true})}
+function closePartnerModal(){if(partnerSubmitting||partnerModal.hidden||partnerModal.classList.contains("s2h-closing"))return;const finish=()=>{partnerModal.hidden=true;brandBackground.forEach(el=>el.inert=false);document.body.style.overflow=previousOverflow;if(partnerLastFocus?.isConnected)partnerLastFocus.focus({preventScroll:true})};if(window.S2HMotion)window.S2HMotion.closeDialog(partnerModal,finish);else finish()}
 document.querySelectorAll(".partner-apply-trigger").forEach(button=>button.addEventListener("click",openPartnerModal));
 partnerClose.addEventListener("click",closePartnerModal);
 partnerModal.querySelector("[data-close-partner]").addEventListener("click",closePartnerModal);
@@ -466,5 +466,5 @@ partnerForm.addEventListener("submit",async event=>{
  finally{setBrandBusy(false)}
 });
 </script>
-<script src="assets/s2h-motion.js?v=20261126-7" defer></script>
+<script src="assets/s2h-motion.js?v=20261126-8" defer></script>
 </body></html>
