@@ -98,7 +98,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .brand-text small{letter-spacing:.1em}
 @media(max-width:800px){.brand-logo{height:42px;width:106px;flex-basis:106px}}
 </style>
-</head>
+<style>
+#inquiryMetrics{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.admin-auth-trigger[hidden]{display:none!important}.admin-auth-dialog{border:1px solid #dfe7eb;border-radius:14px;width:min(440px,calc(100% - 28px));padding:28px;color:var(--ink)}.admin-auth-dialog::backdrop{background:#101b22aa}.admin-auth-dialog h2{font-size:22px;margin:0 0 12px}.admin-auth-dialog p{font-size:14px;line-height:1.6;color:#52656e}.admin-auth-dialog label{display:block;margin:20px 0 8px;font-size:14px}.admin-auth-dialog input{width:100%;padding:12px;border:1px solid #d9e3e7;border-radius:8px;font-size:16px}.admin-auth-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.inquiry-toolbar{display:flex;gap:10px;justify-content:space-between;margin-bottom:16px}.inquiry-toolbar input{min-width:0;flex:1;border:1px solid #dfe7eb;border-radius:8px;padding:10px;font-size:16px}.inquiry-item{border:1px solid #e1e8eb;border-radius:10px;margin:8px 0;padding:14px}.inquiry-item summary{cursor:pointer;display:flex;flex-wrap:wrap;justify-content:space-between;gap:9px}.inquiry-item summary span,.recent-inquiry span{color:#52656e;font-size:13px}.inquiry-item dl{display:grid;grid-template-columns:minmax(80px,1fr) minmax(0,3fr);gap:10px;border-top:1px solid #e1e8eb;margin:14px 0 0;padding-top:14px;font-size:14px}.inquiry-item dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.inquiry-item dt{color:#52656e}.recent-inquiry{display:flex;justify-content:space-between;align-items:start;gap:12px;width:100%;text-align:left;border:0;border-bottom:1px solid #e1e8eb;background:white;padding:13px 0}.topbar-right{flex-wrap:wrap}
+</style></head>
 <body>
 <div class="shell">
 <aside class="sidebar">
@@ -107,19 +110,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  <div class="sidebar-bottom"><a href="../index.html">← 홈페이지로 이동</a><p>정적 화면 미리보기<br>인증과 데이터 저장은 연결 전입니다.</p></div>
 </aside>
 <div class="workspace">
- <header class="topbar"><div class="topbar-left"><strong id="topTitle">운영 대시보드</strong><span>S2H Corporation</span></div><div class="topbar-right"><span class="connection"><i></i> 데이터베이스 미연결</span><div class="account" aria-label="관리자 미리보기">S2H</div></div></header>
+ <header class="topbar"><div class="topbar-left"><strong id="topTitle">운영 대시보드</strong><span>S2H Corporation</span></div><div class="topbar-right"><span class="connection" role="status">데이터베이스 미연결</span><button class="btn admin-auth-trigger" id="adminAuth" type="button" hidden>관리자 연결</button><button class="btn admin-auth-trigger" id="adminLogout" type="button" hidden>연결 해제</button><div class="account" aria-label="관리자 미리보기">S2H</div></div></header>
  <main class="main">
   <section class="tabs-page active" id="page-dashboard">
    <div class="page-heading"><div><h1>운영 대시보드</h1><p>제휴 및 상품 운영 현황을 한 곳에서 확인할 수 있도록 준비한 관리자 화면입니다.</p></div><span class="date-tag" id="todayLabel"></span></div>
    <div class="alert"><div><strong>현재는 대시보드 UI 미리보기입니다.</strong><p>신청 내역 수집, 로그인, 데이터베이스, 방문자 분석이 연결되지 않았습니다. 아래 제품 62개만 실제 홈페이지 등록 데이터입니다.</p></div><a href="../product.html">실제 제품 페이지 ↗</a></div>
-   <div class="metrics">
+   <div class="metrics" id="inquiryMetrics">
      <article class="metric"><span class="metric-label">등록 제품</span><div class="metric-value">62<em>개</em></div><div class="metric-footer">현재 공개 제품 목록 기준</div></article>
      <article class="metric"><span class="metric-label">셀러 신청</span><div class="metric-value">—</div><div class="metric-footer">신청 저장 기능 연결 필요</div></article>
      <article class="metric"><span class="metric-label">브랜드 입점</span><div class="metric-value">—</div><div class="metric-footer">접수 데이터 연동 필요</div></article>
-     <article class="metric"><span class="metric-label">제품 요청</span><div class="metric-value">—</div><div class="metric-footer">상품별 요청 저장 미연결</div></article>
+     <article class="metric"><span class="metric-label">제품 요청</span><div class="metric-value">—</div><div class="metric-footer">상품별 요청 저장 미연결</div></article><article class="metric"><span class="metric-label">일반 문의</span><div class="metric-value">—</div><div class="metric-footer">문의 접수 연결 필요</div></article>
    </div>
    <div class="dashboard-grid">
-     <section class="panel"><div class="panel-header"><h2>최근 접수 현황</h2><span>연동 준비 중</span></div><div class="panel-body"><div class="empty-state"><div class="empty-icon">◎</div><strong>접수 데이터가 아직 연결되지 않았습니다.</strong><p>홈페이지의 신청 폼을 API에 연결하면<br>실제 접수 내역이 이곳에 표시됩니다.</p></div></div></section>
+     <section class="panel" id="recentInquiries"><div class="panel-header"><h2>최근 접수 현황</h2><span>연동 준비 중</span></div><div class="panel-body"><div class="empty-state"><div class="empty-icon">◎</div><strong>접수 데이터가 아직 연결되지 않았습니다.</strong><p>홈페이지의 신청 폼을 API에 연결하면<br>실제 접수 내역이 이곳에 표시됩니다.</p></div></div></section>
      <section class="panel"><div class="panel-header"><h2>빠른 이동</h2><span>운영 메뉴</span></div><div class="panel-body"><div class="quick-links"><button data-go="products">등록 제품 62개 확인 <span>↗</span></button><button data-go="seller">셀러 신청 관리 <span>↗</span></button><button data-go="brand">브랜드 입점 관리 <span>↗</span></button><a href="../index.html" target="_blank" rel="noopener noreferrer">홈페이지 열기 <span>↗</span></a></div></div></section>
    </div>
   </section>
@@ -138,7 +141,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
  </main>
 </div></div>
 <div class="detail" id="productDetail" hidden><div class="detail-backdrop" data-close></div><section class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><header><h2 id="detailTitle">제품 정보</h2><button type="button" class="close" id="closeDetail" aria-label="창 닫기">×</button></header><div class="detail-grid"><img id="detailImage" alt=""><dl><dt>제품명</dt><dd id="detailName"></dd><dt>카테고리</dt><dd id="detailCategory"></dd><dt>제품번호</dt><dd id="detailId"></dd><dt>홈페이지 상태</dt><dd>공개 목록에 등록됨</dd></dl></div><p class="admin-note">제품 정보 편집은 데이터베이스 및 인증 연결 후 제공됩니다.</p></section></div>
-<script src="../assets/inquiry-api.js" defer></script>
+<dialog class="admin-auth-dialog" id="adminAuthDialog"><form id="adminAuthForm"><h2>관리자 API 인증</h2><p>운영 서버에서 발급한 관리자 접근 키를 입력해 주세요. 키는 현재 페이지 메모리에만 유지됩니다.</p><label for="adminToken">접근 키</label><input id="adminToken" type="password" autocomplete="off" required><p id="adminAuthStatus" role="status"></p><div class="admin-auth-actions"><button class="btn" type="button" id="adminAuthCancel">취소</button><button class="btn" type="submit">연결 확인</button></div></form></dialog>
+<script src="../assets/inquiry-api.js?v=20261126-6" defer></script>
 <script>
 const products=[{"id":1,"name":"EMS 자주파자극 오마이턱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010738-ems-15ef184b.webp"},{"id":2,"name":"NGT 오늘은 애플페논","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010738-ngt-cf10b1e6.webp"},{"id":3,"name":"NGT 잇츠 라인","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010739-ngt-2c2eb0a4.webp"},{"id":4,"name":"NGT 잇츠 버닝 CLA","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010739-ngt-cla-de6369d9.webp"},{"id":5,"name":"NGT 잇츠 차전자피","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-ngt-725e7968.webp"},{"id":6,"name":"NGT 잇츠 크랜베리","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-ngt-f5e1f95d.webp"},{"id":7,"name":"가쉬 에어버블 마스크팩","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010740-image-8ee91a5f.webp"},{"id":13,"name":"김미떡","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010743-5-b5c67efa.webp"},{"id":17,"name":"달링브라 갓벽브라 + 팬티 2.0","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010744-2-0-80745ddd.webp"},{"id":18,"name":"달링브라 라운지웨어(원피스&투피스)","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-image-e6198557.webp"},{"id":19,"name":"달링브라 시크릿티 2.0","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-2-0-08492126.webp"},{"id":20,"name":"달링브라 육각하이팬티 컴핏","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-010745-image-8ebd2437.webp"},{"id":21,"name":"달링브라 착붙팬티","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011202-image-a598ece8.webp"},{"id":22,"name":"더하이라인 드라이시트","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011203-image-f07deabe.webp"},{"id":24,"name":"도파밍 모기기피제","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011203-image-96091e62.webp"},{"id":25,"name":"듀얼테트라","category":"기타","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-04fffdb4.webp"},{"id":26,"name":"똑순이 아구찜","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-6f016b73.webp"},{"id":27,"name":"레모니즈백","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-5ab9de84.webp"},{"id":28,"name":"르프로우 탄탄스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-0f1a9a4c.webp"},{"id":29,"name":"리메스카 흉터스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011204-image-4bb99f92.webp"},{"id":30,"name":"리투 에어 데일리 크루 삭스","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-c45c2122.webp"},{"id":31,"name":"리투 에어 데일리 키즈 크루 삭스","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-ff8bcbd5.webp"},{"id":32,"name":"릴렉_PVC 투명 주방매트","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-pvc-a9231b8d.webp"},{"id":33,"name":"마음먹은김","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-image-16e7688e.webp"},{"id":34,"name":"맥스메이드 100만 파로효소","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011205-100-15cece3b.webp"},{"id":35,"name":"맥스메이드 스노우칼마디K2","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011206-k2-8f36d6f5.webp"},{"id":36,"name":"맥스메이드 아이언츄","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011206-image-dedb23de.webp"},{"id":44,"name":"바른호떡 7종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011536-7-785e18c7.webp"},{"id":46,"name":"바사삭먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011537-image-da3f760e.webp"},{"id":50,"name":"비타민하우스 데일리낙산균","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011539-image-4f75b6c1.webp"},{"id":51,"name":"비타민하우스 키글키글 덴탈케어치약액","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011539-image-206a3bf3.webp"},{"id":53,"name":"사노셀 애사비 구미","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-image-a26c42ab.webp"},{"id":54,"name":"사노셀 애사비 콤부차 2종","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011540-2-41f1fe45.webp"},{"id":55,"name":"새싹보리굴비","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011541-image-d1191f05.webp"},{"id":56,"name":"새우앤먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011541-image-c05ea4ad.webp"},{"id":58,"name":"수제먹태","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-e94b80e3.webp"},{"id":59,"name":"싱싱쭈꾸미","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011542-image-6f12297d.webp"},{"id":60,"name":"쎄담 프로 더마 클리너 항균패드","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-011543-image-bbc03a46.webp"},{"id":61,"name":"쎄담 프로더마 포켓패드","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012356-image-5fff2d10.webp"},{"id":62,"name":"아바노바 드뉴 마스크 패치","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-b264ecca.webp"},{"id":63,"name":"아빠가만든 꿀고구마","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012357-image-132d1f86.webp"},{"id":64,"name":"앱솔루트 불가리안 로즈 오일","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012358-image-0a79dcd2.webp"},{"id":74,"name":"우리쌀 어포튀각","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-709a333d.webp"},{"id":75,"name":"윈드스토리 휴대용 선풍기","category":"패션·리빙","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-27e9e4ae.webp"},{"id":76,"name":"이투비 샐러드캔디","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012402-image-dbd121cd.webp"},{"id":77,"name":"이투비 슈퍼오일3","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-3-4c0d5809.webp"},{"id":78,"name":"이투비 헤링오일 오메가11","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012404-11-91744935.webp"},{"id":80,"name":"잇데이 올리브오일","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012405-image-943099b8.webp"},{"id":81,"name":"잇데이 진저샷","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-78253fe0.webp"},{"id":82,"name":"작영 셀룰라이트 스틱","category":"뷰티","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012650-image-90944825.webp"},{"id":83,"name":"천호앤케어 흑염소프리미엄","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012651-image-a6372e7d.webp"},{"id":87,"name":"피타니 그래니스미스 애사비 플로라","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012652-image-796eb85d.webp"},{"id":88,"name":"피타니 리얼비네 애사비 핏","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012652-image-49ea8476.webp"},{"id":89,"name":"피타니 리포멜팅 화이톤C","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012653-c-8b9fc9a4.webp"},{"id":90,"name":"피타니 유기농 리얼 애플 애사비","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012653-image-b27f5bc7.webp"},{"id":91,"name":"피타니 제니스칼 팻아웃 브루","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-02043cba.webp"},{"id":92,"name":"피타니 제니스칼 팻킬 슬림 (정제)","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-2ff32cfd.webp"},{"id":93,"name":"피타니 제니스칼 팻킬 슬림 샷(분말)","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012654-image-9ddb669c.webp"},{"id":94,"name":"피타니 화이톤 로젠지","category":"건강식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012655-image-63f0c3b5.webp"},{"id":97,"name":"홍익낙지","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012656-image-e46541c6.webp"},{"id":98,"name":"홍익동태탕","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012657-image-9467f942.webp"},{"id":99,"name":"홍익시래기코다리조림","category":"식품","image":"https://nineworksdatabase.planus253.workers.dev/cdn/uncategorized/20261110-012657-image-9ea714a0.webp"}];
 const menu=[
@@ -188,60 +192,48 @@ function csvValue(value){const v=String(value??"");return /[",\n]/.test(v)?'"'+v
 document.getElementById("exportProducts").addEventListener("click",()=>{const rows=[["제품번호","제품명","카테고리","썸네일 URL"],...products.map(p=>[p.id,p.name,p.category,p.image])];const csv="\uFEFF"+rows.map(row=>row.map(csvValue).join(",")).join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="s2h_products.csv";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 const modal=document.getElementById("productDetail"),close=document.getElementById("closeDetail");let lastFocus=null;function openDetail(p){lastFocus=document.activeElement;document.getElementById("detailImage").src=p.image;document.getElementById("detailImage").alt=p.name;document.getElementById("detailName").textContent=p.name;document.getElementById("detailCategory").textContent=p.category;document.getElementById("detailId").textContent=String(p.id).padStart(3,"0");modal.hidden=false;document.body.style.overflow="hidden";close.focus()}function hideDetail(){modal.hidden=true;document.body.style.overflow="";if(lastFocus&&lastFocus.isConnected)lastFocus.focus()}close.addEventListener("click",hideDetail);modal.querySelector("[data-close]").addEventListener("click",hideDetail);document.addEventListener("keydown",e=>{if(!modal.hidden&&e.key==="Escape")hideDetail()});
 
-/* Server integration: disabled until secured backend and admin auth are configured. */
+/* Inquiry administration — authenticated read only. No demo personal records. */
 const inquiryKinds={seller:"seller",brand:"brand",requests:"product_request",inquiries:"contact"};
-function safeText(el,value){el.textContent=value==null?"":String(value)}
-async function loadAdminInquiries(){
- const api=window.S2HInquiryAPI;
- if(!api?.isConfigured())return;
- const status=document.querySelector(".connection");
- status.textContent="보안 API 연결 확인 중";
- const results={};
- for(const [page,kind] of Object.entries(inquiryKinds)){
-  const section=document.getElementById("page-"+page);
-  try{
-   const response=await api.adminList(kind);
-   if(!response.configured)continue;
-   results[page]=response.items;
-   const panel=section.querySelector(".panel");
-   if(!panel)continue;
-   const area=panel.querySelector(".panel-body");
-   area.replaceChildren();
-   if(!response.items.length){
-    const empty=document.createElement("p");empty.className="admin-note";empty.textContent="접수된 내역이 없습니다.";area.append(empty);
-   }else{
-    const table=document.createElement("table");table.className="data-table";
-    const head=document.createElement("thead");head.innerHTML="<tr><th>접수번호</th><th>접수일</th><th>신청자</th><th>상태</th><th>내용</th></tr>";table.append(head);
-    const tbody=document.createElement("tbody");
-    for(const item of response.items){
-     const tr=document.createElement("tr");
-     const fields=item.fields&&typeof item.fields==="object"?item.fields:{};
-     const owner=fields.sellerName||fields.brandName||fields.name||fields.seller||fields.manager||"—";
-     const values=[item.id||"",item.createdAt?new Date(item.createdAt).toLocaleString("ko-KR"):"",owner,item.status||"접수",JSON.stringify(fields)];
-     for(const value of values){const td=document.createElement("td");safeText(td,value);tr.append(td)}
-     tbody.append(tr);
-    }
-    table.append(tbody);const scroll=document.createElement("div");scroll.className="table-scroll";scroll.append(table);area.append(scroll);
-   }
-   const topPanel=section.querySelector(".panel-header span");if(topPanel)topPanel.textContent=response.items.length+"건";
-  }catch(error){
-   const area=section.querySelector(".panel-body");
-   if(area){area.replaceChildren();const warning=document.createElement("p");warning.className="admin-note";warning.textContent="관리자 인증 또는 API 연결을 확인해 주세요. 데이터는 표시되지 않았습니다.";area.append(warning)}
-  }
- }
- const connected=Object.keys(results).length===Object.keys(inquiryKinds).length;
- status.textContent=connected?"관리 API 연결됨":"관리자 인증 및 API 연결 필요";
- const cards=document.querySelectorAll("#page-dashboard .metric");
- [["seller",1],["brand",2],["requests",3]].forEach(([key,index])=>{
-  if(results[key]&&cards[index]){const value=cards[index].querySelector(".metric-value");if(value)safeText(value,results[key].length)}
- });
- if(connected){
-  const hint=document.querySelector("#page-dashboard .alert strong");
-  if(hint)hint.textContent="신청 데이터 연결 상태";
-  const sub=document.querySelector("#page-dashboard .alert p");
-  if(sub)sub.textContent="서버에서 제공된 실제 접수 데이터를 표시합니다.";
- }
+const labels={seller:"셀러 신청",brand:"브랜드 입점",requests:"제품 요청",inquiries:"일반 문의"};
+const fieldLabels={sellerName:"셀러명",instagram:"인스타그램",phone:"연락처",email:"이메일",categories:"관심 상품군",message:"문의 내용",brandName:"브랜드명",manager:"담당자",productName:"제품명",productUrl:"제품 링크",name:"이름",company:"회사명",type:"문의 유형",seller:"셀러명",category:"카테고리",productId:"상품번호",consent:"개인정보 안내 확인"};
+const authDialog=document.getElementById("adminAuthDialog"),authForm=document.getElementById("adminAuthForm"),authButton=document.getElementById("adminAuth"),logoutButton=document.getElementById("adminLogout"),authStatus=document.getElementById("adminAuthStatus"),connection=document.querySelector(".connection");
+let adminToken="",generation=0;
+const rowsByPage={};
+function setText(el,value){if(el)el.textContent=String(value??"")}
+function make(tag,value,className){const el=document.createElement(tag);if(value!=null)el.textContent=String(value);if(className)el.className=className;return el}
+function owner(item){const f=item.fields||{};return f.sellerName||f.brandName||f.name||f.seller||f.manager||"—"}
+function formattedDate(value){const d=new Date(value);return value&&!Number.isNaN(d.valueOf())?d.toLocaleString("ko-KR"):"—"}
+function renderInquiryPage(page,items,total){
+ const section=document.getElementById("page-"+page),area=section.querySelector(".panel-body");area.replaceChildren();
+ setText(section.querySelector(".date-tag"),"인증 연결");setText(section.querySelector(".panel-header span"),total+"건");
+ const toolbar=make("div",null,"inquiry-toolbar"),search=make("input");search.type="search";search.placeholder="신청자·제품명·내용 검색";search.setAttribute("aria-label","접수 내역 검색");const refresh=make("button","새로고침","btn");refresh.type="button";refresh.addEventListener("click",()=>loadAdminInquiries());toolbar.append(search,refresh);area.append(toolbar);
+ const list=make("div",null,"inquiry-list");area.append(list);
+ function render(){list.replaceChildren();const q=search.value.trim().toLocaleLowerCase("ko");const filtered=items.filter(item=>!q||JSON.stringify(item.fields||{}).toLocaleLowerCase("ko").includes(q));if(!filtered.length){list.append(make("p",q?"검색 결과가 없습니다.":"접수된 내역이 없습니다.","admin-note"));return}for(const item of filtered){const detail=make("details",null,"inquiry-item"),summary=make("summary"),title=make("strong",owner(item)),meta=make("span",formattedDate(item.createdAt)+" · "+(item.status||"접수"));summary.append(title,meta);detail.append(summary);const dl=make("dl");dl.append(make("dt","접수번호"),make("dd",item.id||"—"));for(const [key,value] of Object.entries(item.fields||{})){if(!Object.hasOwn(fieldLabels,key))continue;dl.append(make("dt",fieldLabels[key]),make("dd",key==="consent"?"확인":value||"—"))}detail.append(dl);list.append(detail)}}
+ search.addEventListener("input",render);render();if(total>items.length)area.append(make("p","최근 "+items.length+"건을 표시합니다. 전체 "+total+"건 중 일부입니다.","admin-note"));
 }
-document.addEventListener("DOMContentLoaded",loadAdminInquiries);
+function resetInquiries(){
+ for(const [page] of Object.entries(inquiryKinds)){delete rowsByPage[page];const section=document.getElementById("page-"+page);setText(section.querySelector(".date-tag"),"인증 필요");setText(section.querySelector(".panel-header span"),"데이터 미연결");section.querySelector(".panel-body").replaceChildren(make("p","관리자 인증 및 API 연결 후 접수 내역을 조회할 수 있습니다.","admin-note"))}
+ const cards=document.querySelectorAll("#inquiryMetrics .metric");for(let i=1;i<cards.length;i++){setText(cards[i].querySelector(".metric-value"),"—");setText(cards[i].querySelector(".metric-footer"),"데이터 미연결")}
+ const recent=document.getElementById("recentInquiries");setText(recent.querySelector(".panel-header span"),"연동 대기");recent.querySelector(".panel-body").replaceChildren(make("p","접수 데이터가 연결되지 않았습니다.","admin-note"));
+}
+function updateDashboard(){
+ const cards=document.querySelectorAll("#inquiryMetrics .metric");Object.keys(inquiryKinds).forEach((page,i)=>{const result=rowsByPage[page];setText(cards[i+1].querySelector(".metric-value"),result?result.total:"—");setText(cards[i+1].querySelector(".metric-footer"),result?"실제 서버 접수 건수":"조회 실패")});
+ const recent=document.getElementById("recentInquiries"),area=recent.querySelector(".panel-body");area.replaceChildren();const all=Object.entries(rowsByPage).flatMap(([page,r])=>r.items.map(item=>({page,item}))).sort((a,b)=>new Date(b.item.createdAt)-new Date(a.item.createdAt)).slice(0,8);setText(recent.querySelector(".panel-header span"),"최근 "+all.length+"건");
+ if(!all.length)area.append(make("p","조회된 접수 내역이 없습니다.","admin-note"));for(const {page,item} of all){const button=make("button",null,"recent-inquiry");button.type="button";button.append(make("strong",labels[page]+" · "+owner(item)),make("span",formattedDate(item.createdAt)));button.addEventListener("click",()=>location.hash=page);area.append(button)}
+}
+async function loadAdminInquiries(){
+ if(!window.S2HInquiryAPI?.isConfigured()||!adminToken)return false;
+ const run=++generation,token=adminToken;setText(connection,"접수 데이터 확인 중");
+ const responses=await Promise.allSettled(Object.entries(inquiryKinds).map(async([page,kind])=>({page,...await window.S2HInquiryAPI.adminList(kind,token)})));
+ if(run!==generation||token!==adminToken)return false;
+ resetInquiries();let success=0;for(const result of responses){if(result.status!=="fulfilled"||!result.value.configured)continue;const r=result.value;rowsByPage[r.page]=r;renderInquiryPage(r.page,r.items,r.total);success++}
+ updateDashboard();setText(connection,success===4?"관리 API 연결됨":success?"일부 데이터 조회 실패":"인증 또는 API 확인 필요");logoutButton.hidden=success===0;authButton.hidden=success===4;if(success===0){adminToken="";return false}return true;
+}
+function initAdmin(){const api=window.S2HInquiryAPI;if(!api?.isConfigured()){setText(connection,"API 미설정");return}resetInquiries();authButton.hidden=false;setText(connection,"관리자 인증 필요");setText(document.querySelector("#page-dashboard .alert strong"),"관리자 인증 후 실제 문의 내역을 확인할 수 있습니다.");setText(document.querySelector("#page-dashboard .alert p"),"현재 인증 전입니다. 접수 데이터는 관리자 API 인증 후에만 표시됩니다.")}
+authButton.addEventListener("click",()=>{authStatus.textContent="";authForm.reset();authDialog.showModal()});document.getElementById("adminAuthCancel").addEventListener("click",()=>authDialog.close());
+authForm.addEventListener("submit",async e=>{e.preventDefault();if(authForm.dataset.busy)return;const token=document.getElementById("adminToken").value.trim();if(!token)return;authForm.dataset.busy="1";const submit=authForm.querySelector("button[type=submit]");submit.disabled=true;authStatus.textContent="인증 확인 중";adminToken=token;try{const ok=await loadAdminInquiries();if(ok){authForm.reset();authDialog.close()}else authStatus.textContent="인증 또는 서버 연결을 확인해 주세요."}finally{delete authForm.dataset.busy;submit.disabled=false}});
+authDialog.addEventListener("close",()=>{authForm.reset()});
+logoutButton.addEventListener("click",()=>{generation++;adminToken="";resetInquiries();authButton.hidden=false;logoutButton.hidden=true;setText(connection,"관리자 인증 필요")});
+document.addEventListener("DOMContentLoaded",initAdmin);
 </script>
 </body></html>
