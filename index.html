@@ -431,14 +431,14 @@ function nudge(direction){if(!cachedStep)return;const target=(direction>0?Math.f
 document.getElementById("homeProductsPrev").addEventListener("click",()=>nudge(-1));document.getElementById("homeProductsNext").addEventListener("click",()=>nudge(1));
 productWindow.addEventListener("mouseenter",()=>{if(finePointer.matches){hovered=true;schedule()}});
 productWindow.addEventListener("mouseleave",()=>{hovered=false;schedule()});
-productWindow.addEventListener("focusin",e=>{focused=true;const card=e.target.closest(".home-product-card"),i=originalCards.indexOf(card);if(i>=0){impulse=0;carouselOffset=i*cachedStep;productWindow.scrollLeft=0;render()}schedule()});
+productWindow.addEventListener("focusin",e=>{focused=true;const card=e.target.closest(".home-product-card"),i=originalCards.indexOf(card);if(i>=0&&card.matches(":focus-visible")){const rect=card.getBoundingClientRect(),bounds=productWindow.getBoundingClientRect();if(rect.left<bounds.left||rect.right>bounds.right){impulse=0;carouselOffset=i*cachedStep;productWindow.scrollLeft=0;render()}}schedule()});
 productWindow.addEventListener("focusout",e=>{if(!productWindow.contains(e.relatedTarget)){focused=false;schedule()}});
 productWindow.addEventListener("keydown",e=>{if(e.target===productWindow&&(e.key==="ArrowRight"||e.key==="ArrowLeft")){e.preventDefault();nudge(e.key==="ArrowRight"?1:-1)}});
-let touchStart=null,swipeHandled=false;
-productWindow.addEventListener("touchstart",e=>{if(e.touches.length!==1)return;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};touching=true;swipeHandled=false;schedule()},{passive:true});
-productWindow.addEventListener("touchend",e=>{if(touchStart){const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.35){swipeHandled=true;nudge(dx<0?1:-1)}}touchStart=null;touching=false;schedule()},{passive:true});
+let touchStart=null,swipeHandledUntil=0;
+productWindow.addEventListener("touchstart",e=>{if(e.touches.length!==1)return;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};touching=true;swipeHandledUntil=0;schedule()},{passive:true});
+productWindow.addEventListener("touchend",e=>{if(touchStart){const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.35){swipeHandledUntil=performance.now()+400;nudge(dx<0?1:-1)}}touchStart=null;touching=false;schedule()},{passive:true});
 productWindow.addEventListener("touchcancel",()=>{touchStart=null;touching=false;swipeHandled=false;schedule()},{passive:true});
-productWindow.addEventListener("click",e=>{if(swipeHandled){e.preventDefault();swipeHandled=false}},true);
+productWindow.addEventListener("click",e=>{if(performance.now()<swipeHandledUntil){e.preventDefault();swipeHandledUntil=0}},true);
 const pauseButton=document.getElementById("homeProductsPause");
 function syncPause(){pauseButton.textContent=userPaused||motion.matches?"자동 재생":"일시정지";pauseButton.setAttribute("aria-pressed",String(userPaused||motion.matches));pauseButton.disabled=motion.matches;pauseButton.setAttribute("aria-label",motion.matches?"동작 줄이기 설정으로 자동 롤링 꺼짐":userPaused?"제품 자동 롤링 재생":"제품 자동 롤링 일시정지");if(motion.matches&&impulse){carouselOffset+=impulse;impulse=0;render()}schedule()}
 pauseButton.addEventListener("click",()=>{userPaused=!userPaused;syncPause()});motion.addEventListener?.("change",syncPause);
